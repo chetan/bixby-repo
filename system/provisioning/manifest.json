@@ -1,0 +1,8 @@
+{
+	"name": "provisioning",
+	"version": "0.0.1",
+	"description": "provides a method for dynamic provisioning of bundles",
+
+	"provides": [  ],
+	"depends": [  ]
+}
