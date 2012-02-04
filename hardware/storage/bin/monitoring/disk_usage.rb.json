@@ -1,0 +1,10 @@
+{
+  "options" : {
+    "filesystem" : {
+      "type" : "enum",
+      "name" : "Filesystem",
+      "desc" : "Filesystem to check usage for, defaults to /",
+      "default" : "/"
+    }
+  }
+}
