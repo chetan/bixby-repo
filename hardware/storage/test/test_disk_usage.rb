@@ -1,8 +1,8 @@
 
-require 'test/unit'
+require 'minitest/unit'
 require 'disk_usage'
 
-class TestDiskUsage < Test::Unit::TestCase
+class TestDiskUsage < MiniTest::Unit::TestCase
 
   def test_parse_mac
     output = <<-EOF
