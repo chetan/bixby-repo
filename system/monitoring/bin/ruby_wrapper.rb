@@ -41,7 +41,10 @@ class RubyWrapper
       puts "error: need a script to run!"
       exit 2
     end
+    ARGV << "options"
     require @script
+    # TODO make sure only 1 is returned??
+    Monitoring::Base.subclasses.first.new.run
   end
 
   def run_test

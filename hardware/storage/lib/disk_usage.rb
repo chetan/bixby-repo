@@ -7,6 +7,13 @@ module Hardware
 
         include BundleUtil
 
+        # Returns the 'df' utilities output as a hash, all sizes are in GB
+        #
+        # example:
+        #
+        # {"/dev/disk0s2"=>{:fs=>"/dev/disk0s2", :size=>297, :used=>201, :free=>95, :usage=>68, :mount=>"/"}}
+        #
+        # @return [Hash] Hash of 'df' output
         def read(fs=nil)
 
           if osx? then
@@ -20,7 +27,7 @@ module Hardware
             # TODO raise err
           end
 
-          parse_output(stdout)
+          return parse_output(stdout)
         end
 
         # @return [Hash] the parsed :output: as a hash
@@ -48,7 +55,7 @@ module Hardware
 
             end
           end
-          ret
+          return ret
         end
 
       end

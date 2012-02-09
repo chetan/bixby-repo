@@ -1,25 +1,24 @@
 #!/usr/bin/env ruby
 
-require "disk_usage"
-
 module Monitoring
   module Storage
 
-    class DiskUsage < BundleCommand
+    class DiskUsage < Monitoring::Base
 
-      def run!
+      def get_options
+        mounts = Hardware::Storage.list_disks()
+        opts = { :filesystem => mounts }
+        return opts
+      end
 
+      def monitor
         df = Hardware::Storage::DiskUsage.read()
 
         # TODO transform for monitoring output
         df.values.each do |fs|
         end
-
       end
 
     end
   end
 end
-
-Monitoring::Storage::DiskUsage.new.run!
-

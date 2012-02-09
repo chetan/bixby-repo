@@ -5,6 +5,7 @@ gem 'devops_common'
 gem 'devops_agent'
 
 require 'devops_agent'
+require File.dirname(__FILE__) + "/base"
 
 def bootstrap(argv)
   # find script in ARGV (accounting for spaces)
