@@ -1,43 +1,61 @@
 #!/usr/bin/env ruby
 
-# usage
-if ARGV.empty? then
-  puts "usage: #{$0} <script>"
-  exit
-end
+require File.expand_path(File.dirname(__FILE__)) + "/../lib/bootstrap"
+require 'mixlib/cli'
 
-require 'rubygems'
+class RubyWrapper
 
-gem 'devops_common'
-gem 'devops_agent'
+  include Mixlib::CLI
 
-require 'devops_agent'
+  option :test,
+      :short          => "-t",
+      :long           => "--test",
+      :description    => "Run test(s) for given bundle",
+      :boolean        => true
 
-# find script in ARGV (accounting for spaces)
-script = ARGV.shift
-while not File.exists? script do
-  script += " " + ARGV.shift
-end
+  option :help,
+      :short          => "-h",
+      :long           => "--help",
+      :description    => "Print this help",
+      :boolean        => true,
+      :show_options   => true,
+      :exit           => 0
 
-# look for the bundle root dir and add lib/ to load path
-bundledir = File.dirname(script)
-while not File.exists? File.join(bundledir, "manifest.json")
-  bundledir = File.dirname(bundledir)
-end
-$: << File.join(bundledir, "lib")
-begin; require File.basename(bundledir); rescue LoadError; end
+  def initialize
+    super
+    @argv = parse_options()
+    (@bundle_dir, @script) = bootstrap(@argv)
+    ARGV.clear
+  end
 
-# add helper(s)
-begin; require 'awesome_print'; rescue LoadError; end
-begin; require 'turn'; rescue LoadError; end
+  def run
+    if @config[:test] then
+      return run_test()
+    end
 
-gem 'minitest'
-require 'minitest/unit'
+    return run_bin()
+  end
 
-class MiniTest::Unit::TestCase
-end
+  def run_bin
+    if not File.file? @script then
+      puts "error: need a script to run!"
+      exit 2
+    end
+    require @script
+  end
 
-MiniTest::Unit.autorun
+  def run_test
+    require File.expand_path(File.dirname(__FILE__)) + "/../lib/bootstrap_test"
+    if File.file? @script then
+      require @script
+      return
+    end
 
-# run the script!
-require script
+    Dir.glob("#{@bundle_dir}/test/**/test_*.rb").each do |f|
+      require f
+    end
+  end
+
+end # class RubyWrapper
+
+RubyWrapper.new.run
