@@ -1,7 +1,4 @@
 
-require 'minitest/unit'
-require 'disk_usage'
-
 class TestDiskUsage < MiniTest::Unit::TestCase
 
   def test_parse_mac
