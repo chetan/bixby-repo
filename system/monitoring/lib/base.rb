@@ -1,11 +1,35 @@
 
 module Monitoring
+
+  ERROR    = "ERROR"
+  TIMEOUT  = "TIMEOUT"
+  CRITICAL = "CRITICAL"
+  WARNING  = "WARNING"
+  UNKNOWN  = "UNKNOWN"
+  OK       = "OK"
+
   class Base < BundleCommand
+
+    attr_accessor :status, :errors
+
+    # Create new instance
+    #
+    # @param config [Hash] Hash of command metadata
+    def initialize(cmd, options, config = nil)
+      @cmd = cmd
+      @options = options
+      @timestamp = Time.new.to_i
+      @metrics = {}
+      @errors = []
+      @status = nil
+
+      return if config.nil?
+      @key = config["key"]
+    end
 
     def run
 
-      cmd = ARGV.shift
-      case cmd
+      case @cmd
       when "options"
         do_options()
 
@@ -15,6 +39,38 @@ module Monitoring
       end
 
     end
+
+
+    def get_options
+      raise NotImplementedError, "get_options must be overridden!", caller
+    end
+
+    def monitor
+      raise NotImplementedError, "monitor must be overridden!", caller
+    end
+
+    # Add metrics to be reported
+    #
+    # @param metrics [Hash] key/value pairs to report
+    def add_metric(metrics)
+      @metrics.merge!(metrics)
+    end
+
+    # Set error message and status
+    #
+    # @param msg [String] Error message
+    # @param status [String] Status code (defaults to ERROR)
+    def error(msg, status=ERROR)
+      @errors << msg
+      @status = status
+    end
+
+    def to_json_properties
+      super.reject { |j| j == :@options }
+    end
+
+    private
+
 
     def do_options
       begin
@@ -29,14 +85,19 @@ module Monitoring
     end
 
     def do_monitor
-    end
-
-    def get_options
-      raise NotImplementedError, "get_options must be overridden!", caller
-    end
-
-    def monitor
-      raise NotImplementedError, "monitor must be overridden!", caller
+      begin
+        monitor()
+        @status = OK if @status.nil?
+        puts self.to_json()
+        exit 0
+      rescue Exception => ex
+        return if ex.kind_of? SystemExit
+        @errors << ex.message
+        @errors << ex.backtrace.join("\n")
+        @status = ERROR if @status.nil?
+        puts self.to_json()
+        exit 1
+      end
     end
 
   end
