@@ -12,11 +12,18 @@ module Monitoring
       end
 
       def monitor
-        df = Hardware::Storage::DiskUsage.read()
 
-        # TODO transform for monitoring output
-        df.values.each do |fs|
+        target = @options["filesystem"]
+        if target.nil? or target.empty? then
+          return error("filesystem is required")
         end
+
+        df = Hardware::Storage::DiskUsage.read(target)
+        if df.nil? then
+          return error("filesystem '#{target}' not found")
+        end
+
+        add_metric(df.reject { |k,v| [:fs, :mount].include? k })
       end
 
     end

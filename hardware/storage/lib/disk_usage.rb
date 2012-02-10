@@ -22,12 +22,20 @@ module Hardware
             cmd = "df -B G"
           end
 
+          cmd = "#{cmd} #{fs}" if fs # append fs if passed
+
           status, stdout, stderr = systemu(cmd)
           if not status.success? then
             # TODO raise err
           end
 
-          return parse_output(stdout)
+          ret = parse_output(stdout)
+
+          if fs and ret then
+            return ret.values.first
+          end
+
+          return ret
         end
 
         # @return [Hash] the parsed :output: as a hash
