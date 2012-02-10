@@ -7,8 +7,7 @@ module Monitoring
 
       def get_options
         mounts = Hardware::Storage.list_disks()
-        opts = { :filesystem => mounts }
-        return opts
+        return { :filesystem => mounts }
       end
 
       def monitor
