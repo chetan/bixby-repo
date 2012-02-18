@@ -40,7 +40,13 @@ class RubyWrapper
     @argv = parse_options()
     ARGV.clear
 
-    (@bundle_dir, @script) = bootstrap(@argv)
+    begin
+      (@bundle_dir, @script) = bootstrap(@argv)
+    rescue CommandNotFound => ex
+      puts "CommandNotFound: #{ex.message}"
+      exit 1
+    end
+
     @cmd = if @config[:monitor] then
       "monitor"
     elsif @config[:options] then

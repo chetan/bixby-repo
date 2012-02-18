@@ -9,13 +9,17 @@ require File.dirname(__FILE__) + "/base"
 
 def bootstrap(argv)
   # find script in ARGV (accounting for spaces)
+  agent = Agent.create()
   script = argv.shift
-  while not File.exists? script do
+  if script !~ %r{^/} then
+    script = File.join(BundleRepository.path, script)
+  end
+  while not File.exists? script and not argv.empty? do
     script += " " + argv.shift
   end
 
   if not File.exists? script then
-    return nil
+    raise CommandNotFound, script, caller
   end
 
   # look for the bundle root dir and add lib/ to load path
