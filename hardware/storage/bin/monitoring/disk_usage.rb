@@ -22,7 +22,10 @@ module Monitoring
           return error("filesystem '#{target}' not found")
         end
 
-        add_metric(df.reject { |k,v| [:fs, :mount].include? k })
+        add_metadata(:filesystem => target, :type => df[:type])
+
+        skip = [:fs, :mount, :type]
+        add_metric(df.reject { |k,v| skip.include? k })
       end
 
     end
