@@ -20,6 +20,7 @@ module Monitoring
       @options = options
       @timestamp = Time.new.to_i
       @metrics = {}
+      @metadata = {}
       @errors = []
       @status = nil
 
@@ -51,9 +52,15 @@ module Monitoring
 
     # Add metrics to be reported
     #
-    # @param metrics [Hash] key/value pairs to report
+    # @param [Hash] metrics  key/value pairs to report
     def add_metric(metrics)
       @metrics.merge!(metrics)
+    end
+
+    # Add metadata to be reported
+    # @param [Hash] metadata  key/value pairs to report
+    def add_metadata(metadata)
+      @metadata.merge!(metadata)
     end
 
     # Set error message and status
@@ -66,7 +73,8 @@ module Monitoring
     end
 
     def to_json_properties
-      super.reject { |j| j == :@options }
+      skip = [ :@options, :@cmd ]
+      super.reject { |j| skip.include? j }
     end
 
     private
