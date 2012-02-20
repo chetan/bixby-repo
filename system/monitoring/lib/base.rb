@@ -22,10 +22,10 @@ module Monitoring
       @metrics = []
       @errors = []
       @status = nil
+      @check_id = options["check_id"]
 
       return if config.nil?
       @key = config["key"]
-      @check_id = config["check_id"]
     end
 
     def run
