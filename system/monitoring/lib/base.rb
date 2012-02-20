@@ -19,8 +19,7 @@ module Monitoring
       @cmd = cmd
       @options = options
       @timestamp = Time.new.to_i
-      @metrics = {}
-      @metadata = {}
+      @metrics = []
       @errors = []
       @status = nil
 
@@ -53,14 +52,9 @@ module Monitoring
     # Add metrics to be reported
     #
     # @param [Hash] metrics  key/value pairs to report
-    def add_metric(metrics)
-      @metrics.merge!(metrics)
-    end
-
-    # Add metadata to be reported
     # @param [Hash] metadata  key/value pairs to report
-    def add_metadata(metadata)
-      @metadata.merge!(metadata)
+    def add_metric(metrics, metadata={})
+      @metrics << { :metrics => metrics, :metadata => metadata }
     end
 
     # Set error message and status
