@@ -25,6 +25,7 @@ module Monitoring
 
       return if config.nil?
       @key = config["key"]
+      @check_id = config["check_id"]
     end
 
     def run
