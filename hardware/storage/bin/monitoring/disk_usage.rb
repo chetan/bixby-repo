@@ -6,26 +6,30 @@ module Monitoring
     class DiskUsage < Monitoring::Base
 
       def get_options
-        mounts = Hardware::Storage.list_disks()
-        return { :filesystem => mounts }
+        mounts = Hardware::Storage.list_mounts()
+        return { :mount => mounts }
       end
 
       def monitor
 
-        target = @options["filesystem"]
+        target = @options["mount"]
         if target.nil? or target.empty? then
-          return error("filesystem is required")
+          target = nil
         end
 
         df = Hardware::Storage::DiskUsage.read(target)
-        if df.nil? then
-          return error("filesystem '#{target}' not found")
-        end
-
-        add_metadata(:filesystem => target, :type => df[:type])
 
         skip = [:fs, :mount, :type]
-        add_metric(df.reject { |k,v| skip.include? k })
+
+        if target then
+          add_metric(df.reject { |k,v| skip.include? k }, {:mount => target, :type => df[:type]})
+        else
+          skipfs = ["tmpfs", "devfs", "devtmpfs", "autofs"]
+          df.values.each do |d|
+            next if skipfs.include? d[:type]
+            add_metric(d.reject { |k,v| skip.include? k }, {:mount => d[:mount], :type => d[:type]})
+          end
+        end
       end
 
     end

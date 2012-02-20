@@ -2,10 +2,10 @@
   "name" : "Disk Usage",
   "key" : "hardware.storage.disk",
   "options" : {
-    "filesystem" : {
+    "mount" : {
       "type" : "enum",
-      "name" : "Filesystem",
-      "desc" : "Filesystem to check usage for, defaults to /",
+      "name" : "Mount",
+      "desc" : "Filesystem mount point to check usage for, defaults to /",
       "default" : "/",
       "primary" : true
     }

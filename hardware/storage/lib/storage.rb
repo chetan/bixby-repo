@@ -19,7 +19,7 @@ module Hardware
       # ["/","/dev","/mnt"]
       #
       # @return [Array<String>] List of mount points
-      def list_disks
+      def list_mounts
         mounts = []
         DiskUsage.read().values.each { |f| mounts << f[:mount] }
         return mounts
