@@ -8,6 +8,7 @@ require 'devops_agent'
 require File.dirname(__FILE__) + "/base"
 
 AGENT = Agent.create()
+DEVOPS_ROOT = ENV["DEVOPS_ROOT"]
 
 def bootstrap(argv)
   # find script in ARGV (accounting for spaces)
