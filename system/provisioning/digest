@@ -1,0 +1,21 @@
+{
+  "digest": "be17608140f73e819052d40e0d17715f0d4dcc82cffc70c771705134934e49bf",
+  "files": [
+    {
+      "file": "bin/create_digest.rb",
+      "digest": "d7b39261d432f1c88244ab07f3b51bb57657f64d64a7a156ab9bc6516e6cb11c"
+    },
+    {
+      "file": "bin/get_bundle.rb",
+      "digest": "2003071709d85f34f231fe3739cdfbdf3a5f3ec6af03b295cf8f7aaf35802a69"
+    },
+    {
+      "file": "digest",
+      "digest": "796b6a18dafdd1169a4a36972957ce1829e0a4b9e44ac91dbc558d22d0c91cc8"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "a1c6c964e56d8a287c11ba97779fd3485c30ad523fd69dad74ecc633e8d74833"
+    }
+  ]
+}
