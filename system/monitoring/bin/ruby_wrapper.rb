@@ -7,18 +7,6 @@ class RubyWrapper
 
   include Mixlib::CLI
 
-  option :monitor,
-      :short          => "-m",
-      :long           => "--monitor",
-      :description    => "Retrieve metrics",
-      :boolean        => true
-
-  option :options,
-      :short          => "-o",
-      :long           => "--options",
-      :description    => "List options used by plugin",
-      :boolean        => true
-
   option :test,
       :short          => "-t",
       :long           => "--test",
@@ -46,21 +34,10 @@ class RubyWrapper
       puts "CommandNotFound: #{ex.message}"
       exit 1
     end
-
-    @cmd = if @config[:monitor] then
-      "monitor"
-    elsif @config[:options] then
-      "options"
-    elsif @config[:test] then
-      "test"
-    else
-      puts "missing command"
-      exit 1
-    end
   end
 
   def run
-    if @cmd == "test" then
+    if @config[:test] then
       return run_test()
     end
 
@@ -73,13 +50,11 @@ class RubyWrapper
       exit 2
     end
 
+    @argv.each{ |a| ARGV << a }
     require @script
-    config = (File.exists?("#{@script}.json") ? JSON.parse(File.read("#{@script}.json")) : nil)
-    input = read_stdin()
-    options = (input.nil? or input.empty?) ? {} : JSON.parse(input)
 
     # TODO make sure only 1 is returned??
-    Monitoring::Base.subclasses.first.new(@cmd, options, config).run
+    BundleCommand.subclasses.last.new.run
   end
 
   def run_test

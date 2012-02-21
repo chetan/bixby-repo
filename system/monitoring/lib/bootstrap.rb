@@ -7,9 +7,10 @@ gem 'devops_agent'
 require 'devops_agent'
 require File.dirname(__FILE__) + "/base"
 
+AGENT = Agent.create()
+
 def bootstrap(argv)
   # find script in ARGV (accounting for spaces)
-  agent = Agent.create()
   script = argv.shift
   if script !~ %r{^/} then
     script = File.join(BundleRepository.path, script)
@@ -29,6 +30,16 @@ def bootstrap(argv)
   end
   $: << File.join(bundledir, "lib")
   begin; require File.basename(bundledir); rescue LoadError; end
+
+  bundledir = File.expand_path(bundledir)
+
+  # export some vars into ENV
+  b = bundledir.gsub(/^#{BundleRepository.path}\//, '').split(%r{/})
+  repo = b.shift
+  bundle = b.join("/")
+  command = File.file?(script) ? File.basename(script) : nil
+  ENV["DEVOPS_COMMAND_SPEC"] = CommandSpec.new(:repo => repo, :bundle => bundle, :command => command).to_json
+  ENV["DEVOPS_BUNDLE_DIR"] = bundledir
 
   return [ bundledir, script ]
 end

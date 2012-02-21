@@ -12,18 +12,40 @@ module Monitoring
 
     attr_accessor :status, :errors
 
+    option :monitor,
+      :short          => "-m",
+      :long           => "--monitor",
+      :description    => "Retrieve metrics",
+      :boolean        => true
+
+    option :options,
+      :short          => "-o",
+      :long           => "--options",
+      :description    => "List options used by plugin",
+      :boolean        => true
+
     # Create new instance
     #
     # @param config [Hash] Hash of command metadata
-    def initialize(cmd, options, config = nil)
-      @cmd = cmd
-      @options = options
+    def initialize()
+      super
+
+      @cmd = if @config[:monitor] then
+        "monitor"
+      elsif @config[:options] then
+        "options"
+      else
+        "monitor" # default
+      end
+
+      @options = get_json_input()
       @timestamp = Time.new.to_i
       @metrics = []
       @errors = []
       @status = nil
       @check_id = options["check_id"]
 
+      config = load_config()
       return if config.nil?
       @key = config["key"]
     end
@@ -68,8 +90,7 @@ module Monitoring
     end
 
     def to_json_properties
-      skip = [ :@options, :@cmd ]
-      super.reject { |j| skip.include? j }
+      [ :@timestamp, :@status, :@check_id, :@key, :@metrics, :@errors ]
     end
 
     private
