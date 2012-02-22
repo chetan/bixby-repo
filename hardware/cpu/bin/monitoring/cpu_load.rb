@@ -4,9 +4,7 @@ module Monitoring
 
     class LoadAverage < Monitoring::Base
 
-      def configure
-        @key = "hardware.cpu.loadavg"
-      end
+      key "hardware.cpu.loadavg"
 
       def get_options
         return {}

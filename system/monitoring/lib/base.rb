@@ -10,6 +10,16 @@ module Monitoring
 
   class Base < BundleCommand
 
+    module ClassMethods
+      attr_accessor :key
+      def key(val=nil)
+        if not val.nil? then
+          @key = val
+        end
+        @key
+      end
+    end
+
     attr_accessor :status, :errors
 
     option :monitor,
@@ -38,6 +48,7 @@ module Monitoring
         "monitor" # default
       end
 
+      @key = self.class.key
       @options = options || get_json_input()
       @check_id = options ? options["check_id"] : nil
       reset()
@@ -67,7 +78,6 @@ module Monitoring
 
     # Configure your base class. Called during initialize()
     def configure
-      raise NotImplementedError, "configure must be overridden!", caller
     end
 
     def get_options
@@ -127,6 +137,14 @@ module Monitoring
         @status = ERROR if @status.nil?
         puts self.to_json()
         exit 1
+      end
+    end
+
+    def self.inherited(subclass)
+      super
+      subclass.extend(Monitoring::Base::ClassMethods)
+      if superclass.respond_to? :inherited
+        superclass.inherited(subclass)
       end
     end
 

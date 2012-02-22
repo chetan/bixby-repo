@@ -7,9 +7,7 @@ module Monitoring
 
     class DiskUsage < Monitoring::Base
 
-      def configure
-        @key = "hardware.storage.disk"
-      end
+      key "hardware.storage.disk"
 
       def get_options
         mounts = Hardware::Storage.list_mounts()
