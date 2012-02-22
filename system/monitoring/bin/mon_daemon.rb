@@ -59,6 +59,10 @@ module Monitoring
     end
 
     def load_all_checks(checks)
+
+      # array of classes already loaded
+      loaded_classes = @loaded_checks.values.map{ |c| c.clazz }
+
       checks.each do |check|
 
         # create command and validate
@@ -79,9 +83,12 @@ module Monitoring
           # puts "loading #{key}"
           lib = "#{command.bundle_dir}/lib"
           $: << lib if not $:.include? lib
+          # puts "require #{command.command_file}"
           require command.command_file
 
-          clazz = Monitoring::Base.subclasses.find{ |s| @loaded_checks.values.find{ |l| l.clazz != s }.nil? }
+          subclasses = Monitoring::Base.subclasses - loaded_classes
+          clazz = subclasses.first
+          loaded_classes << clazz
           # puts "found class #{clazz}"
 
           c = Check.new
@@ -93,8 +100,8 @@ module Monitoring
           @loaded_checks[key] = c
         end
 
-      end
-    end
+      end # checks.each
+    end # load_all_checks
 
     def run
 
