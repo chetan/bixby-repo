@@ -1,13 +1,17 @@
 {
-  "digest": "4b64b110497cb778ce765d771a12aed3cae282e820df545af32d93a1098001c2",
+  "digest": "6dea2dab58360a9ade3894b0dffc04ca8e996100b63caf4e5d7cc4533c9e5ae2",
   "files": [
     {
       "file": "bin/monitoring/disk_usage.rb",
-      "digest": "c63d11b5fb3df4ad4546c6455ea787a585ea80072ead233783be507b03c42626"
+      "digest": "d27bcd03b11b31e6c3e531dd940ced40a95e16cdf0dd496f0e5554b7e1d46602"
     },
     {
       "file": "bin/monitoring/disk_usage.rb.json",
       "digest": "1ad224a3cf37aaf56d7b6e316f82091d27d618572895f4859a6c3a0ce268025d"
+    },
+    {
+      "file": "digest",
+      "digest": "7b1388c2fa20104c7503c13d8330f67e92e226743f1c87b108441408b145b751"
     },
     {
       "file": "lib/disk_usage.rb",

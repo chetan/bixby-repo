@@ -1,9 +1,9 @@
 {
-  "digest": "066bce561f4d2680125f809649f52c5e2dcf2ef403412a67c389057ea71b0478",
+  "digest": "4c336974a1a777a7438f04c6334ffece59224ff5cb7b132fbc65370ade69b9d8",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
-      "digest": "2e03f1a5d5536584492f30487ceb979a3d45bd21ca3c7416ecccd9f7a743c243"
+      "digest": "e6cdc7505d7b37403f33b639f736a2f731ec8c29982b7d06edaf39cc948c84f3"
     },
     {
       "file": "bin/monitoring/cpu_load.rb.json",
@@ -11,7 +11,7 @@
     },
     {
       "file": "digest",
-      "digest": "8259a921d0cb47c3eff2d5c3c97f918de6d8f09a3f656ba1d4a6f247d13f01ee"
+      "digest": "b9b5172ead430473c8c7d19aebcc0c8b44985ac468e26a982f62786d4fa8aaac"
     },
     {
       "file": "manifest.json",
