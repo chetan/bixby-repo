@@ -28,7 +28,7 @@ module Monitoring
     #
     # @param config [Hash] Hash of command metadata
     def initialize(options=nil)
-      super
+      super(true)
 
       @cmd = if @config[:monitor] then
         "monitor"
@@ -39,7 +39,7 @@ module Monitoring
       end
 
       @options = options || get_json_input()
-      @check_id = options["check_id"]
+      @check_id = options ? options["check_id"] : nil
       reset()
       configure()
     end
