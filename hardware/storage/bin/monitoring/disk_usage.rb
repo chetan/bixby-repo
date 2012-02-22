@@ -1,4 +1,6 @@
-#!/usr/bin/env ruby
+
+require 'storage'
+require 'disk_usage'
 
 module Monitoring
   module Storage

@@ -13,7 +13,7 @@ DEVOPS_ROOT = ENV["DEVOPS_ROOT"]
 def bootstrap(argv)
   # find script in ARGV (accounting for spaces)
   script = argv.shift
-  if script !~ %r{^/} then
+  if not File.exist? script and script !~ %r{^/} then
     script = File.join(BundleRepository.path, script)
   end
   while not File.exists? script and not argv.empty? do
@@ -23,6 +23,8 @@ def bootstrap(argv)
   if not File.exists? script then
     raise CommandNotFound, script, caller
   end
+
+  script = File.expand_path(script)
 
   # look for the bundle root dir and add lib/ to load path
   bundledir = File.directory?(script) ? script : File.dirname(script)

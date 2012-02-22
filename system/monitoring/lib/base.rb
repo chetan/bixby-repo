@@ -27,7 +27,7 @@ module Monitoring
     # Create new instance
     #
     # @param config [Hash] Hash of command metadata
-    def initialize()
+    def initialize(options=nil)
       super
 
       @cmd = if @config[:monitor] then
@@ -38,7 +38,7 @@ module Monitoring
         "monitor" # default
       end
 
-      @options = get_json_input()
+      @options = options || get_json_input()
       @timestamp = Time.new.to_i
       @metrics = []
       @errors = []
