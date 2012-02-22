@@ -1,0 +1,17 @@
+{
+  "digest": "cfbe3c2bc8eb892dade487ab19b002476b46e4a4b5ba9242405d7438e549d5a4",
+  "files": [
+    {
+      "file": "bin/monitoring/cpu_load.rb",
+      "digest": "2e03f1a5d5536584492f30487ceb979a3d45bd21ca3c7416ecccd9f7a743c243"
+    },
+    {
+      "file": "bin/monitoring/cpu_load.rb.json",
+      "digest": "a13f5c517ed9e95907811952938244e147c5b0d9b0bd802964e48fcc80f4cd81"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "412a9f0aafc41eeeab059c850c3053906ecaf51749ded5834cbb675b0f01325c"
+    }
+  ]
+}
