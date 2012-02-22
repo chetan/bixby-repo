@@ -7,6 +7,10 @@ module Monitoring
 
     class DiskUsage < Monitoring::Base
 
+      def configure
+        @key = "hardware.storage.disk"
+      end
+
       def get_options
         mounts = Hardware::Storage.list_mounts()
         return { :mount => mounts }
@@ -24,8 +28,11 @@ module Monitoring
         skip = [:fs, :mount, :type]
 
         if target then
+          # add metric for specific target
           add_metric(df.reject { |k,v| skip.include? k }, {:mount => target, :type => df[:type]})
+
         else
+          # add metrics for all mounts except temporary ones
           skipfs = ["tmpfs", "devfs", "devtmpfs", "autofs"]
           df.values.each do |d|
             next if skipfs.include? d[:type]

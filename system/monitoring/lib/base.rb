@@ -39,15 +39,17 @@ module Monitoring
       end
 
       @options = options || get_json_input()
+      @check_id = options["check_id"]
+      reset()
+      configure()
+    end
+
+    # Reset the check. Called during #initialize and before #monitor
+    def reset
       @timestamp = Time.new.to_i
       @metrics = []
       @errors = []
       @status = nil
-      @check_id = options["check_id"]
-
-      config = load_config()
-      return if config.nil?
-      @key = config["key"]
     end
 
     def run
@@ -63,6 +65,10 @@ module Monitoring
 
     end
 
+    # Configure your base class. Called during initialize()
+    def configure
+      raise NotImplementedError, "configure must be overridden!", caller
+    end
 
     def get_options
       raise NotImplementedError, "get_options must be overridden!", caller
