@@ -5,6 +5,6 @@
   "metrics" : {
     "1m"  : { "desc" : "Last minute" },
     "5m"  : { "desc" : "Last 5 minutes" },
-    "15m" : { "desc" : "Last 15 minutes" },
+    "15m" : { "desc" : "Last 15 minutes" }
   }
 }
