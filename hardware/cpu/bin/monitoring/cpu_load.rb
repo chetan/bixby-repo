@@ -1,4 +1,6 @@
 
+require "cpu"
+
 module Monitoring
   module CPU
 

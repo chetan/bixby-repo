@@ -1,3 +1,5 @@
+
+
 module Hardware
   class CPU
 
