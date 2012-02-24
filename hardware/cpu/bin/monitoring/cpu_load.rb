@@ -11,12 +11,12 @@ module Monitoring
       end
 
       def monitor
-        status, stdout, stderr = systemu("uptime")
-        if not status.success? or stdout !~ /load averages?: ([\d.]+)(,*) ([\d.]+)(,*) ([\d.]+)\Z/ then
+        load = Hardware::CPU.get_load()
+        if load.nil? then
           error("failed to retrieve uptime")
           return
         end
-        add_metric({ "1m" => $1.to_f, "5m" => $3.to_f, "15m" => $5.to_f })
+        add_metric(load)
       end
 
     end
