@@ -20,7 +20,7 @@ module Monitoring
       end
     end
 
-    attr_accessor :status, :errors
+    attr_accessor :status, :errors, :storage
 
     option :monitor,
       :short          => "-m",
@@ -48,6 +48,7 @@ module Monitoring
         "monitor" # default
       end
 
+      @storage = {}
       @key = self.class.key
       @options = options || get_json_input()
       @check_id = options ? options["check_id"] : nil
@@ -105,8 +106,49 @@ module Monitoring
       @status = status
     end
 
+    # Store the given data for the next run
+    #
+    # @param [Hash] hash  data to store
+    def store(hash)
+      return if hash.nil?
+      @storage.merge(hash)
+    end
+    alias_method :remember, :store
+    alias_method :keep, :store
+
+    # Recall the value of a stored key, if available
+    #
+    # @param [String, Symbol] key
+    # @return [Object] stored data
+    def recall(key)
+      return @storage[key.to_s] if @storage.include? key.to_s
+      return @storage[key.to_sym] if @storage.include? key.to_sym
+      return nil
+    end
+    alias_method :memory, :recall
+
     def to_json_properties
       [ :@timestamp, :@status, :@check_id, :@key, :@metrics, :@errors ]
+    end
+
+    def storage_path
+      File.join(DEVOPS_ROOT, "var", "monitoring", "data", "#{self.class.key}.dump")
+    end
+
+    def save_storage
+      puts "saving storage.."
+      puts storage_path
+      systemu("mkdir -p " + File.dirname(storage_path))
+      f = File.new(storage_path, 'w')
+      Marshal.dump(@storage, f)
+      f.flush
+      f.close
+    end
+
+    def load_storage
+      if File.exist? storage_path then
+        Marshal.load(File.new(storage_path))
+      end
     end
 
     private
@@ -126,6 +168,7 @@ module Monitoring
 
     def do_monitor
       begin
+        @storage = load_storage() || {}
         monitor()
         @status = OK if @status.nil?
         puts self.to_json()

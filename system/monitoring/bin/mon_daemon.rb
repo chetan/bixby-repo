@@ -8,7 +8,7 @@ require 'json'
 module Monitoring
 
   class Check
-    attr_accessor :clazz, :options, :interval, :retry, :timeout
+    attr_accessor :clazz, :options, :interval, :retry, :timeout, :storage
   end
 
   class MonDaemon < BundleCommand
@@ -38,9 +38,13 @@ module Monitoring
     def run_check(check)
 
       obj = check.clazz.new(check.options.dup)
+      obj.storage = check.storage
 
       obj.monitor()
       obj.status == "OK" if obj.status.nil?
+
+      obj.save_storage()
+      check.storage = obj.storage
 
       @reports << obj
     end
@@ -82,7 +86,7 @@ module Monitoring
         if not @loaded_checks.include? key then
           # puts "loading #{key}"
           lib = "#{command.bundle_dir}/lib"
-          $: << lib if not $:.include? lib
+          $:.unshift(lib) if File.directory? lib and not $:.include? lib
           # puts "require #{command.command_file}"
           require command.command_file
 
@@ -92,11 +96,14 @@ module Monitoring
           # puts "found class #{clazz}"
 
           c = Check.new
+
           c.clazz    = clazz
           c.options  = JSON.parse(command.stdin)
           c.interval = check["interval"]
           c.retry    = check["retry"]
           c.timeout  = check["timeout"]
+          c.storage  = c.clazz.new(c.options.dup).load_storage()
+
           @loaded_checks[key] = c
         end
 
