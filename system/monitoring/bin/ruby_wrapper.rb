@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.expand_path(File.dirname(__FILE__)) + "/../lib/bootstrap"
+require File.dirname(File.realpath(__FILE__)) + "/../lib/bootstrap"
 require 'mixlib/cli'
 
 class RubyWrapper
@@ -58,7 +58,7 @@ class RubyWrapper
   end
 
   def run_test
-    require File.expand_path(File.dirname(__FILE__)) + "/../lib/bootstrap_test"
+    require File.dirname(File.realpath(__FILE__)) + "/../lib/bootstrap_test"
     if File.file? @script and @script =~ %r{#{@bundle_dir}/test} then
       require @script
       return
