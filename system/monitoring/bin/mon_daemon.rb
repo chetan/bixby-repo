@@ -20,6 +20,7 @@ module Monitoring
 
       @config_file = "#{DEVOPS_ROOT}/etc/monitoring/config.json"
       @loaded_checks = {}
+      @class_map = {}
       @reports = []
     end
 
@@ -65,7 +66,9 @@ module Monitoring
     def load_all_checks(checks)
 
       # array of classes already loaded
-      loaded_classes = @loaded_checks.values.map{ |c| c.clazz }
+      # we maintain this in order to figure out which Class was loaded during 'require'
+      # a bit hacky..
+      loaded_classes = class_map.values.dup # @loaded_checks.values.map{ |c| c.clazz }
 
       checks.each do |check|
 
@@ -83,7 +86,7 @@ module Monitoring
 
         # require script if necessary
         key = command.bundle + "/" + command.command
-        if not @loaded_checks.include? key then
+        if not @class_map.include? key then
           # puts "loading #{key}"
           lib = "#{command.bundle_dir}/lib"
           $:.unshift(lib) if File.directory? lib and not $:.include? lib
@@ -93,19 +96,20 @@ module Monitoring
           subclasses = Monitoring::Base.subclasses - loaded_classes
           clazz = subclasses.first
           loaded_classes << clazz
-          # puts "found class #{clazz}"
-
-          c = Check.new
-
-          c.clazz    = clazz
-          c.options  = JSON.parse(command.stdin)
-          c.interval = check["interval"]
-          c.retry    = check["retry"]
-          c.timeout  = check["timeout"]
-          c.storage  = c.clazz.new(c.options.dup).load_storage()
-
-          @loaded_checks[key] = c
+          class_map[key] = clazz
         end
+
+        # instantiate the Check
+        c = Check.new
+
+        c.clazz    = class_map[key]
+        c.options  = JSON.parse(command.stdin)
+        c.interval = check["interval"]
+        c.retry    = check["retry"]
+        c.timeout  = check["timeout"]
+        c.storage  = c.clazz.new(c.options.dup).load_storage()
+
+        @loaded_checks[key] = c
 
       end # checks.each
     end # load_all_checks
