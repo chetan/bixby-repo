@@ -19,7 +19,7 @@ module Monitoring
       system("mkdir -p #{@var}")
 
       @config_file = "#{DEVOPS_ROOT}/etc/monitoring/config.json"
-      @loaded_checks = {}
+      @loaded_checks = []
       @class_map = {}
       @reports = []
     end
@@ -29,7 +29,7 @@ module Monitoring
         checks = JSON.parse(File.read(@config_file))
         load_all_checks(checks)
       else
-        @loaded_checks = {}
+        @loaded_checks = []
       end
     end
 
@@ -68,9 +68,12 @@ module Monitoring
       # array of classes already loaded
       # we maintain this in order to figure out which Class was loaded during 'require'
       # a bit hacky..
-      loaded_classes = @class_map.values.dup # @loaded_checks.values.map{ |c| c.clazz }
+      loaded_classes = @class_map.values.dup
 
       checks.each do |check|
+
+        puts "looking at check"
+        p check
 
         # create command and validate
         command = CommandSpec.new(check["command"])
@@ -109,7 +112,7 @@ module Monitoring
         c.timeout  = check["timeout"]
         c.storage  = c.clazz.new(c.options.dup).load_storage()
 
-        @loaded_checks[key] = c
+        @loaded_checks << c
 
       end # checks.each
     end # load_all_checks
@@ -131,7 +134,7 @@ module Monitoring
 
         loop do
 
-          @loaded_checks.values.each do |check|
+          @loaded_checks.each do |check|
             run_check(check)
           end
           send_reports()
