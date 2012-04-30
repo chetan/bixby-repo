@@ -68,7 +68,7 @@ module Monitoring
       # array of classes already loaded
       # we maintain this in order to figure out which Class was loaded during 'require'
       # a bit hacky..
-      loaded_classes = class_map.values.dup # @loaded_checks.values.map{ |c| c.clazz }
+      loaded_classes = @class_map.values.dup # @loaded_checks.values.map{ |c| c.clazz }
 
       checks.each do |check|
 
@@ -96,13 +96,13 @@ module Monitoring
           subclasses = Monitoring::Base.subclasses - loaded_classes
           clazz = subclasses.first
           loaded_classes << clazz
-          class_map[key] = clazz
+          @class_map[key] = clazz
         end
 
         # instantiate the Check
         c = Check.new
 
-        c.clazz    = class_map[key]
+        c.clazz    = @class_map[key]
         c.options  = JSON.parse(command.stdin)
         c.interval = check["interval"]
         c.retry    = check["retry"]
