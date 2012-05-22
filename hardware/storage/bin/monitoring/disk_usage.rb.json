@@ -1,5 +1,6 @@
 {
   "name" : "Disk Usage",
+  "label" : "$mount",
   "key" : "hardware.storage.disk",
   "options" : {
     "mount" : {
