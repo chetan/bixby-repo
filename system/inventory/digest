@@ -1,0 +1,13 @@
+{
+  "digest": "6872e84756af796ebbb4590e9078ff615404720ec9ba6431fda6441bd7af331f",
+  "files": [
+    {
+      "file": "bin/list_facts.rb",
+      "digest": "990eff3f87086a641a4d789b98ab24f25dcce71ae4661d3115639b2f5a7e4496"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "8fc51713da5f84904cdb7539b4edff3f6b03c4376b969643384e720f1f843554"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "inventory",
+  "version": "0.0.1",
+  "description": "Scripts and libraries used by the Inventory module",
+
+  "provides": [  ],
+  "depends": [  ]
+}
