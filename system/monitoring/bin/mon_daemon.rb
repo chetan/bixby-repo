@@ -3,7 +3,7 @@
 # monitoring daemon for ruby checks
 
 require 'daemons'
-require 'json'
+require 'multi_json'
 
 module Monitoring
 
@@ -26,7 +26,7 @@ module Monitoring
 
     def reload_config
       if File.exists? @config_file then
-        checks = JSON.parse(File.read(@config_file))
+        checks = MultiJson.load(File.read(@config_file))
         load_all_checks(checks)
       else
         @loaded_checks = []
@@ -106,7 +106,7 @@ module Monitoring
         c = Check.new
 
         c.clazz    = @class_map[key]
-        c.options  = JSON.parse(command.stdin)
+        c.options  = MultiJson.load(command.stdin)
         c.interval = check["interval"]
         c.retry    = check["retry"]
         c.timeout  = check["timeout"]
