@@ -1,6 +1,18 @@
 #!/usr/bin/env ruby
 
-class Provision < BundleCommand
+require 'rubygems'
+require 'bundler/setup'
+Bundler.setup(:default)
+
+$: << File.expand_path(File.join(File.dirname(__FILE__), "../../../../lib"))
+require "bixby_agent"
+require "bixby_agent/api/modules/provisioning"
+
+require "digest"
+require "fileutils"
+
+module Bixby
+class Provision < Bixby::BundleCommand
 
     include HttpClient
 
@@ -11,10 +23,11 @@ class Provision < BundleCommand
     def run!
 
         begin
-            cmd = CommandSpec.from_json(ARGV.join(" "))
+            cmd = CommandSpec.from_json(get_json_input())
         rescue Exception => ex
-            puts "failed"
-            exit
+            puts ex.message
+            puts ex.backtrace.join("\n")
+            exit 1
         end
 
         files = Provisioning.list_files(cmd)
@@ -22,6 +35,9 @@ class Provision < BundleCommand
 
     end
 
-end
+end # Provisioning
+end # Bixby
 
-Provision.new.run!
+if $0 == __FILE__ then
+    Bixby::Provision.new.run!
+end
