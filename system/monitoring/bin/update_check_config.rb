@@ -1,4 +1,5 @@
 
+module Bixby
 module Monitoring
 
   class UpdateCheckConfig < BundleCommand
@@ -29,4 +30,5 @@ module Monitoring
 
   end
 
-end
+end # Monitoring
+end # Bixby

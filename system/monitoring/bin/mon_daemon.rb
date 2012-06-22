@@ -5,6 +5,7 @@
 require 'daemons'
 require 'multi_json'
 
+module Bixby
 module Monitoring
 
   class Check
@@ -150,4 +151,4 @@ module Monitoring
   end # class MonDaemon
 
 end # module Monitoring
-
+end # module Bixby

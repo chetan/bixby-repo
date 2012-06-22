@@ -1,4 +1,5 @@
 
+module Bixby
 module Monitoring
 
   ERROR    = "ERROR"
@@ -191,5 +192,7 @@ module Monitoring
       end
     end
 
-  end
-end
+  end # Base
+
+end # Monitoring
+end # Bixby

@@ -3,6 +3,7 @@
 require File.dirname(File.realpath(__FILE__)) + "/../lib/bootstrap"
 require 'mixlib/cli'
 
+module Bixby
 class RubyWrapper
 
   include Mixlib::CLI
@@ -29,7 +30,7 @@ class RubyWrapper
     ARGV.clear
 
     begin
-      (@bundle_dir, @script) = bootstrap(@argv)
+      (@bundle_dir, @script) = Bixby.bootstrap(@argv)
     rescue CommandNotFound => ex
       puts "CommandNotFound: #{ex.message}"
       exit 1
@@ -81,6 +82,7 @@ class RubyWrapper
     return buff.join('')
   end
 
-end # class RubyWrapper
+end # RubyWrapper
+end # Bixby
 
-RubyWrapper.new.run
+Bixby::RubyWrapper.new.run

@@ -1,10 +1,11 @@
 
 require "cpu"
 
+module Bixby
 module Monitoring
   module CPU
 
-    class LoadAverage < Monitoring::Base
+    class LoadAverage < Bixby::Monitoring::Base
 
       key "hardware.cpu.loadavg"
 
@@ -23,4 +24,5 @@ module Monitoring
 
     end
   end
-end
+end # Monitoring
+end # Bixby

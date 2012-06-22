@@ -2,6 +2,7 @@
 require 'storage'
 require 'disk_usage'
 
+module Bixby
 module Monitoring
   module Storage
 
@@ -37,8 +38,9 @@ module Monitoring
             add_metric(d.reject { |k,v| skip.include? k }, {:mount => d[:mount], :type => d[:type]})
           end
         end
-      end
+      end # monitor
 
-    end
-  end
-end
+    end # DiskUsage
+  end # Storage
+end # Monitoring
+end # Bixby
