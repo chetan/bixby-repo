@@ -12,26 +12,26 @@ require "digest"
 require "fileutils"
 
 module Bixby
-class Provision < Bixby::BundleCommand
+  class Provision < Bixby::BundleCommand
 
     include HttpClient
 
     def initialize
-        super
+      super
     end
 
     def run!
 
-        begin
-            cmd = CommandSpec.from_json(get_json_input())
-        rescue Exception => ex
-            puts ex.message
-            puts ex.backtrace.join("\n")
-            exit 1
-        end
+      begin
+        cmd = CommandSpec.from_json(get_json_input())
+      rescue Exception => ex
+        puts ex.message
+        puts ex.backtrace.join("\n")
+        exit 1
+      end
 
-        files = Provisioning.list_files(cmd)
-        Provisioning.download_files(cmd, files)
+      files = Provisioning.list_files(cmd)
+      Provisioning.download_files(cmd, files)
 
     end
 
@@ -39,5 +39,5 @@ end # Provisioning
 end # Bixby
 
 if $0 == __FILE__ then
-    Bixby::Provision.new.run!
+  Bixby::Provision.new.run!
 end
