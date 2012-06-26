@@ -1,14 +1,19 @@
 
 require 'rubygems'
-
 gem 'bixby_common'
-gem 'bixby_agent'
+
+if ENV.include? "BIXBY_HOME" and File.exists? ENV["BIXBY_HOME"] then
+  $: << File.join(ENV["BIXBY_HOME"], "lib")
+  require 'bixby_agent'
+else
+  gem 'bixby_agent'
+end
 
 require 'bixby_agent'
 require File.dirname(__FILE__) + "/base"
 
 AGENT = Bixby::Agent.create()
-DEVOPS_ROOT = ENV["DEVOPS_ROOT"]
+BIXBY_HOME = ENV["BIXBY_HOME"]
 
 module Bixby
 
@@ -50,8 +55,8 @@ module Bixby
     repo = b.shift
     bundle = b.join("/")
     command = File.file?(script) ? File.basename(script) : nil
-    ENV["DEVOPS_COMMAND_SPEC"] = CommandSpec.new(:repo => repo, :bundle => bundle, :command => command).to_json
-    ENV["DEVOPS_BUNDLE_DIR"] = bundledir
+    ENV["BIXBY_COMMAND_SPEC"] = CommandSpec.new(:repo => repo, :bundle => bundle, :command => command).to_json
+    ENV["BIXBY_BUNDLE_DIR"] = bundledir
 
     return [ bundledir, script ]
   end
