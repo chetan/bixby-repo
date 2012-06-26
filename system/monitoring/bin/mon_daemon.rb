@@ -16,10 +16,10 @@ module Monitoring
 
     def initialize
       super(false)
-      @var = "#{DEVOPS_ROOT}/var"
+      @var = "#{BIXBY_HOME}/var"
       system("mkdir -p #{@var}")
 
-      @config_file = "#{DEVOPS_ROOT}/etc/monitoring/config.json"
+      @config_file = "#{BIXBY_HOME}/etc/monitoring/config.json"
       @loaded_checks = []
       @class_map = {}
       @reports = []
