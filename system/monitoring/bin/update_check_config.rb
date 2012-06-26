@@ -5,7 +5,7 @@ module Monitoring
   class UpdateCheckConfig < BundleCommand
 
     def run
-      path = "#{DEVOPS_ROOT}/etc/monitoring/"
+      path = "#{BIXBY_HOME}/etc/monitoring/"
       systemu("mkdir -p #{path}")
       config_file = "#{path}/config.json"
 
