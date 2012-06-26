@@ -70,18 +70,6 @@ class RubyWrapper
     end
   end
 
-  def read_stdin
-    buff = []
-    while true do
-      begin
-        buff << STDIN.read_nonblock(64000)
-      rescue => ex
-        break
-      end
-    end
-    return buff.join('')
-  end
-
 end # RubyWrapper
 end # Bixby
 
