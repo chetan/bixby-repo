@@ -133,7 +133,7 @@ module Monitoring
     end
 
     def storage_path
-      File.join(DEVOPS_ROOT, "var", "monitoring", "data", "#{self.class.key}.dump")
+      File.join(BIXBY_HOME, "var", "monitoring", "data", "#{self.class.key}.dump")
     end
 
     def save_storage
