@@ -118,10 +118,6 @@ module Monitoring
     end
     alias_method :memory, :recall
 
-    def to_json_properties
-      [ :@timestamp, :@status, :@check_id, :@key, :@metrics, :@errors ]
-    end
-
     def storage_path
       File.join(BIXBY_HOME, "var", "monitoring", "data", "#{@key}.dump")
     end
@@ -142,13 +138,18 @@ module Monitoring
       end
     end
 
+    def to_hash
+      fields = [ :@timestamp, :@status, :@check_id, :@key, :@metrics, :@errors ]
+      fields.inject({}) { |m,v| m[v[1,v.length].to_sym] = instance_variable_get(v); m }
+    end
+
     private
 
 
     def do_options
       begin
         opts = get_options()
-        puts opts.to_json()
+        puts MultiJson.dump(opts)
         exit 0
       rescue Exception => ex
         return if ex.kind_of? SystemExit
@@ -162,14 +163,14 @@ module Monitoring
         @storage = load_storage() || {}
         monitor()
         @status = OK if @status.nil?
-        puts self.to_json()
+        puts MultiJson.dump(self.to_hash)
         exit 0
       rescue Exception => ex
         return if ex.kind_of? SystemExit
         @errors << ex.message
         @errors << ex.backtrace.join("\n")
         @status = ERROR if @status.nil?
-        puts self.to_json()
+        puts MultiJson.dump(self.to_hash)
         exit 1
       end
     end
