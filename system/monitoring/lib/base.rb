@@ -11,16 +11,6 @@ module Monitoring
 
   class Base < BundleCommand
 
-    module ClassMethods
-      attr_accessor :key
-      def key(val=nil)
-        if not val.nil? then
-          @key = val
-        end
-        @key
-      end
-    end
-
     attr_accessor :status, :errors, :storage
 
     option :monitor,
@@ -39,7 +29,7 @@ module Monitoring
     #
     # @param config [Hash] Hash of command metadata
     def initialize(options=nil)
-      super(true)
+      super
 
       @cmd = if @config[:monitor] then
         "monitor"
@@ -50,8 +40,8 @@ module Monitoring
       end
 
       @storage = {}
-      @key = self.class.key
       @options = options || get_json_input()
+      @key = options["key"]
       @check_id = options ? options["check_id"] : nil
       reset()
       configure()
@@ -78,7 +68,7 @@ module Monitoring
 
     end
 
-    # Configure your base class. Called during initialize()
+    # Configure your check. Called during initialize()
     def configure
     end
 
@@ -133,7 +123,7 @@ module Monitoring
     end
 
     def storage_path
-      File.join(BIXBY_HOME, "var", "monitoring", "data", "#{self.class.key}.dump")
+      File.join(BIXBY_HOME, "var", "monitoring", "data", "#{@key}.dump")
     end
 
     def save_storage

@@ -54,8 +54,13 @@ class RubyWrapper
     @argv.each{ |a| ARGV << a }
     require @script
 
+    options = nil
+    if File.exists? "#{@script}.json" then
+      options = MultiJson.load(File.read("#{@script}.json"))
+    end
+
     # TODO make sure only 1 is returned??
-    BundleCommand.subclasses.last.new.run
+    BundleCommand.subclasses.last.new(options).run
   end
 
   def run_test

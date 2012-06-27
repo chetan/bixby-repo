@@ -8,8 +8,6 @@ module Monitoring
 
     class DiskUsage < Monitoring::Base
 
-      key "hardware.storage.disk"
-
       def get_options
         mounts = Hardware::Storage.list_mounts()
         return { :mount => mounts }

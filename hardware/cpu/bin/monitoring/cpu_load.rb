@@ -7,8 +7,6 @@ module Monitoring
 
     class LoadAverage < Bixby::Monitoring::Base
 
-      key "hardware.cpu.loadavg"
-
       def get_options
         return {}
       end

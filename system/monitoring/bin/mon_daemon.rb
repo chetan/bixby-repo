@@ -14,8 +14,9 @@ module Monitoring
 
   class MonDaemon < BundleCommand
 
-    def initialize
-      super(false)
+    def initialize(options=nil)
+      @skip_parse = true
+      super
       @var = "#{BIXBY_HOME}/var"
       system("mkdir -p #{@var}")
 
