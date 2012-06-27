@@ -26,4 +26,7 @@ Dir.glob("#{path}/**/*").sort.each do |f|
   digests << { :file => f.gsub(/#{path}\//, ''), :digest => sha.file(f).hexdigest() }
 end
 
-File.new(path+"/digest", 'w').write(JSON.pretty_generate({ :digest => bundle_sha.hexdigest(), :files => digests }) + "\n")
+digest = { :digest => bundle_sha.hexdigest(), :files => digests }
+File.open(path+"/digest", 'w') do |f|
+  f.write(JSON.pretty_generate(digest) + "\n")
+end
