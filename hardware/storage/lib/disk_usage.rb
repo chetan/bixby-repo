@@ -5,7 +5,7 @@ module Hardware
 
       class << self
 
-        include BundleUtil
+        include Bixby::BundleUtil
 
         # Returns the 'df' utilities output as a hash, all sizes are in GB
         #
