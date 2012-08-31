@@ -47,14 +47,27 @@ module Hardware
         def parse_output(output)
           ret = {}
           lines = output.split(/\n/)
-          lines.shift
+          lines.shift # throw away header
           partial = nil
           lines.each do |line|
             if not partial.nil? then
               line = partial + " " + line
               partial = nil
             end
-            if line =~ /^(\S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(.+?)$/ then
+
+            if line =~ /^(\S+?|map \S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
+              # new mac pattern (lion+)
+              ret[$9] = {
+                :fs     => $1,
+                :size   => $2.to_i,
+                :used   => $3.to_i,
+                :free   => $4.to_i,
+                :usage  => $5.to_i,
+                :mount  => $9
+              }
+
+            elsif line =~ /^(\S+?|map \S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(.+?)$/ then
+              # old mac pattern
               ret[$6] = {
                 :fs     => $1,
                 :size   => $2.to_i,
@@ -63,7 +76,9 @@ module Hardware
                 :usage  => $5.to_i,
                 :mount  => $6
               }
+
             elsif line =~ /^(\S+?)\s+(\S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(.+?)$/ then
+              # linux pattern
               ret[$7] = {
                 :fs     => $1,
                 :type   => $2,

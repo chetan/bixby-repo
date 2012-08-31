@@ -21,6 +21,26 @@ EOF
     assert (df["/"][:type] == "hfs")
   end
 
+  def test_parse_mac_inodes
+    output = <<-EOF
+Filesystem    1G-blocks Used Available Capacity   iused     ifree %iused  Mounted on
+/dev/disk0s2        237  204        33    87%  53643493   8661377   86%   /
+devfs                 0    0         0   100%       714         0  100%   /dev
+/dev/disk1s2       1719  941       777    55% 246926681 203930088   55%   /Volumes/Foobar
+/dev/disk4         1862 1419       443    77% 372154542 116140120   76%   /Volumes/Baz
+map -hosts            0    0         0   100%         0         0  100%   /net
+map auto_home         0    0         0   100%         0         0  100%   /home
+EOF
+
+    df = Hardware::Storage::DiskUsage.parse_output(output)
+    Hardware::Storage::DiskUsage.add_mount_types(df)
+
+    assert_equal 6, df.values.size
+    assert (df["/"][:free] == 33)
+    assert (df["/Volumes/Baz"][:usage] == 77)
+    assert (df["/"][:type] == "hfs")
+  end
+
   def test_parse_linux
     output = <<-EOF
 Filesystem    Type   1G-blocks      Used Available Use% Mounted on
