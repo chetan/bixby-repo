@@ -1,29 +1,25 @@
 {
-  "digest": "6626fba4bf3cdfc813cf4434abaeb483ff962353224dd506ba13da7edb0283da",
+  "digest": "4832f5b8cc87b97c8a5fa416bce047b4c1669f76e24bb98d8f9ea8b001d94405",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "e34f5f0b69eb64819840d0cd8403a9d0f4e563978e41ffe425320b55d1f73796"
+      "digest": "9a4b08bc72249ea03983923298e80c1c05e25ed15a8f6c00d9222c9c36959a2d"
     },
     {
       "file": "bin/ruby_wrapper.rb",
-      "digest": "dd7c4b23ec06abc25f12fa757d6c3c3d8f57ed9d8c159c8d6630af9922282b0b"
+      "digest": "ac2a79de57a1d13339935e01e61e512e248c776aabe977a510a0e3fcab60201e"
     },
     {
       "file": "bin/update_check_config.rb",
-      "digest": "a925b86a2cb8df8a9cb7a3a4030bcff3de4b07a74e07abd51c476af3d837a090"
-    },
-    {
-      "file": "digest",
-      "digest": "7f9124c07ad4832a8849e807f0b2b695f5dd21faa93ba676b38d642993198587"
+      "digest": "d235dec042d7776879476d1e629cc9e3777a74127175572d9348543b78f9744b"
     },
     {
       "file": "lib/base.rb",
-      "digest": "53090e56fb8f3c647a5bca96a034e9bb8ecbda30d689ed496cba1cc613165910"
+      "digest": "6d813df26ea97403155290878770674bc4dc27abee4e2f6aa77ae142a9b036ab"
     },
     {
       "file": "lib/bootstrap.rb",
-      "digest": "f5971022d5c79f0d782d1568f332c168dc3397ed890fe53b0ea393084e7f2a16"
+      "digest": "b956b522a94ce50a01a97b21c7809b57a10990b3b510d2a602cccc2b1384db60"
     },
     {
       "file": "lib/bootstrap_test.rb",
