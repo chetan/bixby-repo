@@ -31,20 +31,25 @@ module Monitoring
     def initialize(options=nil)
       super
 
-      @cmd = if @config[:monitor] then
-        "monitor"
-      elsif @config[:options] then
-        "options"
-      else
-        "monitor" # default
-      end
-
       @storage = {}
       @options = options || get_json_input()
       @key = options["key"]
       @check_id = options ? options["check_id"] : nil
       reset()
       configure()
+
+      @cmd = if @config[:monitor] then
+        "monitor"
+      elsif @config[:options] then
+        "options"
+      elsif not ARGV.empty? then
+        @errors << "unknown command"
+        @status = ERROR if @status.nil?
+        puts MultiJson.dump(self.to_hash)
+        exit 1
+      else
+        "monitor" # default
+      end
     end
 
     # Reset the check. Called during #initialize and before #monitor
