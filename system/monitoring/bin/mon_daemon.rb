@@ -107,8 +107,12 @@ module Monitoring
         # instantiate the Check
         c = Check.new
 
+        # merge command options with ones passed in from manager (check_id)
+        opts = command.load_config() || {}
+        opts.merge!(MultiJson.load(command.stdin))
+
         c.clazz    = @class_map[key]
-        c.options  = MultiJson.load(command.stdin)
+        c.options  = opts
         c.interval = check["interval"]
         c.retry    = check["retry"]
         c.timeout  = check["timeout"]
