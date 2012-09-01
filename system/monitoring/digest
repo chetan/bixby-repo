@@ -1,5 +1,5 @@
 {
-  "digest": "4832f5b8cc87b97c8a5fa416bce047b4c1669f76e24bb98d8f9ea8b001d94405",
+  "digest": "0e75fa55f550f8abb6c726356ea9d2c65a4cec2abd762a37b29b13898a9eaafb",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -15,7 +15,7 @@
     },
     {
       "file": "lib/base.rb",
-      "digest": "6d813df26ea97403155290878770674bc4dc27abee4e2f6aa77ae142a9b036ab"
+      "digest": "90b2544eb0997a28c44786ee27b52a3bc3c5a18d7d7a693fd3667805db7e2f54"
     },
     {
       "file": "lib/bootstrap.rb",
