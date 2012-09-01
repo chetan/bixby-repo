@@ -42,11 +42,6 @@ module Monitoring
         "monitor"
       elsif @config[:options] then
         "options"
-      elsif not ARGV.empty? then
-        @errors << "unknown command"
-        @status = ERROR if @status.nil?
-        puts MultiJson.dump(self.to_hash)
-        exit 1
       else
         "monitor" # default
       end
