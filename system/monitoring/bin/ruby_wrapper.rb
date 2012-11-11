@@ -1,5 +1,19 @@
 #!/usr/bin/env ruby
 
+# ruby_wrapper.rb
+#
+# this script simply bootstraps the ruby env and then either runs a test suite
+# on the given command or executes it directly.
+#
+# removes the need for some basic boilerplate code in every script.
+#
+# specifically, bootstrap:
+#
+# * requires bixby-common and bixby-agent
+# * requires Bixby::Monitoring::Base
+#
+#
+
 require File.dirname(File.realpath(__FILE__)) + "/../lib/bootstrap"
 require 'mixlib/cli'
 
