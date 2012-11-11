@@ -1,17 +1,11 @@
 
-require 'rubygems'
-gem 'bixby-common'
+BIXBY_HOME = ENV["BIXBY_HOME"]
 
-# require the bixby lib folder and require the agent gem
-if ENV.include? "BIXBY_HOME" and File.exists? ENV["BIXBY_HOME"] then
-  BIXBY_HOME = ENV["BIXBY_HOME"]
-  $: << File.join(BIXBY_HOME, "lib")
-else
-  gem 'bixby-agent'
-end
-
+require 'bixby-common'
 require 'bixby-agent'
-require File.dirname(__FILE__) + "/base"
+require File.join(File.dirname(__FILE__), "base")
+
+Bixby::BundleRepository.path = File.join(BIXBY_HOME, "repo")
 
 module Bixby
 
