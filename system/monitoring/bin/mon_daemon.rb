@@ -79,15 +79,13 @@ module Monitoring
 
         # create command and validate
         command = CommandSpec.new(check["command"])
-        begin
-          command.validate()
-        rescue Exception => ex
-          puts "error loading check: #{command}"
-          puts ex
-          return
+        if not command.command_exists? then
+          puts "command doesn't exist: "
+          puts command.to_s.gsub(/^/, "\t")
+          next
         end
 
-        next if command.command !~ /\.rb$/ # skip non-ruby checks
+        next if command.command !~ /\.rb$/ # FIXME skip non-ruby checks
 
         # require script if necessary
         key = command.bundle + "/" + command.command
