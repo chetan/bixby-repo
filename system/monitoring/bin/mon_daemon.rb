@@ -54,7 +54,7 @@ module Monitoring
 
     def send_reports
       req = JsonRequest.new("metrics:put_check_result", [ @reports ])
-      res = req.exec()
+      res = @agent.exec_api(req)
 
       if not res.success? then
         # TODO failover to disk buffer??
