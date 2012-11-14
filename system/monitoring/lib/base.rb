@@ -122,17 +122,24 @@ module Monitoring
       File.join(BIXBY_HOME, "var", "monitoring", "data", "#{@key}.dump")
     end
 
+    # Save storage hash to disk.
     def save_storage
-      f = File.new(storage_path, 'w')
-      Marshal.dump(@storage, f)
-      f.flush
-      f.close
+      File.open(storage_path, 'w') do |f|
+        Marshal.dump(@storage, f)
+      end
     end
 
+    # Try to load storage hash from disk. Defaults to empty hash
+    #
+    # @return [Hash]
     def load_storage
       if File.exist? storage_path then
-        Marshal.load(File.new(storage_path))
+        begin
+          return Marshal.load(File.new(storage_path))
+        rescue Exception => ex
+        end
       end
+      return {}
     end
 
     def to_hash
@@ -157,7 +164,7 @@ module Monitoring
 
     def do_monitor
       begin
-        @storage = load_storage() || {}
+        @storage = load_storage()
         monitor()
         @status = OK if @status.nil?
         puts MultiJson.dump(self.to_hash)
