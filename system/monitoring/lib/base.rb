@@ -123,9 +123,6 @@ module Monitoring
     end
 
     def save_storage
-      puts "saving storage.."
-      puts storage_path
-      systemu("mkdir -p " + File.dirname(storage_path))
       f = File.new(storage_path, 'w')
       Marshal.dump(@storage, f)
       f.flush

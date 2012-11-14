@@ -17,8 +17,20 @@ module Monitoring
     def initialize(options=nil)
       @skip_parse = true
       super
-      @var = "#{BIXBY_HOME}/var"
-      system("mkdir -p #{@var}")
+
+
+      # make sure var/storage path exists
+      @var = File.join(BIXBY_HOME, "var")
+      d = File.join(@var, "monitoring", "data")
+      if not File.directory? d then
+        begin
+          FileUtils.mkdir_p(d)
+        rescue Exception => ex
+          STDERR.puts "unable to create dir #{d}"
+          STDERR.puts "  #{ex.message}"
+          exit 1
+        end
+      end
 
       @config_file = "#{BIXBY_HOME}/etc/monitoring/config.json"
       @loaded_checks = []
