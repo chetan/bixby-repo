@@ -18,9 +18,9 @@ module Hardware
         def read(fs=nil)
 
           if osx? then
-            cmd = "/bin/df -g"
+            cmd = "/bin/df -gl"
           elsif linux? then
-            cmd = "df -B G"
+            cmd = "df -lTB G"
           end
 
           cmd = "#{cmd} #{fs}" if fs # append fs if passed
