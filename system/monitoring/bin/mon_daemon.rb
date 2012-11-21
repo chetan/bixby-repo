@@ -36,6 +36,7 @@ module Monitoring
       @loaded_checks = []
       @class_map = {}
       @reports = []
+      @report_lock = Mutex.new
     end
 
     def reload_config
@@ -50,6 +51,8 @@ module Monitoring
     # Run the specified Check
     #
     # @param [Check] check
+    #
+    # @return [Bixby::Monitoring::Base] check instance
     def run_check(check)
 
       obj = check.clazz.new(check.options.dup)
@@ -61,11 +64,16 @@ module Monitoring
       obj.save_storage()
       check.storage = obj.storage
 
-      @reports << obj
+      return obj
     end
 
-    def send_reports
-      req = JsonRequest.new("metrics:put_check_result", [ @reports ])
+    # Send reports to master
+    #
+    # @param [Array<Bixby::Monitoring::Base>] reports
+    def send_reports(reports)
+      return if reports.empty?
+
+      req = JsonRequest.new("metrics:put_check_result", [ reports ])
       res = @agent.exec_api(req)
 
       if not res.success? then
@@ -73,8 +81,6 @@ module Monitoring
         puts "error reporting to server:"
         puts res
       end
-
-      @reports.clear
     end
 
     def load_all_checks(checks)
@@ -133,6 +139,38 @@ module Monitoring
       end # checks.each
     end # load_all_checks
 
+    def start_reporter_thread
+
+      # Thread for sending reports every 30 sec
+      Thread.new do
+
+        # by default we want to run this thread just after reports are
+        # actually available, so we sleep for 5 sec here
+        sleep 5
+
+        loop do
+          queue = nil
+
+          @report_lock.synchronize {
+            # swap reports array before submitting
+            if not @reports.empty? then
+              queue = @reports
+              @reports = []
+            end
+          }
+
+          if not (queue.nil? || queue.empty?) then
+            send_reports(queue)
+          end
+
+          sleep 30
+
+        end # loop
+      end # Thread
+
+    end
+
+
     def run
 
       Daemons.run_proc('mon_daemon.rb', { :dir_mode => :normal, :dir => @var, :log_output => true }) do
@@ -148,12 +186,19 @@ module Monitoring
           exit 1
         end
 
+        start_reporter_thread()
+
+        # main run loop
         loop do
 
-          @loaded_checks.each do |check|
-            run_check(check)
+          # launch in separate thread so we always collect data
+          # at the same time each minute
+          Thread.new do
+            @loaded_checks.each do |check|
+              ret = run_check(check)
+              @report_lock.synchronize { @reports << ret }
+            end
           end
-          send_reports()
 
           sleep 60
 

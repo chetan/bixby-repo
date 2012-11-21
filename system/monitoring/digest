@@ -1,9 +1,9 @@
 {
-  "digest": "5d6226d25c340633c00b448fac0ca6184133a9b7550f73e430347e04c493cf5a",
+  "digest": "dd75d45e6af6bb4d2964e80d9d5c7b622b2252c5399e0facfe47663f2ef6b5cb",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "f835b4d3c33ee862f110d7cfa4c06cce4bc12fe4e1f59bb0d66cb658322112c8"
+      "digest": "337dce1846320f736a914516e85dbecef6bd5addc44ee50a1218351bc8b1d289"
     },
     {
       "file": "bin/ruby_wrapper.rb",
