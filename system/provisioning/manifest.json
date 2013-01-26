@@ -1,8 +1,5 @@
 {
-	"name": "provisioning",
-	"version": "0.0.1",
-	"description": "provides a method for dynamic provisioning of bundles",
-
-	"provides": [  ],
-	"depends": [  ]
+  "name": "provisioning",
+  "version": "0.1.0",
+  "description": "Utilities for working with bundles",
 }

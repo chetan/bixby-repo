@@ -15,11 +15,24 @@ module Bixby
       end
 
       begin
-        cmd = CommandSpec.from_json(input)
+        digest = input.delete("digest")
+        cmd = CommandSpec.new(input)
       rescue Exception => ex
         puts ex.message
         puts ex.backtrace.join("\n")
         exit 1
+      end
+
+      # see if it exists and is up to date already
+      begin
+        if cmd.validate(digest) == true then
+          # digest matches, already up to date
+          return
+        end
+      rescue Exception => ex
+        # expected if bundle/command doesn't exist or is out of date
+        # (digest doesn't match)
+        # TODO: log?
       end
 
       files = list_files(cmd)
@@ -42,6 +55,8 @@ module Bixby
     # @param [CommandSpec] cmd    CommandSpec representing the Bundle to which the files belong
     # @param [Hash] files         Hash, returned from #list_files
     def download_files(cmd, files)
+      return if files.nil? or files.empty?
+
       local_path = cmd.bundle_dir
       digest = cmd.load_digest
       files.each do |f|
@@ -61,17 +76,24 @@ module Bixby
         params = cmd.to_hash
         params.delete(:digest)
 
-        path = File.join(local_path, f['file'])
+        filename = File.join(local_path, f['file'])
+        path = File.dirname(filename)
+        if not File.exist? path then
+          FileUtils.mkdir_p(path)
+        end
+
         req = JsonRequest.new("provisioning:fetch_file", [ params, f['file'] ])
-        @agent.exec_api_download(req, path)
+        @agent.exec_api_download(req, filename)
         if f['file'] =~ /^bin/ then
           # correct permissions for executables
-          FileUtils.chmod(0755, path)
+          FileUtils.chmod(0755, filename)
         end
       end # files.each
 
       cmd.update_digest
     end
 
-end # Provisioning
+end # Provision
 end # Bixby
+
+Bixby::Provision.new.run
