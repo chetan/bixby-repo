@@ -5,7 +5,7 @@ require 'bixby-common'
 require 'bixby-agent'
 require File.join(File.dirname(__FILE__), "base")
 
-Bixby::BundleRepository.path = File.join(BIXBY_HOME, "repo")
+Bixby.repo_path = File.join(BIXBY_HOME, "repo")
 
 module Bixby
 
@@ -20,7 +20,7 @@ module Bixby
     # find script in ARGV (accounting for spaces)
     script = argv.shift
     if not File.exist? script and script !~ %r{^/} then
-      script = File.join(BundleRepository.path, script)
+      script = File.join(Bixby.repo_path, script)
     end
     while not File.exists? script and not argv.empty? do
       script += " " + argv.shift
@@ -43,7 +43,7 @@ module Bixby
     bundledir = File.expand_path(bundledir)
 
     # export some vars into ENV
-    b = bundledir.gsub(/^#{BundleRepository.path}\//, '').split(%r{/})
+    b = bundledir.gsub(/^#{Bixby.repo_path}\//, '').split(%r{/})
     repo = b.shift
     bundle = b.join("/")
     command = File.file?(script) ? File.basename(script) : nil
