@@ -11,7 +11,13 @@ module Hardware
         #
         # example:
         #
-        # {"/" => {:fs=>"/dev/disk0s2", :size=>297, :used=>201, :free=>95, :usage=>68, :mount=>"/", :type => "hfs"}}
+        # {"/" => {:fs    => "/dev/disk0s2",
+        #          :size  => 297,
+        #          :used  => 201,
+        #          :free  => 95,
+        #          :usage => 68,
+        #          :mount => "/",
+        #          :type  => "hfs" }}
         #
         # @param [String] fs  Specific FS mount to retrieve (optional)
         # @return [Hash] Hash of 'df' output, keyed by mount
