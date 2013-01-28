@@ -1,5 +1,5 @@
 {
-  "digest": "6872e84756af796ebbb4590e9078ff615404720ec9ba6431fda6441bd7af331f",
+  "digest": "ce9236baa04fb1d8a45d45eeafa9dd26f919d57f972578c28161335e6f4fc509",
   "files": [
     {
       "file": "bin/list_facts.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "manifest.json",
-      "digest": "8fc51713da5f84904cdb7539b4edff3f6b03c4376b969643384e720f1f843554"
+      "digest": "5dc0b88eb08d6c6b5e16bba4fb4381bf26df5f3de21967a3636760062302f8b2"
     }
   ]
 }

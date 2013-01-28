@@ -2,7 +2,4 @@
 	"name": "cpu",
 	"version": "0.0.1",
 	"description": "cpu management utilties, including monitoring",
-
-	"provides": [  ],
-	"depends": [  ]
 }

@@ -1,5 +1,5 @@
 {
-  "digest": "dd75d45e6af6bb4d2964e80d9d5c7b622b2252c5399e0facfe47663f2ef6b5cb",
+  "digest": "7605c1c5785415a05f1c08b283561d5c47fef1dcbdaabf44c012cb874b28d23d",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -19,7 +19,7 @@
     },
     {
       "file": "lib/bootstrap.rb",
-      "digest": "a9b50fdcc9945bacbaef58325db5eac467a6dc095039b33f33fc9a6dbb0aff6b"
+      "digest": "abe9636e04c48cf1ea6ddf7e94153bdb60d5fb92fce3724f219ceb2ac995a734"
     },
     {
       "file": "lib/bootstrap_test.rb",
@@ -27,7 +27,7 @@
     },
     {
       "file": "manifest.json",
-      "digest": "2b60f0856009998f863e0d31640fb2496f0709628b57ee8ea57e948348f8d916"
+      "digest": "fe0f21761023668fe7e8ac33cfec530b591b6ed4a6b9a74fd05d6a739001d982"
     }
   ]
 }

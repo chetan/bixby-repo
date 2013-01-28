@@ -2,7 +2,4 @@
   "name": "monitoring",
   "version": "0.0.1",
   "description": "Scripts and libraries used by the Monitoring module",
-
-  "provides": [  ],
-  "depends": [  ]
 }
