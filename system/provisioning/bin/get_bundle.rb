@@ -27,12 +27,13 @@ module Bixby
       begin
         if cmd.validate(digest) == true then
           # digest matches, already up to date
+          debug { "bundle #{cmd.bundle} is already up to date" }
           return
         end
       rescue Exception => ex
         # expected if bundle/command doesn't exist or is out of date
         # (digest doesn't match)
-        # TODO: log?
+        debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
       end
 
       files = list_files(cmd)
