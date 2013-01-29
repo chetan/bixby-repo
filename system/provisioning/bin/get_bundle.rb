@@ -44,7 +44,10 @@ module Bixby
     # Retrieve a file listing for the given Bundle
     #
     # @param [CommandSpec] cmd      CommandSpec representing the Bundle to list
-    # @return [Hash]                Hash containing the bundle digest and file list
+    #
+    # @return [Array<Hash>]
+    #   * file [String] Relative path of file
+    #   * digest [String] SHA256 digest of file
     def list_files(cmd)
       req = JsonRequest.new("provisioning:list_files", cmd.to_hash)
       res = @agent.exec_api(req)
