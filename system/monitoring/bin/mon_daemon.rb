@@ -71,12 +71,11 @@ module Monitoring
     #
     # @param [Array<Bixby::Monitoring::Base>] reports
     def send_reports(reports)
-      return if reports.empty?
+      return if not reports or reports.empty?
 
-      req = JsonRequest.new("metrics:put_check_result", [ reports ])
-      res = @agent.exec_api(req)
-
+      res = Bixby::Metrics.put_check_result(reports)
       if not res.success? then
+        # TODO use logging framework
         # TODO failover to disk buffer??
         puts "error reporting to server:"
         puts res
