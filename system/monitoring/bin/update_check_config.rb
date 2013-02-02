@@ -7,27 +7,18 @@ module Monitoring
   class UpdateCheckConfig < Bixby::Command
 
     def run
-      path = "#{BIXBY_HOME}/etc/monitoring/"
+      path = File.join(ENV["BIXBY_HOME"], "etc", "monitoring")
       systemu("mkdir -p #{path}")
-      config_file = "#{path}/config.json"
+      config_file = File.join(path, "config.json")
 
       File.open(config_file, 'w') { |f| f.write(read_stdin()) }
 
-      # restart mond.rb
-      rpath = File.dirname(File.expand_path(__FILE__))
-      mond = "#{rpath}/ruby_wrapper.rb #{rpath}/mon_daemon.rb -- "
-
-      status, stdout, stderr = systemu("#{mond} restart")
-
+      # restart mon_daemon.rb
+      #
       # for now we'll always restart to avoid code replacement
       # on check version updates. may reload in future..
-
-      # status, stdout, stderr = systemu("#{mond} status")
-      # if stdout =~ /no instances running/ then
-      #   status, stdout, stderr = systemu("#{mond} start")
-      # else
-      #   status, stdout, stderr = systemu("#{mond} reload")
-      # end
+      rpath = File.dirname(File.expand_path(__FILE__))
+      systemu("#{rpath}/mon_daemon.rb --  restart")
     end
 
   end
