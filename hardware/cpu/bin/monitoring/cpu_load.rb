@@ -1,7 +1,4 @@
 
-use_bundle "hardware/cpu"
-use_bundle "system/monitoring"
-
 module Bixby
 module Monitoring
   module CPU

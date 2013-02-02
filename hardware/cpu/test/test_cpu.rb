@@ -1,9 +1,7 @@
 
 require "helper"
 
-use_bundle "hardware/cpu"
-
-class TestCPU < MiniTest::Unit::TestCase
+class TestCPU < Bixby::TestCase
 
   def test_get_load
 

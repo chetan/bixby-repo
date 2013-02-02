@@ -1,9 +1,7 @@
 
 require "helper"
 
-use_bundle "hardware/storage"
-
-class TestDiskUsage < MiniTest::Unit::TestCase
+class TestDiskUsage < Bixby::TestCase
 
   def test_parse_mac
     output = <<-EOF
