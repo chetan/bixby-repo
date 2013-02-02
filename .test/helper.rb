@@ -9,6 +9,10 @@ rescue Bundler::BundlerError => e
 end
 
 require 'test_guard'
+require 'simplecov'
+SimpleCov.configure do
+  coverage_dir '.coverage'
+end
 TestGuard.load_simplecov()
 
 # Load any HTTP clients before webmock so they can be stubbed
