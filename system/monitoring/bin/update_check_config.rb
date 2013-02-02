@@ -1,8 +1,10 @@
 
+require 'bixby-client'
+
 module Bixby
 module Monitoring
 
-  class UpdateCheckConfig < Command
+  class UpdateCheckConfig < Bixby::Command
 
     def run
       path = "#{BIXBY_HOME}/etc/monitoring/"

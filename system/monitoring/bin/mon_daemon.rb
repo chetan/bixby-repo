@@ -5,6 +5,8 @@
 require 'daemons'
 require 'multi_json'
 
+require 'bixby-client'
+
 module Bixby
 module Monitoring
 
@@ -12,7 +14,7 @@ module Monitoring
     attr_accessor :clazz, :options, :interval, :retry, :timeout, :storage
   end
 
-  class MonDaemon < Command
+  class MonDaemon < Bixby::Command
 
     def initialize(options=nil)
       super
