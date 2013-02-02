@@ -1,4 +1,6 @@
 
+require "mixlib/cli"
+
 module Bixby
 module Monitoring
 
@@ -9,7 +11,9 @@ module Monitoring
   UNKNOWN  = "UNKNOWN"
   OK       = "OK"
 
-  class Base < Command
+  class Base < Bixby::Command
+
+    include Mixlib::CLI
 
     attr_accessor :status, :errors, :storage
 
