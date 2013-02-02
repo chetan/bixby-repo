@@ -26,8 +26,8 @@ module Monitoring
         begin
           FileUtils.mkdir_p(d)
         rescue Exception => ex
-          STDERR.puts "unable to create dir #{d}"
-          STDERR.puts "  #{ex.message}"
+          $stderr.puts "unable to create dir #{d}"
+          $stderr.puts "  #{ex.message}"
           exit 1
         end
       end
@@ -181,7 +181,7 @@ module Monitoring
 
         reload_config()
         if @loaded_checks.empty? then
-          STDERR.puts "no available checks"
+          $stderr.puts "no available checks"
           exit 1
         end
 
