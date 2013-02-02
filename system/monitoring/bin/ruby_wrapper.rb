@@ -9,7 +9,7 @@
 #
 # specifically, bootstrap:
 #
-# * requires bixby-common and bixby-agent
+# * requires bixby-common and bixby-client
 # * requires Bixby::Monitoring::Base
 #
 #

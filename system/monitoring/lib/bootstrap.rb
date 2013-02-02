@@ -2,7 +2,7 @@
 BIXBY_HOME = ENV["BIXBY_HOME"]
 
 require 'bixby-common'
-require 'bixby-agent'
+require 'bixby-client'
 require File.join(File.dirname(__FILE__), "base")
 
 Bixby.repo_path = File.join(BIXBY_HOME, "repo")

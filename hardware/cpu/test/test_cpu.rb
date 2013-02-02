@@ -1,4 +1,8 @@
 
+require "helper"
+
+use_bundle "hardware/cpu"
+
 class TestCPU < MiniTest::Unit::TestCase
 
   def test_get_load

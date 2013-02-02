@@ -1,4 +1,8 @@
 
+require "helper"
+
+use_bundle "hardware/storage"
+
 class TestDiskUsage < MiniTest::Unit::TestCase
 
   def test_parse_mac
