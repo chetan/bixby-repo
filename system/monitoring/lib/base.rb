@@ -9,7 +9,7 @@ module Monitoring
   UNKNOWN  = "UNKNOWN"
   OK       = "OK"
 
-  class Base < BundleCommand
+  class Base < Command
 
     attr_accessor :status, :errors, :storage
 

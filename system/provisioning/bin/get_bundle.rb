@@ -4,7 +4,7 @@ require "digest"
 require "fileutils"
 
 module Bixby
-  class Provision < Bixby::BundleCommand
+  class Provision < Bixby::Command
 
     def run
 

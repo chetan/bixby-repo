@@ -74,7 +74,7 @@ class RubyWrapper
     end
 
     # TODO make sure only 1 is returned??
-    BundleCommand.subclasses.last.new(options).run
+    Command.subclasses.last.new(options).run
   end
 
   def run_test

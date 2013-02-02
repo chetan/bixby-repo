@@ -12,12 +12,10 @@ module Monitoring
     attr_accessor :clazz, :options, :interval, :retry, :timeout, :storage
   end
 
-  class MonDaemon < BundleCommand
+  class MonDaemon < Command
 
     def initialize(options=nil)
-      @skip_parse = true
       super
-
 
       # make sure var/storage path exists
       @var = File.join(BIXBY_HOME, "var")

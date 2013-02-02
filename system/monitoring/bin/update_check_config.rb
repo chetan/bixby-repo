@@ -2,7 +2,7 @@
 module Bixby
 module Monitoring
 
-  class UpdateCheckConfig < BundleCommand
+  class UpdateCheckConfig < Command
 
     def run
       path = "#{BIXBY_HOME}/etc/monitoring/"
