@@ -16,11 +16,13 @@ module Monitoring
 
   class MonDaemon < Bixby::Command
 
-    def initialize(options=nil)
+    def initialize()
       super
 
+      bixby_home = ENV["BIXBY_HOME"]
+
       # make sure var/storage path exists
-      @var = File.join(BIXBY_HOME, "var")
+      @var = File.join(bixby_home, "var")
       d = File.join(@var, "monitoring", "data")
       if not File.directory? d then
         begin
@@ -32,7 +34,7 @@ module Monitoring
         end
       end
 
-      @config_file = "#{BIXBY_HOME}/etc/monitoring/config.json"
+      @config_file = File.join(bixby_home, "etc", "monitoring", "config.json")
       @loaded_checks = []
       @class_map = {}
       @reports = []
@@ -211,3 +213,5 @@ module Monitoring
 
 end # module Monitoring
 end # module Bixby
+
+Bixby::Monitoring::MonDaemon.new.run
