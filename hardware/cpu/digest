@@ -1,20 +1,12 @@
 {
-  "digest": "a3b64b07bcfae8c21df4303b092f9bb0900005f98b786c1ce01a7d48136c7d91",
+  "digest": "48271ec6c43e7b69c1354cf464dc7780bd99a71f2a954d6fb7a8eddb2939fb51",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
-      "digest": "e8e98fd12696c89640b8cee389d2500715d317af0320be6a4abfd975934e9838"
+      "digest": "1804ded89ac1e5ffb1e403b39d9ca6f410af0c1480eddc68193d051ace4f342c"
     },
     {
       "file": "bin/monitoring/cpu_load.rb.json",
-      "digest": "d2972c7497308773c682feef88bd092bd861931fde560736520cbd64bb0b61e2"
-    },
-    {
-      "file": "bin/monitoring/cpu_usage.rb",
-      "digest": "4d0484a4d54379dc2a0d54686418ecb6d0e4f790d5cd87d29e1d39854be9f5e2"
-    },
-    {
-      "file": "bin/monitoring/cpu_usage.rb.json",
       "digest": "d2972c7497308773c682feef88bd092bd861931fde560736520cbd64bb0b61e2"
     },
     {
@@ -27,7 +19,7 @@
     },
     {
       "file": "test/test_cpu.rb",
-      "digest": "5f7e1b0384c8914a7c49ed9c3fc4c9738beae9334170be41171a5306f4b46390"
+      "digest": "18d743ebe5cb300ec9794f8b08d16dc65b56d80a0c6737fa38271e522e347558"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "digest": "a198f4fe60b8cde055724114b1e2ae757a47f42690056b3e12bfb53b5ea9dcf4",
+  "digest": "cd3d6f0a3ad12234230939ae5fea0381cf6ee5f96f128b9c58186d4bddfb1e33",
   "files": [
     {
       "file": "bin/create_digest.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/get_bundle.rb",
-      "digest": "dc0c3666a69426a038c662ad8e28998ea12f0f39a0ebc0ec8a83e8c6fd8bba77"
+      "digest": "a3022dc44ffa969d65a0e5e514ad6f8367a1eba7f0c75f9f5a0e8bd59f3a654b"
     },
     {
       "file": "manifest.json",
