@@ -17,7 +17,7 @@ rpath = File.dirname(File.expand_path(__FILE__))
 status, stdout, stderr = systemu("#{rpath}/mon_daemon.rb restart")
 
 debug {
-  CommandResponse.new({ :status => status.exitstatus,
-                        :stdout => stdout,
-                        :stderr => stderr }).to_s
+  Bixby::CommandResponse.new({ :status => status.exitstatus,
+                               :stdout => stdout,
+                               :stderr => stderr }).to_s
 }

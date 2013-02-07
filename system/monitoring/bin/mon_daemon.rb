@@ -7,6 +7,8 @@ require 'multi_json'
 
 require 'bixby-client'
 
+use_bundle "system/monitoring"
+
 module Bixby
 module Monitoring
 

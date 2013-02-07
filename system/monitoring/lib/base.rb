@@ -33,7 +33,7 @@ module Monitoring
     #
     # @param config [Hash] Hash of command metadata
     def initialize(options=nil)
-      super
+      super()
 
       @storage = {}
       @options = options || get_json_input()
@@ -123,7 +123,7 @@ module Monitoring
     alias_method :memory, :recall
 
     def storage_path
-      File.join(BIXBY_HOME, "var", "monitoring", "data", "#{@key}.dump")
+      Bixby.path("var", "monitoring", "data", "#{@key}.dump")
     end
 
     # Save storage hash to disk.
