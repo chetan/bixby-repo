@@ -30,15 +30,13 @@ ENV["RUBYLIB"] = $:.first
 #   $: << f
 # }
 
-ENV["BIXBY_HOME"] = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+ENV["BIXBY_HOME"] = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
 require "bixby-common"
 require "bixby-client"
 require "systemu"
 require "base"
 # require "./system/monitoring/lib/base"
-
-Bixby.repo_path = ENV["BIXBY_HOME"]
 
 # Dir.glob(File.dirname(__FILE__) + "/../**/*.rb").each{ |f|
 #   next if File.basename(f) =~ /^test_/
