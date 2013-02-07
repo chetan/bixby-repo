@@ -1,9 +1,9 @@
 {
-  "digest": "48271ec6c43e7b69c1354cf464dc7780bd99a71f2a954d6fb7a8eddb2939fb51",
+  "digest": "1b50f90ac89d88b7210b2bdc09bd8ae9b919f5fad203ba863325beac631f6306",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
-      "digest": "1804ded89ac1e5ffb1e403b39d9ca6f410af0c1480eddc68193d051ace4f342c"
+      "digest": "852fa464591fb1a70d72de0606a1749376e91600670894c1e6552571558d3421"
     },
     {
       "file": "bin/monitoring/cpu_load.rb.json",

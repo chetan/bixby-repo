@@ -1,9 +1,9 @@
 {
-  "digest": "b5c31ea553b74b11d99950f703ba89b5b799f15fcf2f94ceb83e815fd9d7ef3d",
+  "digest": "42c6adf886d8f817c71937385699af24069301e9d9237e08835dbeb884cbafcd",
   "files": [
     {
       "file": "bin/monitoring/disk_usage.rb",
-      "digest": "aa1dc087661e15ea7651e1307131e8fa19336d4d6704c3a9d5a41ca5c28851dd"
+      "digest": "2a74968eb628aeee3cb6fd76d0157e5852b4dff4aec214ac699a1e1b6ef0ce09"
     },
     {
       "file": "bin/monitoring/disk_usage.rb.json",
