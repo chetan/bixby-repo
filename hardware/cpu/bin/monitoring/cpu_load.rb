@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 
 module Bixby
 module Monitoring
