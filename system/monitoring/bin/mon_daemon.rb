@@ -109,12 +109,9 @@ module Monitoring
         next if command.command !~ /\.rb$/ # FIXME skip non-ruby checks
 
         # require script if necessary
+        Bixby.use_bundle(command.bundle)
         key = command.bundle + "/" + command.command
         if not @class_map.include? key then
-          # puts "loading #{key}"
-          lib = "#{command.bundle_dir}/lib"
-          $:.unshift(lib) if File.directory? lib and not $:.include? lib
-          # puts "require #{command.command_file}"
           require command.command_file
 
           subclasses = Monitoring::Base.subclasses - loaded_classes
