@@ -31,12 +31,13 @@ module Hardware
 
           cmd = "#{cmd} #{fs}" if fs # append fs if passed
 
-          status, stdout, stderr = systemu(cmd)
-          if not status.success? then
+          shell = systemu(cmd)
+          if not shell.success? then
             # TODO raise err
+            return {}
           end
 
-          ret = parse_output(stdout)
+          ret = parse_output(shell.stdout)
 
           if osx? then
             add_mount_types(ret)
@@ -103,8 +104,8 @@ module Hardware
         end
 
         def add_mount_types(hash)
-          status, stdout, stderr = systemu("mount")
-          stdout.split(/\n/).each do |line|
+          shell = systemu("mount")
+          shell.stdout.split(/\n/).each do |line|
             line =~ /^(.*?) on (.*?) \((.*?),/
             if hash.include? $2 then
               hash[$2][:type] = $3

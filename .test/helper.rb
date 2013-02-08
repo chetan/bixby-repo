@@ -33,8 +33,7 @@ ENV["RUBYLIB"] = $:.first
 ENV["BIXBY_HOME"] = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
 require "bixby-common"
-require "bixby-client"
-require "systemu"
+require "bixby-client/script"
 require "base"
 # require "./system/monitoring/lib/base"
 

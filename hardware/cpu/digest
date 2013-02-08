@@ -1,5 +1,5 @@
 {
-  "digest": "1b50f90ac89d88b7210b2bdc09bd8ae9b919f5fad203ba863325beac631f6306",
+  "digest": "cf53f86a0184d2b115141652b25e4fc7c64519948372ee6cd4c9857ebfdbaeb3",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
@@ -11,7 +11,7 @@
     },
     {
       "file": "lib/cpu.rb",
-      "digest": "b6bdefdb911613fa930cb794de1461a5ad38a4bc56cb80135565bd8ccac106a8"
+      "digest": "bd985a86be03b3c8af23d341ac84f92026dcc6b8f6db76a8b68b58b82d242517"
     },
     {
       "file": "manifest.json",

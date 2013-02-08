@@ -12,9 +12,9 @@ module Hardware
       #   * "5m" [Float] last 5 minutes
       #   * "15m" [Float] last 15 minutes
       def get_load
-        status, stdout, stderr = systemu("uptime")
-        return nil if not status.success?
-        return parse_load(stdout)
+        shell = systemu("uptime")
+        return nil if not shell.success?
+        return parse_load(shell.stdout)
       end
 
       # Parse the load from the given input

@@ -14,10 +14,6 @@ File.open(config_file, 'w') { |f| f.write(read_stdin()) }
 # for now we'll always restart to avoid code replacement
 # on check version updates. may reload in future..
 rpath = File.dirname(File.expand_path(__FILE__))
-status, stdout, stderr = systemu("#{rpath}/mon_daemon.rb restart")
+shell = systemu("#{rpath}/mon_daemon.rb restart")
 
-debug {
-  Bixby::CommandResponse.new({ :status => status.exitstatus,
-                               :stdout => stdout,
-                               :stderr => stderr }).to_s
-}
+debug { Bixby::CommandResponse.new(shell).to_s }
