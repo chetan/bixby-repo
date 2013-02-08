@@ -1,9 +1,9 @@
 {
-  "digest": "a9c49d1c3068cd9f548457b40d5089ec2eed5b9276055cc6939440ddf44eaa57",
+  "digest": "f9de0fe556c263cbe22b3eb891fbea6ff1c0af0d46d6351cd4a93002134ef257",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "2aa162ea45d5b0c7295b083b0081bd3c12b26ab734d6e602a62045dea013a3ca"
+      "digest": "348c0a1416a53fa3ce158c10e910d5ff6d8cacf3d95366835292af7817ba6048"
     },
     {
       "file": "bin/update_check_config.rb",

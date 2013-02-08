@@ -5,8 +5,6 @@
 require 'daemons'
 require 'multi_json'
 
-require 'bixby-client'
-
 use_bundle "system/monitoring"
 
 module Bixby
@@ -44,12 +42,14 @@ module Monitoring
     end
 
     def reload_config
+      debug { "loading check config" }
       if File.exists? @config_file then
         checks = MultiJson.load(File.read(@config_file))
         load_all_checks(checks)
       else
         @loaded_checks = []
       end
+      debug { "loaded #{@loaded_checks.size} check(s)" }
     end
 
     # Run the specified Check
@@ -69,6 +69,10 @@ module Monitoring
       check.storage = obj.storage
 
       return obj
+
+    rescue Exception => ex
+      error { "check failed: " + ex.to_s + "\n" + ex.backtrace.to_s }
+
     end
 
     # Send reports to master
@@ -79,11 +83,13 @@ module Monitoring
 
       res = Bixby::Metrics.put_check_result(reports)
       if not res.success? then
-        # TODO use logging framework
         # TODO failover to disk buffer??
-        puts "error reporting to server:"
-        puts res
+        error { "error reporting to server:\n" + res.to_s }
       end
+
+    rescue Exception => ex
+      error { "error reporting to server: " + ex.to_s + "\n" + ex.backtrace.to_s }
+
     end
 
     def load_all_checks(checks)
@@ -95,14 +101,11 @@ module Monitoring
 
       checks.each do |check|
 
-        puts "looking at check"
-        p check
-
         # create command and validate
         command = CommandSpec.new(check["command"])
         if not command.command_exists? then
-          puts "command doesn't exist: "
-          puts command.to_s.gsub(/^/, "\t")
+          error { "command doesn't exist: \n" +
+                  command.to_s.gsub(/^/, "\t") }
           next
         end
 
@@ -134,6 +137,7 @@ module Monitoring
         c.timeout  = check["timeout"]
         c.storage  = c.clazz.new(c.options.dup).load_storage()
 
+        debug { "new check: #{c.clazz}" }
         @loaded_checks << c
 
       end # checks.each
@@ -161,6 +165,7 @@ module Monitoring
 
           if not (queue.nil? || queue.empty?) then
             send_reports(queue)
+            debug { "sent #{queue.size} reports to server" }
           end
 
           sleep 30
@@ -186,8 +191,10 @@ module Monitoring
           exit 1
         end
 
+        debug { "starting reporter thread" }
         start_reporter_thread()
 
+        debug { "startup complete; entering run loop" }
         # main run loop
         loop do
 
@@ -195,6 +202,7 @@ module Monitoring
           # at the same time each minute
           Thread.new do
             @loaded_checks.each do |check|
+              debug { "running check: #{check.clazz}" }
               ret = run_check(check)
               @report_lock.synchronize { @reports << ret }
             end
