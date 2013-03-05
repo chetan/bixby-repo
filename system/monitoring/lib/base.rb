@@ -1,6 +1,4 @@
 
-require "mixlib/cli"
-
 module Bixby
 module Monitoring
 
@@ -13,41 +11,27 @@ module Monitoring
 
   class Base < Bixby::Command
 
-    include Mixlib::CLI
-
     attr_accessor :status, :errors, :storage
-
-    option :monitor,
-      :short          => "-m",
-      :long           => "--monitor",
-      :description    => "Retrieve metrics",
-      :boolean        => true
-
-    option :options,
-      :short          => "-o",
-      :long           => "--options",
-      :description    => "List options used by plugin",
-      :boolean        => true
 
     # Create new instance
     #
-    # @param config [Hash] Hash of command metadata
+    # @param [Hash] options      Hash of command metadata
     def initialize(options=nil)
       super()
 
-      @storage = {}
       @options = options || get_json_input()
-      @key = options["key"]
-      @check_id = options ? options["check_id"] : nil
+
+      @storage = {}
+      @key = @options["key"]
+      @check_id = @options ? @options["check_id"] : nil
       reset()
       configure()
 
-      @cmd = if @config[:monitor] then
+      cmd = ARGV.shift
+      @cmd = if cmd.nil? or cmd.empty? or cmd == "--monitor" then
         "monitor"
-      elsif @config[:options] then
+      elsif cmd == "--options" then
         "options"
-      else
-        "monitor" # default
       end
     end
 
@@ -180,14 +164,6 @@ module Monitoring
         @status = ERROR if @status.nil?
         puts MultiJson.dump(self.to_hash)
         exit 1
-      end
-    end
-
-    def self.inherited(subclass)
-      super
-      subclass.extend(Monitoring::Base::ClassMethods)
-      if superclass.respond_to? :inherited
-        superclass.inherited(subclass)
       end
     end
 
