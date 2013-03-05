@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+use_bundle "hardware/cpu"
+use_bundle "system/monitoring"
+
 module Bixby
 module Monitoring
   module CPU
@@ -23,3 +26,5 @@ module Monitoring
   end
 end # Monitoring
 end # Bixby
+
+Bixby::Monitoring::CPU::LoadAverage.new.run if $0 == __FILE__
