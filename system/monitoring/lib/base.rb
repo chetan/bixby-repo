@@ -20,6 +20,9 @@ module Monitoring
       super()
 
       @options = options || get_json_input()
+      if @options.nil? or @options.empty? then
+        @options = load_config()
+      end
 
       @storage = {}
       @key = @options["key"]
@@ -90,7 +93,7 @@ module Monitoring
     # @param [Hash] hash  data to store
     def store(hash)
       return if hash.nil?
-      @storage.merge(hash)
+      @storage.merge!(hash)
     end
     alias_method :remember, :store
     alias_method :keep, :store
@@ -106,6 +109,24 @@ module Monitoring
     end
     alias_method :memory, :recall
 
+    # Retrieves the given key from storage. If key is not present, the given
+    # block is called and it's value stored with the given key.
+    #
+    # @param [String, Symbol] key
+    # @param [Block] code to generate value
+    #
+    # @return [Object] stored data
+    def memoize(key, &block)
+      if @storage.include? key then
+        return @storage[key]
+      end
+
+      val = block.call()
+      store(key => val)
+      return val
+    end
+
+    # Filename where data will be stored
     def storage_path
       Bixby.path("var", "monitoring", "data", "#{@key}.dump")
     end
@@ -142,12 +163,11 @@ module Monitoring
       begin
         opts = get_options()
         puts MultiJson.dump(opts)
-        exit 0
       rescue Exception => ex
-        return if ex.kind_of? SystemExit
         puts ex.message
         exit 1
       end
+      exit 0
     end
 
     def do_monitor
@@ -156,15 +176,24 @@ module Monitoring
         monitor()
         @status = OK if @status.nil?
         puts MultiJson.dump(self.to_hash)
-        exit 0
+        save_storage()
       rescue Exception => ex
-        return if ex.kind_of? SystemExit
         @errors << ex.message
         @errors << ex.backtrace.join("\n")
         @status = ERROR if @status.nil?
         puts MultiJson.dump(self.to_hash)
+        save_storage()
         exit 1
       end
+      exit 0
+    end
+
+    def load_config
+      file = "#{$0}.json"
+      if File.exist? file
+        return MultiJson.load(File.read(file))
+      end
+      return {}
     end
 
   end # Base
