@@ -14,7 +14,9 @@ module Monitoring
       end
 
       def monitor
-        load = Hardware::CPU.get_load()
+        num_processors = memoize(:processors) { Hardware::CPU.num_processors() }
+
+        load = Hardware::CPU.get_load(num_processors)
         if load.nil? then
           error("failed to retrieve uptime")
           return
