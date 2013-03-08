@@ -10,12 +10,12 @@ group :development, :test do
 
   gem "bundler"
   gem "pry"
-  gem "debugger",     :platforms => :mri_19
-  gem "debugger-pry", :require => "debugger/pry", :platforms => :mri_19
+  gem "debugger",     :platforms => [ :mri_20, :mri_19 ]
+  gem "debugger-pry", :require => "debugger/pry", :platforms => [ :mri_20, :mri_19 ]
 
-  gem "simplecov",    :platforms => [:mri_19, :rbx], :git => "https://github.com/chetan/simplecov.git", :branch => "inline_nocov"
+  gem "simplecov",    :platforms => [:mri_20, :mri_19, :rbx], :git => "https://github.com/chetan/simplecov.git", :branch => "inline_nocov"
 
-  gem "minitest",     :platforms => [:mri_19, :rbx]
+  gem "minitest",     :platforms => [:mri_20, :mri_19, :rbx]
   gem "webmock",      :require => false
   gem "mocha",        :require => false
 
