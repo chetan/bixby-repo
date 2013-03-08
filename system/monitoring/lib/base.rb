@@ -133,6 +133,10 @@ module Monitoring
 
     # Save storage hash to disk.
     def save_storage
+      dir = File.dirname(storage_path)
+      if not File.directory? dir then
+        FileUtils.mkdir_p(dir)
+      end
       File.open(storage_path, 'w') do |f|
         Marshal.dump(@storage, f)
       end
