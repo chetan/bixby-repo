@@ -25,4 +25,21 @@ class TestCPU < Bixby::TestCase
     assert Hardware::CPU.num_processors > 0
   end
 
+  def test_options
+    shell = systemu(bin("monitoring", "cpu_load.rb") + " --options")
+    assert shell.success?
+    assert_equal "{}\n", shell.stdout
+  end
+
+  def test_monitor
+    shell = systemu(bin("monitoring", "cpu_load.rb") + " --monitor")
+    assert shell.success?
+    ret = MultiJson.load(shell.stdout)
+    assert_kind_of Hash, ret
+    assert_equal "OK", ret["status"]
+    assert_kind_of Fixnum, ret["timestamp"]
+    assert_equal "hardware.cpu.loadavg", ret["key"]
+    assert_equal 3, ret["metrics"].first["metrics"].size
+  end
+
 end
