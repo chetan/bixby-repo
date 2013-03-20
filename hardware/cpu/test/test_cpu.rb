@@ -42,4 +42,16 @@ class TestCPU < Bixby::TestCase
     assert_equal 3, ret["metrics"].first["metrics"].size
   end
 
+  def test_usage_stats
+    stats = Hardware::CPU::Stats.fetch
+    assert stats
+    assert stats.user > 0
+    assert stats.system > 0
+    assert stats.idle > 0
+
+    total = stats.user+stats.system+stats.idle
+    assert total > 99
+    assert total <= 101 # sometimes slightly more than 100 on osx
+  end
+
 end
