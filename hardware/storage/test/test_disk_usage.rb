@@ -3,6 +3,18 @@ require "helper"
 
 class TestDiskUsage < Bixby::TestCase
 
+  def setup
+    super
+    @mounts = <<-EOF
+/dev/disk0s2 on / (hfs, local, journaled)
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk4 on /Volumes/Foobar (hfs, local, journaled)
+/dev/disk2s2 on /Volumes/Baz (hfs, local, journaled)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+EOF
+  end
+
   def test_parse_mac
     output = <<-EOF
 Filesystem    1G-blocks Used Available Capacity  Mounted on
@@ -15,6 +27,8 @@ map auto_home         0    0         0   100%    /home
 EOF
 
     df = Hardware::Storage::DiskUsage.parse_output(output)
+
+    Mixlib::ShellOut.any_instance.expects(:stdout).once().returns(@mounts)
     Hardware::Storage::DiskUsage.add_mount_types(df)
 
     assert_equal 6, df.values.size
@@ -35,6 +49,8 @@ map auto_home         0    0         0   100%         0         0  100%   /home
 EOF
 
     df = Hardware::Storage::DiskUsage.parse_output(output)
+
+    Mixlib::ShellOut.any_instance.expects(:stdout).once().returns(@mounts)
     Hardware::Storage::DiskUsage.add_mount_types(df)
 
     assert_equal 6, df.values.size
