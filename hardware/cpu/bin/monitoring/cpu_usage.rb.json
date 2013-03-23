@@ -1,0 +1,6 @@
+{
+  "name" : "CPU Usage",
+  "key" : "hardware.cpu.usage",
+  "metrics" : {
+  }
+}
