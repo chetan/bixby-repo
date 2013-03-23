@@ -49,6 +49,8 @@ class TestMonitoring < Bixby::TestCase
     return if options.empty?
 
     shell = systemu(full_path(file) + " --options")
+    puts shell.stdout
+    puts shell.stderr
     assert shell.success?
     assert_empty shell.stderr
     refute_empty shell.stdout
@@ -81,6 +83,8 @@ class TestMonitoring < Bixby::TestCase
   def do_test_metrics(file, metrics)
 
     shell = systemu(full_path(file) + " --monitor")
+    puts shell.stdout
+    puts shell.stderr
     assert shell.success?
     assert_empty shell.stderr
     refute_empty shell.stdout
