@@ -50,7 +50,6 @@ class TestCPU < Bixby::TestCase
     assert stats.idle > 0
 
     total = stats.user+stats.system+stats.idle
-    puts total
     assert total > 99
     #assert total <= 101 # sometimes slightly more than 100 on osx
   end
