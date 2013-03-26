@@ -26,7 +26,6 @@ class TestMonitoring < Bixby::TestCase
 
   # test the given monitoring plugin/script
   def do_test_mon(file)
-    puts file
     config = file + ".json"
     assert File.exist?(config), "has config file"
 
@@ -57,6 +56,7 @@ class TestMonitoring < Bixby::TestCase
 
     opts = MultiJson.load(shell.stdout)
     assert opts
+    ap opts
     assert_kind_of Hash, opts
 
     options.each do |key, opt_desc|
@@ -111,7 +111,17 @@ class TestMonitoring < Bixby::TestCase
       assert_includes mdesc, "desc", "metric has a description"
 
       # make sure the metric appears in the result
-      refute_empty ret["metrics"].find_all { |r| r["metrics"].include? key }
+      if mdesc.include? "platforms" then
+        if mdesc["platforms"].include? "linux" and linux? then
+          assert_metric_present(ret["metrics"], key) if test
+        elsif mdesc["platforms"].include? "osx" and osx? then
+          assert_metric_present(ret["metrics"], key)
+        end
+
+      else
+        assert_metric_present(ret["metrics"], key)
+      end
+
 
     end
 
@@ -119,6 +129,10 @@ class TestMonitoring < Bixby::TestCase
       assert_includes r, "metrics"
       assert_includes r, "metadata"
     end
+  end
+
+  def assert_metric_present(metrics, key)
+    refute_empty metrics.find_all{ |r| r["metrics"].include? key }, "should report metric #{key}"
   end
 
   def full_path(file)
