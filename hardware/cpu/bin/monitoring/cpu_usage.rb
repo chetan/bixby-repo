@@ -21,7 +21,10 @@ module Monitoring
           return
         end
 
+        # load previous stats and store current
         prev_stats = recall(:stats)
+        store(:stats => stats)
+
         return if prev_stats.nil?
 
         add_metric(stats.diff(prev_stats))

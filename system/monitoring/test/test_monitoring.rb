@@ -82,10 +82,14 @@ class TestMonitoring < Bixby::TestCase
   # test the monitoring command
   def do_test_metrics(file, metrics)
 
+    # run command twice in case storage/recall is required for generating metrics
     shell = systemu(full_path(file) + " --monitor")
+    assert shell.success?
+    shell = systemu(full_path(file) + " --monitor")
+    assert shell.success?
+
     puts shell.stdout
     puts shell.stderr
-    assert shell.success?
     assert_empty shell.stderr
     refute_empty shell.stdout
 
@@ -113,7 +117,7 @@ class TestMonitoring < Bixby::TestCase
       # make sure the metric appears in the result
       if mdesc.include? "platforms" then
         if mdesc["platforms"].include? "linux" and linux? then
-          assert_metric_present(ret["metrics"], key) if test
+          assert_metric_present(ret["metrics"], key)
         elsif mdesc["platforms"].include? "osx" and osx? then
           assert_metric_present(ret["metrics"], key)
         end
