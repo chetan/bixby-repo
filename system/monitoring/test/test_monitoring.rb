@@ -82,11 +82,15 @@ class TestMonitoring < Bixby::TestCase
   # test the monitoring command
   def do_test_metrics(file, metrics)
 
-    # run command twice in case storage/recall is required for generating metrics
     shell = systemu(full_path(file) + " --monitor")
     assert shell.success?
-    shell = systemu(full_path(file) + " --monitor")
-    assert shell.success?
+
+    storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
+    if File.exist? storage and File.size(storage) > 4 then
+      # run command twice in case storage/recall is required for generating metrics
+      shell = systemu(full_path(file) + " --monitor")
+      assert shell.success?
+    end
 
     puts shell.stdout
     puts shell.stderr
@@ -126,7 +130,6 @@ class TestMonitoring < Bixby::TestCase
         assert_metric_present(ret["metrics"], key)
       end
 
-
     end
 
     ret["metrics"].each do |r|
@@ -136,7 +139,11 @@ class TestMonitoring < Bixby::TestCase
   end
 
   def assert_metric_present(metrics, key)
-    refute_empty metrics.find_all{ |r| r["metrics"].include? key }, "should report metric #{key}"
+    vals = metrics.find_all{ |r| r["metrics"].include? key }
+    refute_empty vals, "should report metric #{key}"
+    val = vals.first["metrics"][key]
+    assert val
+    assert_kind_of Numeric, val
   end
 
   def full_path(file)
