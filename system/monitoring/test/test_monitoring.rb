@@ -121,13 +121,13 @@ class TestMonitoring < Bixby::TestCase
       # make sure the metric appears in the result
       if mdesc.include? "platforms" then
         if mdesc["platforms"].include? "linux" and linux? then
-          assert_metric_present(ret["metrics"], key)
+          assert_metric_present(ret["metrics"], key, mdesc["range"])
         elsif mdesc["platforms"].include? "osx" and osx? then
-          assert_metric_present(ret["metrics"], key)
+          assert_metric_present(ret["metrics"], key, mdesc["range"])
         end
 
       else
-        assert_metric_present(ret["metrics"], key)
+        assert_metric_present(ret["metrics"], key, mdesc["range"])
       end
 
     end
@@ -138,12 +138,31 @@ class TestMonitoring < Bixby::TestCase
     end
   end
 
-  def assert_metric_present(metrics, key)
+  def assert_metric_present(metrics, key, range)
     vals = metrics.find_all{ |r| r["metrics"].include? key }
     refute_empty vals, "should report metric #{key}"
     val = vals.first["metrics"][key]
     assert val
     assert_kind_of Numeric, val
+
+    return if range.nil?
+    range.strip!
+
+    if range == "0+" then
+      assert val >= 0
+    elsif range =~ /<=([\d.-]+)/ then
+      assert val <= $1.to_f
+    elsif range =~ />=([\d.-]+)/ then
+      assert val >= $1.to_f
+    elsif range =~ /<([\d.-]+)/ then
+      assert val < $1.to_f
+    elsif range =~ />([\d.-]+)/ then
+      assert val > $1.to_f
+    elsif range =~ /([\d.-]+)\.\.([\d.-]+)/ then
+      range = $1.to_f..$2.to_f
+      assert range.include?(val)
+    end
+
   end
 
   def full_path(file)
