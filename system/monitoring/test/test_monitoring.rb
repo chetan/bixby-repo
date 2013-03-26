@@ -148,16 +148,27 @@ class TestMonitoring < Bixby::TestCase
     return if range.nil?
     range.strip!
 
+    # >= 0
     if range == "0+" then
       assert val >= 0
+
+    # val <= foo
     elsif range =~ /<=([\d.-]+)/ then
       assert val <= $1.to_f
+
+    # val >= foo
     elsif range =~ />=([\d.-]+)/ then
       assert val >= $1.to_f
+
+    # val < foo
     elsif range =~ /<([\d.-]+)/ then
       assert val < $1.to_f
+
+    # val > foo
     elsif range =~ />([\d.-]+)/ then
       assert val > $1.to_f
+
+    # val in range A..B
     elsif range =~ /([\d.-]+)\.\.([\d.-]+)/ then
       range = $1.to_f..$2.to_f
       assert range.include?(val)
