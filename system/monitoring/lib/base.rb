@@ -165,7 +165,7 @@ module Monitoring
 
     def do_options
       begin
-        opts = get_options()
+        opts = get_options() || {}
         puts MultiJson.dump(opts)
       rescue Exception => ex
         puts ex.message
