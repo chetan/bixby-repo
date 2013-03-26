@@ -162,11 +162,17 @@ module Hardware
       end
 
       def to_h
-        {
-          :user => user, :system => system, :idle => idle, :iowait => iowait,
-          :interrupts => interrupts, :procs_running => procs_running,
-          :procs_blocked => procs_blocked, :time => Time.now.to_s
-        }
+        if osx? then
+          {
+            :user => user, :system => system, :idle => idle
+          }
+        elsif linux? then
+          {
+            :user => user, :system => system, :idle => idle, :iowait => iowait,
+            :interrupts => interrupts, :procs_running => procs_running,
+            :procs_blocked => procs_blocked
+          }
+        end
       end
     end
 

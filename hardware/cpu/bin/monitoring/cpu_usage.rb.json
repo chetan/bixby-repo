@@ -2,5 +2,12 @@
   "name" : "CPU Usage",
   "key" : "hardware.cpu.usage",
   "metrics" : {
+    "system"       : { "desc" : "System" },
+    "user"         : { "desc" : "User" },
+    "idle"         : { "desc" : "Idle" },
+    "iowait"       : { "desc" : "IO Wait", "platforms": ["linux"] },
+    "procs_running": { "desc" : "Procs Running", "platforms": ["linux"] },
+    "procs_blocked": { "desc" : "Procs Blocked", "platforms": ["linux"] },
+    "interrupts"   : { "desc" : "Interrupts", "platforms": ["linux"] }
   }
 }

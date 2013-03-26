@@ -14,6 +14,17 @@ module Monitoring
       end
 
       def monitor
+        stats = Hardware::CPU::Stats.fetch
+
+        if osx? then
+          add_metric(stats.to_h)
+          return
+        end
+
+        prev_stats = recall(:stats)
+        return if prev_stats.nil?
+
+        add_metric(stats.diff(prev_stats))
       end
 
     end
