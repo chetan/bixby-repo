@@ -8,16 +8,18 @@ module Bixby
 
     def setup
       super
-      s = File.join(ENV["BIXBY_HOME"], "repo", "vendor")
+      @bixby_home = Dir.mktmpdir("bixby-")
+      ENV["BIXBY_HOME"] = @bixby_home
+      s = File.join(@bixby_home, "repo", "vendor")
       if not File.exists? s then
-        FileUtils.mkdir_p File.join(ENV["BIXBY_HOME"], "repo")
-        FileUtils.ln_sf ENV["BIXBY_REPO_PATH"], File.join(ENV["BIXBY_HOME"], "repo", "vendor")
+        FileUtils.mkdir_p File.join(@bixby_home, "repo")
+        FileUtils.ln_sf ENV["BIXBY_REPO_PATH"], File.join(@bixby_home, "repo", "vendor")
       end
     end
 
     def teardown
       super
-      FileUtils.rm_rf BIXBY_HOME_PATH
+      FileUtils.rm_rf @bixby_home
     end
 
     private
