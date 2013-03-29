@@ -3,9 +3,10 @@ require "helper"
 
 class TestMonitoring < Bixby::TestCase
 
+  parallelize_me!
+
   old_wd = Dir.pwd
-  root = File.join(Bixby.repo_path, "vendor")
-  Dir.chdir(root)
+  Dir.chdir(BIXBY_REPO_PATH)
   files = Dir.glob("./**/*.rb")
   Dir.chdir(old_wd)
 
