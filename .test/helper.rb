@@ -13,7 +13,10 @@ require 'simplecov'
 SimpleCov.configure do
   coverage_dir '.coverage'
 end
-TestGuard.load_simplecov()
+# TestGuard.load_simplecov()
+
+require "minitest/parallel_each"
+require "test_guard/minitest_fork"
 
 # Load any HTTP clients before webmock so they can be stubbed
 require 'curb'

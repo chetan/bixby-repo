@@ -18,6 +18,7 @@ group :development, :test do
   gem "minitest",     :platforms => [:mri_20, :mri_19, :rbx]
   gem "webmock",      :require => false
   gem "mocha",        :require => false
+  gem "parallel",     :require => false
 
   gem "turn",       :git => "https://github.com/chetan/turn.git", :branch => "parallel"
   gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
