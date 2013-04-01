@@ -13,7 +13,7 @@ require 'simplecov'
 SimpleCov.configure do
   coverage_dir '.coverage'
 end
-# TestGuard.load_simplecov()
+TestGuard.load_simplecov() if ENV["COVERAGE"]
 
 require "minitest/parallel_each"
 require "test_guard/minitest_fork"
