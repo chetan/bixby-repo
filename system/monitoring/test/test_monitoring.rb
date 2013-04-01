@@ -49,15 +49,15 @@ class TestMonitoring < Bixby::TestCase
     return if options.empty?
 
     shell = systemu(full_path(file) + " --options")
-    puts shell.stdout
-    puts shell.stderr
+    # puts shell.stdout
+    # puts shell.stderr
     assert shell.success?
     assert_empty shell.stderr
     refute_empty shell.stdout
 
     opts = MultiJson.load(shell.stdout)
     assert opts
-    ap opts
+    # ap opts
     assert_kind_of Hash, opts
 
     options.each do |key, opt_desc|
@@ -93,14 +93,14 @@ class TestMonitoring < Bixby::TestCase
       assert shell.success?
     end
 
-    puts shell.stdout
-    puts shell.stderr
+    # puts shell.stdout
+    # puts shell.stderr
     assert_empty shell.stderr
     refute_empty shell.stdout
 
     ret = MultiJson.load(shell.stdout)
     assert ret
-    ap ret
+    # ap ret
 
     assert_includes ret, "timestamp"
     assert_includes ret, "status"
