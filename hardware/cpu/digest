@@ -1,5 +1,5 @@
 {
-  "digest": "4ef9913cd77c61ef18ebaa173c28abc11328e7571ecbfbceae986f8d94d4e852",
+  "digest": "79dbdce93af161b92b6c0984848022ddb48273cf7be8ad61904a26947701cf96",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
@@ -10,8 +10,16 @@
       "digest": "d2972c7497308773c682feef88bd092bd861931fde560736520cbd64bb0b61e2"
     },
     {
+      "file": "bin/monitoring/cpu_usage.rb",
+      "digest": "2ca4946e86fe7a0fce750eea2c5f45ce6c29d6b3da41f4a037f16d6d2ed14613"
+    },
+    {
+      "file": "bin/monitoring/cpu_usage.rb.json",
+      "digest": "4ea074a6000635d1ac4cdde270afbe65650eee1243c6182cc4d50bbed9dea983"
+    },
+    {
       "file": "lib/cpu.rb",
-      "digest": "519b78a35a00a2666eb68d0a6c369c75c0e3cf0a9c7f77d8ac8103c9e57e4081"
+      "digest": "fa8a4def8f80448539ab25295d9e906040a5ceb4e8c9e271579082405b16784d"
     },
     {
       "file": "manifest.json",

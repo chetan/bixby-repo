@@ -1,5 +1,5 @@
 {
-  "digest": "9af3facbf91e69ec376853017173afdecfb6ce11d72dcc68bb88ed328078ae15",
+  "digest": "dfbc84aabca0f5f99ccca0125c1f91391048ea311afcf556b2c98b934f59d7cd",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -11,7 +11,7 @@
     },
     {
       "file": "lib/base.rb",
-      "digest": "d96ae54d3af2916df66857327441d865e54bd666dcd14afe4d0277c0c3c94ed4"
+      "digest": "abe89d249c176d72b1b954d6da74868b86ae840858542a9430e210d5312fe24a"
     },
     {
       "file": "manifest.json",
