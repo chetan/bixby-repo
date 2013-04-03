@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/chetan/test_guard.git
-  revision: 504cb1514f4fae197051603b4d32652ca103a013
+  revision: 20869d30edf367379a36b7bafdde630124b1a397
   specs:
     test_guard (0.2.0)
       awesome_print
