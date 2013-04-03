@@ -49,15 +49,17 @@ class TestMonitoring < Bixby::TestCase
     return if options.empty?
 
     shell = systemu(full_path(file) + " --options")
-    # puts shell.stdout
-    # puts shell.stderr
+
+    puts shell.stdout if debug?
+    puts shell.stderr if debug?
+
     assert shell.success?
     assert_empty shell.stderr
     refute_empty shell.stdout
 
     opts = MultiJson.load(shell.stdout)
     assert opts
-    # ap opts
+    ap opts if debug?
     assert_kind_of Hash, opts
 
     options.each do |key, opt_desc|
@@ -93,14 +95,15 @@ class TestMonitoring < Bixby::TestCase
       assert shell.success?
     end
 
-    # puts shell.stdout
-    # puts shell.stderr
+    puts shell.stdout if debug?
+    puts shell.stderr if debug?
+
     assert_empty shell.stderr
     refute_empty shell.stdout
 
     ret = MultiJson.load(shell.stdout)
     assert ret
-    # ap ret
+    ap ret if debug?
 
     assert_includes ret, "timestamp"
     assert_includes ret, "status"
@@ -179,6 +182,10 @@ class TestMonitoring < Bixby::TestCase
 
   def full_path(file)
     return File.join(Bixby.repo_path, "vendor", file)
+  end
+
+  def debug?
+    ENV["DEBUG"]
   end
 
 end
