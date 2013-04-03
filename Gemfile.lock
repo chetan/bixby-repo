@@ -9,10 +9,12 @@ GIT
 
 GIT
   remote: https://github.com/chetan/test_guard.git
-  revision: 00d5f9d432764c81858e3958d44d8dff1c3a4b82
+  revision: 504cb1514f4fae197051603b4d32652ca103a013
   specs:
-    test_guard (0.1.2)
+    test_guard (0.2.0)
       awesome_print
+      debugger
+      debugger-pry
       growl
       guard
       simplecov
@@ -22,8 +24,8 @@ GIT
 
 GIT
   remote: https://github.com/chetan/turn.git
-  revision: f35357073d392d2c13d5280c078a9909209a2e3c
-  branch: parallel
+  revision: 074469821eea9132fad6656329d1a8f821c464c7
+  branch: forking
   specs:
     turn (0.9.6)
       ansi

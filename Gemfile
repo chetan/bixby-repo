@@ -20,7 +20,7 @@ group :development, :test do
   gem "mocha",        :require => false
   gem "parallel",     :require => false
 
-  gem "turn",       :git => "https://github.com/chetan/turn.git", :branch => "parallel"
+  gem "turn",       :git => "https://github.com/chetan/turn.git", :branch => "forking"
   gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
