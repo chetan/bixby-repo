@@ -85,13 +85,22 @@ class TestMonitoring < Bixby::TestCase
   # test the monitoring command
   def do_test_metrics(file, metrics)
 
-    shell = systemu(full_path(file) + " --monitor")
+    file = full_path(file)
+
+    opts = {}
+    if File.exist? "#{file}.test" then
+      opts[:input] = File.read("#{file}.test")
+    end
+
+    shell = systemu(file + " --monitor", opts)
+    puts shell.stdout if debug?
+    puts shell.stderr if debug?
     assert shell.success?
 
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
-    if File.exist? storage and File.size(storage) > 4 then
+    if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
-      shell = systemu(full_path(file) + " --monitor")
+      shell = systemu(full_path(file) + " --monitor", opts)
       assert shell.success?
     end
 
