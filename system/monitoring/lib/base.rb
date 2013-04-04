@@ -204,3 +204,6 @@ module Monitoring
 
 end # Monitoring
 end # Bixby
+
+# load our Scout::Plugin shim
+require File.join(File.dirname(__FILE__), "scout_shim")
