@@ -89,7 +89,9 @@ class TestMonitoring < Bixby::TestCase
 
     opts = {}
     if File.exist? "#{file}.test" then
-      opts[:input] = File.read("#{file}.test")
+      input = MultiJson.load(File.read("#{file}.test"))
+      input.merge! MultiJson.load(File.read("#{file}.json"))
+      opts[:input] = MultiJson.dump(input)
     end
 
     shell = systemu(file + " --monitor", opts)
@@ -100,7 +102,7 @@ class TestMonitoring < Bixby::TestCase
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
     if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
-      shell = systemu(full_path(file) + " --monitor", opts)
+      shell = systemu(file + " --monitor", opts)
       assert shell.success?
     end
 
@@ -153,7 +155,7 @@ class TestMonitoring < Bixby::TestCase
 
   def assert_metric_present(metrics, key, range)
     vals = metrics.find_all{ |r| r["metrics"].include? key }
-    refute_empty vals, "should report metric #{key}"
+    refute_empty vals, "should report metric '#{key}'"
     val = vals.first["metrics"][key]
     assert val
     assert_kind_of Numeric, val
