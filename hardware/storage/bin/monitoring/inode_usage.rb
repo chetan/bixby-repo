@@ -7,7 +7,7 @@ module Bixby
 module Monitoring
   module Storage
 
-    class DiskUsage < Monitoring::Base
+    class InodeUsage < Monitoring::Base
 
       def get_options
         return { :device => Hardware::Storage.list_devices() }
@@ -38,9 +38,9 @@ module Monitoring
         end
       end # monitor
 
-    end # DiskUsage
+    end # InodeUsage
   end # Storage
 end # Monitoring
 end # Bixby
 
-Bixby::Monitoring::Storage::DiskUsage.new.run if $0 == __FILE__
+Bixby::Monitoring::Storage::InodeUsage.new.run if $0 == __FILE__
