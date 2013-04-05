@@ -1,0 +1,18 @@
+{
+  "name" : "inode Usage",
+  "label" : "$device",
+  "key" : "hardware.storage.inode",
+  "options" : {
+    "device" : {
+      "type" : "enum",
+      "name" : "Device",
+      "desc" : "Device to check usage for, defaults to all devices"
+    }
+  },
+  "metrics" : {
+    "total" : { "desc" : "Total inodes" },
+    "used"  : { "desc" : "Used inodes" },
+    "free"  : { "desc" : "Free inodes" },
+    "usage" : { "unit" : "%", "desc" : "inode usage" }
+  }
+}
