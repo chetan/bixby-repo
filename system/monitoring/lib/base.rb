@@ -84,10 +84,11 @@ module Monitoring
     # Set error message and status
     #
     # @param msg [String] Error message
-    # @param status [String] Status code (defaults to ERROR)
-    def error(msg, status=ERROR)
+    # @param status [String] Status code (default: ERROR)
+    def error(msg, status=nil)
       @errors << msg
-      @status = status
+      @status = status if not status.nil?
+      @status = ERROR if @status.nil?
     end
 
     # Store the given data for the next run
