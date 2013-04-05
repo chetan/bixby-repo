@@ -1,0 +1,58 @@
+{
+  "name":"Process Memory Usage",
+  "key":"system.process.memory",
+  "metrics":{
+    "memory":{
+      "desc":"Memory Usage (Largest Process)",
+      "unit":"MB"
+    },
+    "total_rss":{
+      "desc":"Memory Usage (Total)",
+      "unit":"MB"
+    },
+    "num_processes":{
+      "desc":"Number of Processes",
+      "unit":""
+    },
+    "restarts":{
+      "desc":"Restarts",
+      "unit":""
+    },
+    "cpu":{
+      "desc":"CPU Usage (Largest Process)",
+      "unit":"%"
+    },
+    "total_cpu":{
+      "desc":"CPU Usage (Total)",
+      "unit":"%"
+    }
+  },
+  "options":{
+    "command_name":{
+      "name":"Command Name",
+      "desc":"The name of the process you want to monitor.",
+      "default":null,
+      "type":"text"
+    },
+    "ps_command":{
+      "name":"The Process Status (ps) Command",
+      "desc":"The command with options. The default works on most systems.",
+      "default":"ps auxww",
+      "type":"text"
+    },
+    "ps_regex":{
+      "name":"The regex used to match a command name.",
+      "desc":"By default, this matches a command name anywhere in the ps output line.  The word COMMAND get's replaced with the command you gave (regex escaped).  You may wish to try the following pattern if you only want to match a command in the last column:  (?i:COMMAND\\s+$)",
+      "default":"(?i:\\bCOMMAND\\b)",
+      "type":"text"
+    },
+    "alert_when_command_not_found":{
+      "name":"Alert when command not found",
+      "desc":"Specifies if an error is reported when no commands are found.  Use 0 to disable alert.",
+      "default":"1",
+      "type":"text"
+    }
+  },
+  "rename":{
+    "memory":"usage"
+  }}
