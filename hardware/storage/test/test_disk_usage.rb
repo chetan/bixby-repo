@@ -26,10 +26,10 @@ map -hosts            0    0         0   100%    /net
 map auto_home         0    0         0   100%    /home
 EOF
 
-    df = Hardware::Storage::DiskUsage.parse_output(output)
+    df = Hardware::Storage.parse_df_output(output)
 
     Mixlib::ShellOut.any_instance.expects(:stdout).once().returns(@mounts)
-    Hardware::Storage::DiskUsage.add_mount_types(df)
+    Hardware::Storage.add_mount_types(df)
 
     assert_equal 6, df.values.size
     assert (df["/"][:free] == 98)
@@ -48,10 +48,10 @@ map -hosts            0    0         0   100%         0         0  100%   /net
 map auto_home         0    0         0   100%         0         0  100%   /home
 EOF
 
-    df = Hardware::Storage::DiskUsage.parse_output(output)
+    df = Hardware::Storage.parse_df_output(output)
 
     Mixlib::ShellOut.any_instance.expects(:stdout).once().returns(@mounts)
-    Hardware::Storage::DiskUsage.add_mount_types(df)
+    Hardware::Storage.add_mount_types(df)
 
     assert_equal 6, df.values.size
     assert (df["/"][:free] == 33)
@@ -71,7 +71,7 @@ none         tmpfs          4G        0G        4G   0% /lib/init/rw
 /dev/sdb      ext3        414G      239G      155G  61% /mnt
 EOF
 
-    df = Hardware::Storage::DiskUsage.parse_output(output)
+    df = Hardware::Storage.parse_df_output(output)
 
     assert_equal 7, df.values.size
     assert (df["/"][:free] == 3)
@@ -92,7 +92,7 @@ none         tmpfs         35G        0G       35G   0% /dev/shm
                xfs       7167G     1440G     5727G  21% /mnt/nerf
 EOF
 
-    df = Hardware::Storage::DiskUsage.parse_output(output)
+    df = Hardware::Storage.parse_df_output(output)
 
     assert_equal 7, df.values.size
     assert (df["/"][:free] == 5)

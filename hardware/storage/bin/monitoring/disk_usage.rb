@@ -3,9 +3,6 @@
 use_bundle "hardware/storage"
 use_bundle "system/monitoring"
 
-require 'storage'
-require 'disk_usage'
-
 module Bixby
 module Monitoring
   module Storage
@@ -24,7 +21,7 @@ module Monitoring
           target = nil
         end
 
-        df = Hardware::Storage::DiskUsage.read(target)
+        df = Hardware::Storage.disk_usage(target)
 
         skip = [:fs, :mount, :type]
 
