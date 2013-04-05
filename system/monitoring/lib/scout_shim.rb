@@ -35,5 +35,10 @@ module Scout
       add_metric(metrics)
     end
 
+    def alert(subj, body=nil)
+      error(subj)
+      error(body) if not body.nil?
+    end
+
   end
 end
