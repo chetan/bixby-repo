@@ -27,6 +27,11 @@ module Scout
     end
 
     def report(metrics)
+      if @config["rename"] then
+        @config["rename"].each do |old_key, new_key|
+          metrics[new_key.to_sym] = metrics.delete(old_key.to_sym)
+        end
+      end
       add_metric(metrics)
     end
 

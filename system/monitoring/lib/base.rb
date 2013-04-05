@@ -20,8 +20,10 @@ module Monitoring
       super()
 
       @options = options || get_json_input()
+      @config = load_config()
+
       if @options.nil? or @options.empty? then
-        @options = load_config()
+        @options = @config.dup
       end
 
       @storage = {}

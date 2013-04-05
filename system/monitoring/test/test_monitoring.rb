@@ -34,6 +34,8 @@ class TestMonitoring < Bixby::TestCase
     assert config
     assert_kind_of Hash, config
 
+    @config = config
+
     refute_empty config["name"], "has a name"
     refute_empty config["key"], "has a key"
 
@@ -68,12 +70,12 @@ class TestMonitoring < Bixby::TestCase
       assert_includes opt_desc, "name", "option has a name"
       assert_includes opt_desc, "desc", "option has a desc"
 
-      assert_includes opts, key
-      val = opts[key]
-      assert val
-
       case opt_desc["type"]
       when "enum"
+        assert_includes opts, key
+        val = opts[key]
+        assert val
+
         assert_kind_of Array, val
         refute_empty val
 
@@ -130,6 +132,10 @@ class TestMonitoring < Bixby::TestCase
     assert_empty ret["errors"]
 
     metrics.each do |key, mdesc|
+
+      if @config["rename"] and @config["rename"][key] then
+        key = @config["rename"][key]
+      end
 
       assert_includes mdesc, "desc", "metric has a description"
 
