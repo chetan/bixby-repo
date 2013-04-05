@@ -1,0 +1,21 @@
+{
+  "digest": "53be927a65a0695a33f5c2fec314b25b55cf46eb5fff49d7770809d2afa79cd6",
+  "files": [
+    {
+      "file": "bin/monitoring/process_usage.rb",
+      "digest": "f50d661ffd63b3fd741cef1ba04b16330a437eb43080c71a7163ad606760fc7c"
+    },
+    {
+      "file": "bin/monitoring/process_usage.rb.json",
+      "digest": "204bcf9dd7055498bf380198aa225040427277e9573e96ee2b72ab59db194751"
+    },
+    {
+      "file": "bin/monitoring/process_usage.rb.test",
+      "digest": "ffa762c51f0e639e576284694924b7d1b11f49bc33aa4db5b1e1a2b3be411dca"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "666eaa29d089ace4f761a6785c87d6fbc4e50736b74da2d1a2d9ffc9e9fe3aae"
+    }
+  ]
+}
