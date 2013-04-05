@@ -34,11 +34,38 @@ module Scout
       end
       add_metric(metrics)
     end
+    alias_method :add_report, :report
 
-    def alert(subj, body=nil)
-      error(subj)
-      error(body) if not body.nil?
+    def alert(*args)
+      error(*args)
     end
+    alias_method :add_alert, :alert
+
+    def error(*args)
+      if args.first.kind_of? Hash then
+        super(args[:subject])
+        super(args[:body])
+      else
+        args.each{ |msg| super(msg) }
+      end
+    end
+    alias_method :add_error, :error
+
+    def needs(*libs)
+      libs.each do |lib|
+        begin
+          require library
+        rescue LoadError
+          error("Could not load library #{library}")
+          return false
+        end
+      end
+    end
+
+    # not supported currently
+    def summary(*args)
+    end
+    alias_method :add_summary, :summary
 
   end
 end
