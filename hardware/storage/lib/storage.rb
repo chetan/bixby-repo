@@ -131,9 +131,10 @@ module Hardware
       # }
       #
       # @return [Hash] Hash of inode metrics, keyed by device
-      def inode_usage()
+      def inode_usage(device=nil)
 
         cmd = osx?() ? "/bin/df -i" : "df -i"
+        cmd = "#{cmd} #{device}" if device
         shell = systemu(cmd)
         if not shell.success? then
           # TODO raise err
@@ -177,6 +178,10 @@ module Hardware
 
         if osx? then
           add_mount_types(ret)
+        end
+
+        if device and ret then
+          return ret.values.first
         end
 
         return ret

@@ -15,12 +15,12 @@ module Monitoring
 
       def monitor
 
-        target = @options["mount"]
+        target = @options["device"]
         if target.nil? or target.empty? then
           target = nil
         end
 
-        df = Hardware::Storage.inode_usage()
+        df = Hardware::Storage.inode_usage(target)
 
         skip = [:fs, :mount, :type]
 
