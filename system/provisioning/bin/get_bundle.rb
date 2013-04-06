@@ -39,6 +39,23 @@ module Bixby
       files = Bixby::Repository.list_files(cmd)
       Bixby::Repository.download_files(cmd, files)
 
+      delete_files(cmd, files)
+    end
+
+    # Delete files which no longer exist in the bundle
+    #
+    # @param [CommandSpec] cmd    CommandSpec representing the Bundle to which the files belong
+    # @param [Hash] files         List of files in bundle, as reported by Bixby::Repository#list_files
+    def delete_files(cmd, files)
+      bundle_files = files.map{ |pair| pair["file"] }
+
+      all_files = Dir.glob(File.join(cmd.bundle_dir, "**")).reject{ |f| File.directory? f }
+      all_files.each do |local_file|
+        if not bundle_files.include? local_file then
+          debug { "deleting obsolete file: #{local_file}" }
+          File.delete(local_file)
+        end
+      end
     end
 
   end # Provision
