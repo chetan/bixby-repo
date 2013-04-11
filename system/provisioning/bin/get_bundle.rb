@@ -49,9 +49,10 @@ module Bixby
     def delete_files(cmd, files)
       bundle_files = files.map{ |pair| pair["file"] }
 
-      all_files = Dir.glob(File.join(cmd.bundle_dir, "**")).reject{ |f| File.directory? f }
+      all_files = Dir.glob(File.join(cmd.bundle_dir, "**")).reject{ |f| File.directory? f }.map{ |f| f[cmd.bundle_dir.length+1, f.length] }
       all_files.each do |local_file|
         if not bundle_files.include? local_file then
+          next if local_file == "digest"
           debug { "deleting obsolete file: #{local_file}" }
           File.delete(local_file)
         end
