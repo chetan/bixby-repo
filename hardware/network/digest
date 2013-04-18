@@ -1,0 +1,57 @@
+{
+  "digest": "1db9c4c0176e370abd494024cc14ee8a33286bae87294519f84bb60a9f644f31",
+  "files": [
+    {
+      "file": "bin/monitoring/connection_count.rb",
+      "digest": "027398964d44fcb8ec769af95bf359a0e86415817120918d335be4097e273276"
+    },
+    {
+      "file": "bin/monitoring/connection_count.rb.json",
+      "digest": "272d2cd49fd01f6b2bbadf1de3e75417dc699fdc429744e0455decb38acc5e87"
+    },
+    {
+      "file": "bin/monitoring/connection_count.rb.test",
+      "digest": "32136ade7989f731a2cf657fbfee77d970dc000cbbd6fd700a0044cdf5d58066"
+    },
+    {
+      "file": "bin/monitoring/connection_count.rb.test2",
+      "digest": "9633c6eab083af9a27080bbcdcb795e607bdbc9916d76079075391996d9d665d"
+    },
+    {
+      "file": "bin/monitoring/connection_state.rb",
+      "digest": "0582d3f540c8e43e363b61eba0061bafe9ed1ecee1774cb1b577b84c79581ffc"
+    },
+    {
+      "file": "bin/monitoring/connection_state.rb.json",
+      "digest": "0914d1ff9934f59f7ac7c1b1b5544137b386d511714b09aa161efe5a1a994458"
+    },
+    {
+      "file": "bin/monitoring/ping.rb",
+      "digest": "69bd7779b8f884dc592e286632a5b18bfb1c0092dc9f6ff410e3573925e971da"
+    },
+    {
+      "file": "bin/monitoring/ping.rb.json",
+      "digest": "2e5d5ac17d55322b1a15b241dc0c1e74d0d89f1bb93a1400777e4ddff5b2ea6f"
+    },
+    {
+      "file": "bin/monitoring/ping.rb.test",
+      "digest": "d3c98978362b9ca40241aca258eb45b6045c2e0a8b312e200391b81d391e9240"
+    },
+    {
+      "file": "bin/monitoring/port_check.rb",
+      "digest": "31102c7e174fe639d0e38a4cfeffee77d6ab82abac055272159a9900c751f2e2"
+    },
+    {
+      "file": "bin/monitoring/port_check.rb.json",
+      "digest": "fa72a5523807d69bf163cabc13aaf440cf104f6b0a58233fb156737277fd245e"
+    },
+    {
+      "file": "bin/monitoring/port_check.rb.test",
+      "digest": "4b37aebe3bc7d16c7b481edf82a6651bdbb3585dcc54330ea04ae5b5a211bef4"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "91d89dfce62b94e6098fef16ede3f408e975a91b3928efed12719cb1a2482420"
+    }
+  ]
+}
