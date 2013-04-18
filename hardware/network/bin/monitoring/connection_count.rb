@@ -50,15 +50,20 @@ class NetworkConnections < Scout::Plugin
       port_hash[local_port] += 1 if port_hash.has_key?(local_port)
     }
 
-    connections_hash.each_pair { |conn_type, counter|
-      report_hash[conn_type]=counter
-    }
+    if port_hash.empty? then
+      # count all connections
+      connections_hash.each_pair { |conn_type, counter|
+        report_hash[conn_type]=counter
+      }
+      report(report_hash)
 
-    port_hash.each_pair { |port, counter|
-      report_hash["Port #{port}"] = counter
-    }
+    else
+      # count only those on specific ports
+      port_hash.each_pair { |port, counter|
+        add_metric({ :total => counter }, { :port => port })
+      }
+    end
 
-    report(report_hash)
   end
 
   # Use this instead of backticks. It's a separate method so it can be stubbed for tests

@@ -4,15 +4,18 @@
   "metrics":{
     "tcp":{
       "desc": "Number of TCP connections",
-      "unit":null
+      "unit":null,
+      "optional": true
     },
     "udp":{
       "desc": "Number of UDP connections",
-      "unit":null
+      "unit":null,
+      "optional": true
     },
     "unix":{
       "desc": "Number of Unix streams",
-      "unit":null
+      "unit":null,
+      "optional": true
     },
     "total":{
       "desc": "Total number of connections",
