@@ -1,0 +1,10 @@
+{
+  "name":"Network connections by state",
+  "key":"hardware.network.connections",
+  "metrics":{
+    "state":{
+      "desc": "Total number of connections by state",
+      "unit": null
+    }
+  }
+}
