@@ -31,6 +31,7 @@ end
 puts "converting plugin: " + File.basename(path)
 puts
 
+path = File.dirname(File.expand_path(path))
 files = Dir.glob(File.join(path, "*.rb")).reject{ |f| f =~ /test.rb/ }
 if files.size > 1 then
   puts "oops, found more than one file:"
@@ -67,7 +68,7 @@ puts "copied #{File.basename(file)} to #{bundle}"
 
 # write config
 config = file.gsub(/rb$/, "yml")
-return if not File.exist? config
+exit if not File.exist? config
 
 target_config = target + ".json"
 conf = YAML.load(cleanup_yaml(File.read(config)))
