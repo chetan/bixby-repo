@@ -95,7 +95,7 @@ if File.read(target) =~ /OPTIONS ?= ?<<-?([A-Z_]+)(.*)\1/m then
   options = YAML.load(cleanup_yaml($2))
   options.each do |opt, info|
     option = new_conf["options"][opt] || {}
-    option["name"]    = info["name"]
+    option["name"]    = info["name"] || opt.capitalize
     option["desc"]    = info["notes"]
     option["default"] = info["default"]
     option["type"]    = "text"
