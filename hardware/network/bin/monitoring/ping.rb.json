@@ -1,0 +1,17 @@
+{
+  "name":"Ping test",
+  "key":"hardware.network.ping",
+  "metrics":{
+    "status":{
+      "desc": "Is host/ip reachable?",
+      "unit": null
+    }
+  },
+  "options":{
+    "host":{
+      "name": "Host or IP to ping",
+      "desc": null,
+      "type": "text"
+    }
+  }
+}
