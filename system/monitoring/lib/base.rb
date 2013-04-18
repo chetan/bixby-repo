@@ -66,7 +66,7 @@ module Monitoring
     end
 
     def get_options
-      raise NotImplementedError, "get_options must be overridden!", caller
+      return {}
     end
 
     def monitor
