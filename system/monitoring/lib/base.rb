@@ -80,6 +80,7 @@ module Monitoring
     def add_metric(metrics, metadata={})
       @metrics << { :metrics => metrics, :metadata => metadata }
     end
+    alias_method :add_metrics, :add_metric
 
     # Set error message and status
     #
