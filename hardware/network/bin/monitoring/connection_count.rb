@@ -60,7 +60,7 @@ class NetworkConnections < Scout::Plugin
     else
       # count only those on specific ports
       port_hash.each_pair { |port, counter|
-        add_metric({ :total => counter }, { :port => port })
+        add_metric({ :port => counter }, { :port => port })
       }
     end
 

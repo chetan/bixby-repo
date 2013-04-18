@@ -19,8 +19,15 @@
     },
     "total":{
       "desc": "Total number of connections",
-      "unit":null
+      "unit":null,
+      "optional": true
+    },
+    "port":{
+      "desc": "Total number of connections by port",
+      "unit":null,
+      "optional": true
     }
+
   },
   "options":{
     "port":{
