@@ -31,7 +31,7 @@ end
 puts "converting plugin: " + File.basename(path)
 puts
 
-path = File.dirname(File.expand_path(path))
+path = File.dirname(File.expand_path(path)) if File.file? path
 files = Dir.glob(File.join(path, "*.rb")).reject{ |f| f =~ /test.rb/ }
 if files.size > 1 then
   puts "oops, found more than one file:"
