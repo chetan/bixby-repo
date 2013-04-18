@@ -97,19 +97,16 @@ class TestMonitoring < Bixby::TestCase
     end
 
     shell = systemu(file + " --monitor", opts)
-    puts shell.stdout if debug?
-    puts shell.stderr if debug?
-    assert shell.success?
+    debug_shell(shell)
+    assert shell.success?, " --monitor succeeds"
 
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
     if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
       shell = systemu(file + " --monitor", opts)
-      assert shell.success?
+      debug_shell(shell)
+      assert shell.success?, " --monitor succeeds again"
     end
-
-    puts shell.stdout if debug?
-    puts shell.stderr if debug?
 
     assert_empty shell.stderr
     refute_empty shell.stdout
@@ -203,6 +200,27 @@ class TestMonitoring < Bixby::TestCase
 
   def debug?
     ENV["DEBUG"]
+  end
+
+  def dump(str)
+    if str[0] == "{" then
+      h = MultiJson.load(str)
+      ap h
+      if h["errors"] then
+        h["errors"].each{ |e| puts e }
+      end
+    else
+      puts str
+    end
+    puts "---"
+  end
+
+  def debug_shell(shell)
+    return if not debug?
+    puts "stdout:"
+    dump shell.stdout
+    puts "stderr:"
+    dump shell.stderr
   end
 
 end
