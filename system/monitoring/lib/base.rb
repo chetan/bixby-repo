@@ -73,6 +73,14 @@ module Monitoring
       raise NotImplementedError, "monitor must be overridden!", caller
     end
 
+    # Get an option
+    #
+    # @param [String] key
+    # @return [Object] value
+    def option(key)
+      @options[key.to_s]
+    end
+
     # Add metrics to be reported
     #
     # @param [Hash] metrics  key/value pairs to report

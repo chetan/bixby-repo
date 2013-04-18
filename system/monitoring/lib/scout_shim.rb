@@ -22,10 +22,6 @@ module Scout
     end
 
     # implement scout plugin api
-    def option(key)
-      @options[key.to_s]
-    end
-
     def report(metrics)
       if @config["rename"] then
         @config["rename"].each do |old_key, new_key|
