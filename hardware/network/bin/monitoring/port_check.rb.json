@@ -1,0 +1,16 @@
+{
+  "name":"Port check",
+  "key":"hardware.network.port",
+  "metrics":{
+    "open":{
+      "desc": "Whether or not port is open",
+      "unit":null
+    }
+  },
+  "options":{
+    "port":{
+      "name":"Port",
+      "desc":"Host and port to monitor, e.g. google.com:80 or 10.10.10.10:8080",
+      "type":"text"
+    }
+  }}
