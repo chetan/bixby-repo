@@ -30,9 +30,13 @@ class NetworkConnections < Scout::Plugin
 
     lines.each { |line|
       line = line.squeeze(" ").split(" ")
-      next unless line[0] =~ /tcp|udp|unix/
+      next unless line[0] =~ /tcp|udp|unix/ || line[1] =~ /stream|dgram/
       connections_hash[:total] += 1
-      protocol = line[0].sub(/\d+/,'').to_sym
+      if mac? and line[1] =~ /stream|dgram/ then
+        protocol = :unix
+      else
+        protocol = line[0].sub(/\d+/,'').to_sym
+      end
       connections_hash[protocol] += 1 if connections_hash[protocol]
 
       local_address = line[3].sub("::ffff:","") # indicates ip6 - remove so regex works
