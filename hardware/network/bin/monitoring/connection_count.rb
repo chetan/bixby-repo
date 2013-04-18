@@ -18,8 +18,10 @@ class NetworkConnections < Scout::Plugin
   def build_report
     report_hash={}
     port_hash = {}
-    if option(:port).strip != "all"
-      option(:port).split(/[, ]+/).each { |port| port_hash[port.to_i] = 0 }
+
+    port = option(:port) || "all"
+    if port.strip != "all"
+      port.split(/[, ]+/).each { |port| port_hash[port.to_i] = 0 }
     end
 
     lines = shell("netstat -n").split("\n")
@@ -40,8 +42,12 @@ class NetworkConnections < Scout::Plugin
       connections_hash[protocol] += 1 if connections_hash[protocol]
 
       local_address = line[3].sub("::ffff:","") # indicates ip6 - remove so regex works
-      port = local_address.split(":")[1].to_i
-      port_hash[port] += 1 if port_hash.has_key?(port)
+      if mac? then
+        local_port = local_address.split(/\./)[-1].to_i
+      else
+        local_port = local_address.split(":")[1].to_i
+      end
+      port_hash[local_port] += 1 if port_hash.has_key?(local_port)
     }
 
     connections_hash.each_pair { |conn_type, counter|

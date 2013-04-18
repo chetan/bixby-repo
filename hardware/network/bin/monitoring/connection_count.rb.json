@@ -22,7 +22,7 @@
   "options":{
     "port":{
       "name":null,
-      "desc":"comma-delimited list of ports to monitor. Or specify all for summary info across all ports.",
+      "desc":"Comma-delimited list of local ports to monitor in addition to total counts",
       "default":"80,443,25",
       "type":"text"
     }
