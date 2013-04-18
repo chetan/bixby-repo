@@ -90,12 +90,26 @@ class TestMonitoring < Bixby::TestCase
     file = full_path(file)
 
     opts = {}
-    if File.exist? "#{file}.test" then
-      input = MultiJson.load(File.read("#{file}.test"))
-      input.merge! MultiJson.load(File.read("#{file}.json"))
-      opts[:input] = MultiJson.dump(input)
+
+    test_inputs = Dir.glob("#{file}.test*")
+    if test_inputs.empty? then
+      test_inputs << nil # hacky
     end
 
+    test_inputs.each do |test_file|
+
+      if not test_file.nil? then
+        input = MultiJson.load(File.read(test_file))
+        input.merge! MultiJson.load(File.read("#{file}.json"))
+        opts[:input] = MultiJson.dump(input)
+      end
+
+      do_test_metrics_with_opts(file, metrics, opts)
+    end
+
+  end
+
+  def do_test_metrics_with_opts(file, metrics, opts)
     shell = systemu(file + " --monitor", opts)
     debug_shell(shell)
     assert shell.success?, " --monitor succeeds"
@@ -155,7 +169,7 @@ class TestMonitoring < Bixby::TestCase
       assert_includes r, "metrics"
       assert_includes r, "metadata"
     end
-  end
+  end # do_test_metrics_with_opts
 
   def assert_metric_present(metrics, key, range, optional)
     vals = metrics.find_all{ |r| r["metrics"].include? key }
