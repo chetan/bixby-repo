@@ -1,0 +1,29 @@
+{
+  "name":"network connections",
+  "key":"hardware.network.connections",
+  "metrics":{
+    "tcp":{
+      "desc": "Number of TCP connections",
+      "unit":null
+    },
+    "udp":{
+      "desc": "Number of UDP connections",
+      "unit":null
+    },
+    "unix":{
+      "desc": "Number of Unix streams",
+      "unit":null
+    },
+    "total":{
+      "desc": "Total number of connections",
+      "unit":null
+    }
+  },
+  "options":{
+    "port":{
+      "name":null,
+      "desc":"comma-delimited list of ports to monitor. Or specify all for summary info across all ports.",
+      "default":"80,443,25",
+      "type":"text"
+    }
+  }}
