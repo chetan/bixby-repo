@@ -137,15 +137,16 @@ class TestMonitoring < Bixby::TestCase
       assert_includes mdesc, "desc", "metric has a description"
 
       # make sure the metric appears in the result
+      optional = mdesc["optional"] || false
       if mdesc.include? "platforms" then
         if mdesc["platforms"].include? "linux" and linux? then
-          assert_metric_present(ret["metrics"], key, mdesc["range"])
+          assert_metric_present(ret["metrics"], key, mdesc["range"], optional)
         elsif mdesc["platforms"].include? "osx" and osx? then
-          assert_metric_present(ret["metrics"], key, mdesc["range"])
+          assert_metric_present(ret["metrics"], key, mdesc["range"], optional)
         end
 
       else
-        assert_metric_present(ret["metrics"], key, mdesc["range"])
+        assert_metric_present(ret["metrics"], key, mdesc["range"], optional)
       end
 
     end
@@ -156,8 +157,10 @@ class TestMonitoring < Bixby::TestCase
     end
   end
 
-  def assert_metric_present(metrics, key, range)
+  def assert_metric_present(metrics, key, range, optional)
     vals = metrics.find_all{ |r| r["metrics"].include? key }
+    return if vals.empty? and optional
+
     refute_empty vals, "should report metric '#{key}'"
     val = vals.first["metrics"][key]
     assert val
