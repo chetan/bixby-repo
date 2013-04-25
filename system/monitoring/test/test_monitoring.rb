@@ -220,15 +220,20 @@ class TestMonitoring < Bixby::TestCase
   end
 
   def dump(str)
-    if str[0] == "{" then
-      h = MultiJson.load(str)
-      ap h
-      if h["errors"] then
-        h["errors"].each{ |e| puts e }
+    begin
+      if str[0] == "{" then
+        h = MultiJson.load(str)
+        ap h
+        if h["errors"] then
+          h["errors"].each{ |e| puts e }
+        end
+        puts "---"
+        return
       end
-    else
-      puts str
+    rescue Exception => ex
     end
+
+    puts str
     puts "---"
   end
 
