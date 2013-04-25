@@ -45,7 +45,7 @@ module Monitoring
       @timestamp = Time.new.to_i
       @metrics = []
       @errors = []
-      @status = nil
+      @status = OK
     end
 
     def run
@@ -190,7 +190,6 @@ module Monitoring
       begin
         @storage = load_storage()
         monitor()
-        @status = OK if @status.nil?
         puts MultiJson.dump(self.to_hash)
         save_storage()
       rescue Exception => ex
