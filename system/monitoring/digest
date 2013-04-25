@@ -1,9 +1,9 @@
 {
-  "digest": "e091fe4671868280906295ec89dce8e24977565006c508c54ca758b9905b5c7c",
+  "digest": "c40bea4f7b13079ac6b863ad361ed26631c98b5318abcc6569e6b8cf4f217c62",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "348c0a1416a53fa3ce158c10e910d5ff6d8cacf3d95366835292af7817ba6048"
+      "digest": "2349573426da5ff7df9a30c29763132d4779d89a19340952c14eb2eb699cdeb8"
     },
     {
       "file": "bin/update_check_config.rb",
@@ -11,7 +11,7 @@
     },
     {
       "file": "lib/base.rb",
-      "digest": "5b0e244f67af10709b52e48375ed02c76f4e4d65869d38ac26a09cee951c6154"
+      "digest": "032fc227d58d52e480fa243b9ed69dae26120a693f9ff9895a98fb2274589134"
     },
     {
       "file": "lib/scout_shim.rb",
