@@ -63,8 +63,6 @@ module Monitoring
       obj.storage = check.storage
 
       obj.monitor()
-      obj.status == "OK" if obj.status.nil?
-
       obj.save_storage()
       check.storage = obj.storage
 
@@ -118,7 +116,7 @@ module Monitoring
           require command.command_file
 
           subclasses = Monitoring::Base.subclasses - loaded_classes
-          clazz = subclasses.first
+          clazz = subclasses.last
           loaded_classes << clazz
           @class_map[key] = clazz
         end
@@ -179,6 +177,8 @@ module Monitoring
     def run
 
       Daemons.run_proc('mon_daemon.rb', { :dir_mode => :normal, :dir => @var, :log_output => true }) do
+
+        Bixby::Log.setup_logger() # new thread/proc requires logging init again
 
         trap("HUP") do
           # puts "caught HUP"
