@@ -18,7 +18,7 @@ group :development, :test do
 
   gem "simplecov",    :platforms => [:mri_20, :mri_19, :rbx], :git => "https://github.com/chetan/simplecov.git", :branch => "inline_nocov"
 
-  gem "minitest",     :platforms => [:mri_20, :mri_19, :rbx]
+  gem "minitest",     "~> 4.7", :platforms => [:mri_20, :mri_19, :rbx]
   gem "webmock",      :require => false
   gem "mocha",        :require => false
   gem "parallel",     :require => false
