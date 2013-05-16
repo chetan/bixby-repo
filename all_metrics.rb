@@ -18,4 +18,4 @@ jsons.each do |file|
   end
 end
 
-puts Terminal::Table.new(:rows => scripts)
+puts Terminal::Table.new(:headings => %w{Metric Description}, :rows => scripts)
