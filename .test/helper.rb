@@ -27,6 +27,10 @@ require 'mocha/setup'
 # add .test path to $:
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
 
+# TODO temp fix for log path in Bixby::Log.setup_logger()
+ENV["BIXBY_HOME"] = "/tmp/bixby_repo_test"
+system("mkdir -p /tmp/bixby_repo_test")
+
 require "bixby-common"
 require "bixby-client/script"
 require "base"
