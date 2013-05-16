@@ -1,6 +1,6 @@
 {
   "name":"Network connections by state",
-  "key":"hardware.network.connections",
+  "key":"net.conns",
   "metrics":{
     "state":{
       "desc": "Total number of connections by state",

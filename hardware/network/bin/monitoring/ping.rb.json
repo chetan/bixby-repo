@@ -1,6 +1,6 @@
 {
   "name":"Ping test",
-  "key":"hardware.network.ping",
+  "key":"net.ping",
   "metrics":{
     "status":{
       "desc": "Is host/ip reachable?",

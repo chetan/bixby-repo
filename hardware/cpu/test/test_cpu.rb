@@ -40,7 +40,7 @@ class TestCPU < Bixby::TestCase
     assert_kind_of Hash, ret
     assert_equal "OK", ret["status"]
     assert_kind_of Fixnum, ret["timestamp"]
-    assert_equal "hardware.cpu.loadavg", ret["key"]
+    assert_equal "cpu.loadavg", ret["key"]
     assert_equal 3, ret["metrics"].first["metrics"].size
   end
 

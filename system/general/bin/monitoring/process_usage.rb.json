@@ -1,6 +1,6 @@
 {
   "name":"Process Memory Usage",
-  "key":"system.process.memory",
+  "key":"sys.proc.memory",
   "metrics":{
     "memory":{
       "desc":"Memory Usage (Largest Process)",

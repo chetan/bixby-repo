@@ -1,6 +1,6 @@
 {
   "name" : "CPU Usage",
-  "key" : "hardware.cpu.usage",
+  "key" : "cpu.usage",
   "metrics" : {
     "system"       : { "desc" : "System", "range": "0..100" },
     "user"         : { "desc" : "User", "range": "0..100" },

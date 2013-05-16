@@ -1,6 +1,6 @@
 {
   "name":"network connections",
-  "key":"hardware.network.connections",
+  "key":"net.conns",
   "metrics":{
     "tcp":{
       "desc": "Number of TCP connections",

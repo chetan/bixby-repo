@@ -1,6 +1,6 @@
 {
   "name" : "CPU Load Average",
-  "key" : "hardware.cpu.loadavg",
+  "key" : "cpu.loadavg",
   "options" : {},
   "metrics" : {
     "1m"  : { "desc" : "Last minute" },

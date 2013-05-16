@@ -1,7 +1,7 @@
 {
   "name" : "inode Usage",
   "label" : "$device",
-  "key" : "hardware.storage.inode",
+  "key" : "fs.inode",
   "options" : {
     "device" : {
       "type" : "enum",

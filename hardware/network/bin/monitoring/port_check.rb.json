@@ -1,6 +1,6 @@
 {
   "name":"Port check",
-  "key":"hardware.network.port",
+  "key":"net.port",
   "metrics":{
     "open":{
       "desc": "Whether or not port is open",

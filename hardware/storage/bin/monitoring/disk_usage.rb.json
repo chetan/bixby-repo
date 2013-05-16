@@ -1,7 +1,7 @@
 {
   "name" : "Disk Usage",
   "label" : "$mount",
-  "key" : "hardware.storage.disk",
+  "key" : "fs.disk",
   "options" : {
     "mount" : {
       "type" : "enum",
