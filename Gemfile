@@ -8,6 +8,9 @@ gem 'bixby-client'
 
 group :development, :test do
 
+  # used by all_metrics.rb
+  gem "terminal-table"
+
   gem "bundler"
   gem "pry"
   gem "debugger",     :platforms => [ :mri_20, :mri_19 ]
