@@ -29,7 +29,8 @@ group :development, :test do
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
 
-  # needed by some tests
+  # needed by some tests/scripts
+  gem "json", "~> 1.8"
   gem "mixlib-cli"
   gem "facter"
   gem "daemons"

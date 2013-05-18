@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'bundler/setup'
+require 'bixby-common'
 require 'digest'
 require 'json'
 
@@ -14,19 +16,8 @@ if not File.exist? "#{path}/manifest.json" then
   exit 1
 end
 
-path = File.expand_path(path)
-sha = Digest::SHA2.new
-bundle_sha = Digest::SHA2.new
+path.gsub!(%r{^\./}, '')
 
-digests = []
-Dir.glob("#{path}/**/*").sort.each do |f|
-  next if File.directory?(f) || File.basename(f) == "digest" || f =~ /^#{path}\/test/
-  bundle_sha.file(f)
-  sha.reset()
-  digests << { :file => f.gsub(/#{path}\//, ''), :digest => sha.file(f).hexdigest() }
-end
-
-digest = { :digest => bundle_sha.hexdigest(), :files => digests }
-File.open(path+"/digest", 'w') do |f|
-  f.write(JSON.pretty_generate(digest) + "\n")
-end
+ENV["BIXBY_HOME"] = Dir.pwd
+spec = Bixby::CommandSpec.new(:bundle => path, :repo => "..")
+spec.update_digest

@@ -45,7 +45,7 @@ GEM
       mixlib-shellout
       multi_json
       oj
-    bixby-common (0.3.10)
+    bixby-common (0.3.12)
       httpi
       logging
       multi_json
@@ -77,6 +77,7 @@ GEM
     hirb (0.7.1)
     httpi (2.0.2)
       rack
+    json (1.8.0)
     listen (1.1.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -94,7 +95,7 @@ GEM
     mocha (0.14.0)
       metaclass (~> 0.0.1)
     multi_json (1.7.3)
-    oj (2.0.12)
+    oj (2.0.13)
     parallel (0.6.5)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -134,6 +135,7 @@ DEPENDENCIES
   debugger
   debugger-pry
   facter
+  json (~> 1.8)
   minitest (~> 4.7)
   mixlib-cli
   mocha
