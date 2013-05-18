@@ -54,7 +54,7 @@ module Bixby
         if not bundle_files.include? local_file then
           next if local_file == "digest"
           file = File.join(cmd.bundle_dir, local_file)
-          debug { "deleting obsolete file: #{file}" }
+          debug { "deleting: #{file}" }
           File.delete(file)
         end
       end
