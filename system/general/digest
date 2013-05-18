@@ -1,5 +1,5 @@
 {
-  "digest": "53be927a65a0695a33f5c2fec314b25b55cf46eb5fff49d7770809d2afa79cd6",
+  "digest": "60fda6fe1f6e7dd022fe6fab4871a961415809152b898b986f28e0863ec6b677",
   "files": [
     {
       "file": "bin/monitoring/process_usage.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/monitoring/process_usage.rb.json",
-      "digest": "204bcf9dd7055498bf380198aa225040427277e9573e96ee2b72ab59db194751"
+      "digest": "fa2d8cacca3d66cee610c4bc073858326572dd36f6ea24fb8a2cc19c3d1f13cf"
     },
     {
       "file": "bin/monitoring/process_usage.rb.test",

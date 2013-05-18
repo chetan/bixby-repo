@@ -1,5 +1,5 @@
 {
-  "digest": "79dbdce93af161b92b6c0984848022ddb48273cf7be8ad61904a26947701cf96",
+  "digest": "5aa3de7db9d2f1af03e0c040977f7c319c7e8d67a93d794869bd83267026f800",
   "files": [
     {
       "file": "bin/monitoring/cpu_load.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/monitoring/cpu_load.rb.json",
-      "digest": "d2972c7497308773c682feef88bd092bd861931fde560736520cbd64bb0b61e2"
+      "digest": "363fdb43a0f61f5242bee8e6e82d9c8b4f702e39cb5357e0fba91b62ed65ba21"
     },
     {
       "file": "bin/monitoring/cpu_usage.rb",
@@ -15,7 +15,7 @@
     },
     {
       "file": "bin/monitoring/cpu_usage.rb.json",
-      "digest": "4ea074a6000635d1ac4cdde270afbe65650eee1243c6182cc4d50bbed9dea983"
+      "digest": "03b7ed0d4a147a3fd9f5b222c66f54f9812cb84763d5d29ac202c60c18315c8a"
     },
     {
       "file": "lib/cpu.rb",
