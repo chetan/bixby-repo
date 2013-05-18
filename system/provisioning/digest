@@ -1,9 +1,9 @@
 {
-  "digest": "4b703be28eef79ef0ee6ab93025941d0b2f76b10ab1334300c4063697b570673",
+  "digest": "ad63ac35760b74cfcac38adc7a0f125f78b8b6e4be3138b644f5109daad6d228",
   "files": [
     {
       "file": "bin/create_digest.rb",
-      "digest": "a7ee73ff3266a2bfc74d21268c3a8784a53985cd65c7c77e386498841882a4e9"
+      "digest": "2f6d86d66416c41c17e8906e2b4974d1b326832ca19856f8b38ac33d32a2755a"
     },
     {
       "file": "bin/get_bundle.rb",
