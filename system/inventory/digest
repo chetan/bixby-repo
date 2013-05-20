@@ -1,9 +1,9 @@
 {
-  "digest": "ce9236baa04fb1d8a45d45eeafa9dd26f919d57f972578c28161335e6f4fc509",
+  "digest": "a97e051025bfaeec11c7d7c0b8450f1918429c206fdf6ddbf33af69b6fd494b3",
   "files": [
     {
       "file": "bin/list_facts.rb",
-      "digest": "990eff3f87086a641a4d789b98ab24f25dcce71ae4661d3115639b2f5a7e4496"
+      "digest": "a9e652e3ed9d26e759590e45d395b9487cf068820c06a10e5e98e6e0cddc7031"
     },
     {
       "file": "manifest.json",

@@ -4,7 +4,7 @@ require 'rubygems'
 require 'facter'
 require 'multi_json'
 
-exclude_keys = %w(sshdsakey sshrsakey swapfree memoryfree)
+exclude_keys = %w(swapfree memoryfree)
 facts = Facter.to_hash
 exclude_keys.each { |k| facts.delete(k) }
 
