@@ -1,4 +1,6 @@
 
+require File.join(File.dirname(File.expand_path(__FILE__)), "base")
+
 module Scout
   class Plugin < Bixby::Monitoring::Base
 
