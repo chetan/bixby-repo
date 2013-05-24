@@ -42,7 +42,7 @@ module Monitoring
 
     # Reset the check. Called during #initialize and before #monitor
     def reset
-      @timestamp = Time.new.to_i
+      @timestamp = Time.new.utc.to_i
       @metrics = []
       @errors = []
       @status = OK

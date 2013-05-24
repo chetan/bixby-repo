@@ -74,6 +74,10 @@ module Hardware
         cpu_stats
       end
 
+      def initialize
+        self.time = Time.new.utc
+      end
+
       # Load all stats on Linux systems (requires /proc/stat)
       def load_linux_stats!
 
@@ -112,26 +116,6 @@ module Hardware
           vals << $1.to_f
         end
         self.user, self.system, self.idle = vals
-      end
-
-
-      def self.from_hash(h)
-        cpu_stats= Stats.new
-        hash = {}
-        h.each { |k,v| hash[k.to_sym] = v }
-
-        if time = hash.delete(:time)
-          cpu_stats.time = Time.parse(time) rescue time
-        end
-
-        hash.each do |k, v|
-          cpu_stats.send("#{k}=", v) if cpu_stats.respond_to?("#{k}=")
-        end
-        cpu_stats
-      end
-
-      def initialize
-        self.time = Time.now
       end
 
       def diff(other)
