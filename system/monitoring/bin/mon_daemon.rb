@@ -176,7 +176,13 @@ module Monitoring
 
     def run
 
-      Daemons.run_proc('mon_daemon.rb', { :dir_mode => :normal, :dir => @var, :log_output => true }) do
+      opts = {
+        :dir_mode   => :normal,
+        :dir        => @var,
+        :log_output => true,
+        :multiple   => false
+      }
+      Daemons.run_proc('mon_daemon.rb', opts) do
 
         Bixby::Log.setup_logger() # new thread/proc requires logging init again
 
