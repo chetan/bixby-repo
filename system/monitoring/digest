@@ -1,9 +1,9 @@
 {
-  "digest": "eec17c893d02e5ecd3ad2b8b80d9d6f81329f258ec9d09f04c9265756d64bcea",
+  "digest": "4e23bb13d7d064b18958dcdf1ef6b1daee243f504475dbee4214ceadca1b2b9c",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "8f51a6b9493ed6c20058895a7a299c880a57b94d9365f2e806c59f6b42826f98"
+      "digest": "9be15ac4e781f9df321a3be0a95e5ab85a0d8fc0880fc44b2f15ecc97f4c40ce"
     },
     {
       "file": "bin/update_check_config.rb",
@@ -19,7 +19,7 @@
     },
     {
       "file": "manifest.json",
-      "digest": "fe0f21761023668fe7e8ac33cfec530b591b6ed4a6b9a74fd05d6a739001d982"
+      "digest": "8bd6ee5fdf6b4dc3829344ef1c5b49b58aae0b775e4b3611eb05767e815f489c"
     }
   ]
 }

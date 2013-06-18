@@ -1,5 +1,5 @@
 {
-  "digest": "60fda6fe1f6e7dd022fe6fab4871a961415809152b898b986f28e0863ec6b677",
+  "digest": "71baa9f92db75cd0ee7526bf87d4689a8ab029cece4b026431d1c6df33c0c067",
   "files": [
     {
       "file": "bin/monitoring/process_usage.rb",
@@ -12,6 +12,10 @@
     {
       "file": "bin/monitoring/process_usage.rb.test",
       "digest": "ffa762c51f0e639e576284694924b7d1b11f49bc33aa4db5b1e1a2b3be411dca"
+    },
+    {
+      "file": "lib/daemon_starter.rb",
+      "digest": "d4feaf464ca1184f1e8e35b2e9b1aa1b29155adb0b509bc81e3b354aabfbddee"
     },
     {
       "file": "manifest.json",

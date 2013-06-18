@@ -5,6 +5,7 @@
 require 'daemons'
 require 'multi_json'
 
+use_bundle "system/general"
 use_bundle "system/monitoring"
 
 module Bixby
@@ -176,19 +177,26 @@ module Monitoring
 
     def run
 
+      app_name = "mon_daemon.rb"
+      starter = Bixby::DaemonStarter.new(@var, app_name)
+      return if not starter.start?
+
       opts = {
         :dir_mode   => :normal,
         :dir        => @var,
         :log_output => true,
         :multiple   => false
       }
-      Daemons.run_proc('mon_daemon.rb', opts) do
+      Daemons.run_proc(app_name, opts) do
+
+        starter.cleanup!
 
         Bixby::Log.setup_logger() # new thread/proc requires logging init again
 
         trap("HUP") do
           # puts "caught HUP"
           reload_config()
+          return
         end
 
         reload_config()
@@ -219,6 +227,7 @@ module Monitoring
         end # loop
 
       end # Daemons
+      starter.cleanup! if Daemons.controller.error?
 
     end # run
 
