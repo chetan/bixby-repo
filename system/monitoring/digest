@@ -1,5 +1,5 @@
 {
-  "digest": "f08fe240a83bdd03abcd8e6e95339d819b807de8e51ec3ba4ba39d269f1358de",
+  "digest": "0d9922514d333c21e52b6d4310fa0bc217e36b8155cbf805c9ecabda8fcfb070",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/mon_daemon.rb.json",
-      "digest": "10558dc08a57e0c5fc28f31f3c8efae8e291cb8e0a654f7041a58dab79117029"
+      "digest": "6db2b82e605de9d6bd049f5aa268734b1e6d33b45f127d8214dfae7d78eb0b43"
     },
     {
       "file": "bin/update_check_config.rb",
@@ -15,7 +15,7 @@
     },
     {
       "file": "bin/update_check_config.rb.json",
-      "digest": "56ed0d1733c357e3377f5c0e6c0d57410ba533de9da28428401cab060023cb70"
+      "digest": "b2eb25b597bc9b5a060985d9761d158d5917e0aa2d8097a8b070d8e9b8613b27"
     },
     {
       "file": "lib/base.rb",
