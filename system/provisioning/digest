@@ -1,13 +1,21 @@
 {
-  "digest": "ad63ac35760b74cfcac38adc7a0f125f78b8b6e4be3138b644f5109daad6d228",
+  "digest": "9f4a25deca355c8cd6d5a16e6b80a8715bdd51989cdd0a5eddc5ea8a6ee5a535",
   "files": [
     {
       "file": "bin/create_digest.rb",
       "digest": "2f6d86d66416c41c17e8906e2b4974d1b326832ca19856f8b38ac33d32a2755a"
     },
     {
+      "file": "bin/create_digest.rb.json",
+      "digest": "75aa138b0a125fe10121150deb6817735094df825168b20d1d234b9214d7b0c5"
+    },
+    {
       "file": "bin/get_bundle.rb",
       "digest": "9454b84e786d77b969f39cc30948818c840f8ed392ceef0fdd17febfa0262294"
+    },
+    {
+      "file": "bin/get_bundle.rb.json",
+      "digest": "f69123a4945e080947e1d1c1c4057eb6ae01c1c4f65e0c5283bcb82a68c1729d"
     },
     {
       "file": "manifest.json",

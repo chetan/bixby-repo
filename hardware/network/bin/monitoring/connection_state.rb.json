@@ -1,5 +1,5 @@
 {
-  "name":"Network connections by state",
+  "name":"Network Connections by State",
   "key":"net.conns",
   "metrics":{
     "state":{

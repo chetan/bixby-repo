@@ -1,5 +1,5 @@
 {
-  "name":"Port check",
+  "name":"Port Check",
   "key":"net.port",
   "metrics":{
     "open":{

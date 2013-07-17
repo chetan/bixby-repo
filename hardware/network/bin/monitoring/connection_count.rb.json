@@ -1,5 +1,5 @@
 {
-  "name":"network connections",
+  "name":"Network Connections by Type",
   "key":"net.conns",
   "metrics":{
     "tcp":{

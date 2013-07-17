@@ -1,13 +1,21 @@
 {
-  "digest": "4e23bb13d7d064b18958dcdf1ef6b1daee243f504475dbee4214ceadca1b2b9c",
+  "digest": "f08fe240a83bdd03abcd8e6e95339d819b807de8e51ec3ba4ba39d269f1358de",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
       "digest": "9be15ac4e781f9df321a3be0a95e5ab85a0d8fc0880fc44b2f15ecc97f4c40ce"
     },
     {
+      "file": "bin/mon_daemon.rb.json",
+      "digest": "10558dc08a57e0c5fc28f31f3c8efae8e291cb8e0a654f7041a58dab79117029"
+    },
+    {
       "file": "bin/update_check_config.rb",
       "digest": "09485f876b6d67b16061ad8259ada9aa0b364e48db316332dc9d166295403caf"
+    },
+    {
+      "file": "bin/update_check_config.rb.json",
+      "digest": "56ed0d1733c357e3377f5c0e6c0d57410ba533de9da28428401cab060023cb70"
     },
     {
       "file": "lib/base.rb",

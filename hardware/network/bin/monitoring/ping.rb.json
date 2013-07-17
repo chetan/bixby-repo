@@ -1,5 +1,5 @@
 {
-  "name":"Ping test",
+  "name":"Ping Test",
   "key":"net.ping",
   "metrics":{
     "status":{
