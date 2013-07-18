@@ -9,8 +9,7 @@
   },
   "options":{
     "host":{
-      "name": "Host or IP to ping",
-      "desc": null,
+      "desc": "Host or IP to ping",
       "type": "text"
     }
   }
