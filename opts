@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# small helper script to taken keypairs on the command line
+# and translate them into a json hash on stdout
+#
+# usage: opts foo=bar baz=frob
+#
+# outputs: {"foo":"bar","baz":"frob"}
+
+require 'multi_json'
+
+opts = {}
+ARGV.each do |arg|
+  (key, val) = arg.split(/\=/)
+  opts[key] = val
+end
+
+puts MultiJson.dump(opts)
+

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# simple helper to run a repo script with the correct ENV
+#
+# usage: run <script>
+
+DIR=$(dirname $(readlink -f $0))
+export RUBYLIB="$DIR/../common/lib:$DIR/../client/lib:$DIR/../agent/lib"
+export BIXBY_HOME=/opt/bixby
+ruby -rbixby-client/script $*
+
