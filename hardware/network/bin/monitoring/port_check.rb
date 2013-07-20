@@ -23,7 +23,13 @@ class PortCheck < Bixby::Monitoring::Base
   private
 
   def is_port_open?(host_and_port)
-    host, port = host_and_port.split(":")
+    if host_and_port.include? ":" then
+      host, port = host_and_port.split(":")
+    else
+      host = "localhost"
+      port = host_and_port
+    end
+
     begin
       s = TCPSocket.open(host, port.to_i)
       s.close
