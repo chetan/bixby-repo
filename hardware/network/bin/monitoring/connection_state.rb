@@ -23,6 +23,7 @@ class ConnectionState < Bixby::Monitoring::Base
     end
 
     ret.each_pair do |type, count|
+      type = "closed" if type == "close" # normalize linux/osx names
       add_metric({:state => count}, {:state => type})
     end
 

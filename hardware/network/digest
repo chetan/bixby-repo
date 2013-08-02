@@ -1,5 +1,5 @@
 {
-  "digest": "5813eafcda12ae6b117b97a68870b2031b004ea7bb7df6c8023b61f9ff755245",
+  "digest": "0cab817a2a1253361587e6256634a8e78c923b0f75a51f57fa894c97161fa121",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -19,7 +19,7 @@
     },
     {
       "file": "bin/monitoring/connection_state.rb",
-      "digest": "0582d3f540c8e43e363b61eba0061bafe9ed1ecee1774cb1b577b84c79581ffc"
+      "digest": "e66966003c731198a785444f62e7a5207d9d89ccb3843d7b374fb33d2869169d"
     },
     {
       "file": "bin/monitoring/connection_state.rb.json",
