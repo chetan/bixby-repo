@@ -1,5 +1,5 @@
 {
-  "digest": "e3de6a50cc0d16c13c87bd4543b949bdbd5bcd52516f2f38b39006a98006fb8b",
+  "digest": "1cded89dd601ca0f151a0eba2d3c991626e4b906d6b196f68d030c7b288ce8a0",
   "files": [
     {
       "file": "bin/monitoring/disk_usage.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/monitoring/disk_usage.rb.json",
-      "digest": "ad121d1dd28a7d0cb49346d7777962c48790d539cc9d98925600ecf0b20039ad"
+      "digest": "d65a4e54de2159ba197ec4a3b2b186712b0f29c23c84136adeb008c975a0303a"
     },
     {
       "file": "bin/monitoring/inode_usage.rb",
@@ -15,7 +15,7 @@
     },
     {
       "file": "bin/monitoring/inode_usage.rb.json",
-      "digest": "09638bce50848d14c436d7ccaea40567f8fdfe050cd75db77cb09d12b0e550b7"
+      "digest": "eeb42d258003e16070284f07c01e73f07e5e9facf4e423eaf98a623faae49995"
     },
     {
       "file": "lib/storage.rb",
