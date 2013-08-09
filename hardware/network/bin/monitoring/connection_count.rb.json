@@ -1,34 +1,6 @@
 {
   "name":"Network Connections by Type",
-  "key":"net.conns",
-  "metrics":{
-    "tcp":{
-      "desc": "Number of TCP connections",
-      "unit":null,
-      "optional": true
-    },
-    "udp":{
-      "desc": "Number of UDP connections",
-      "unit":null,
-      "optional": true
-    },
-    "unix":{
-      "desc": "Number of Unix streams",
-      "unit":null,
-      "optional": true
-    },
-    "total":{
-      "desc": "Total number of connections",
-      "unit":null,
-      "optional": true
-    },
-    "port":{
-      "desc": "Total number of connections by port",
-      "unit":null,
-      "optional": true
-    }
 
-  },
   "options":{
     "port":{
       "name":null,
@@ -36,5 +8,41 @@
       "default":"80,443,25",
       "type":"text"
     }
-  }
+  },
+
+  "key":"net.conns",
+  "metrics":{
+    "tcp":{
+      "desc": "Number of TCP connections",
+      "label": "TCP",
+      "unit":null,
+      "optional": true
+    },
+    "udp":{
+      "desc": "Number of UDP connections",
+      "label": "UDP",
+      "unit":null,
+      "optional": true
+    },
+    "unix":{
+      "desc": "Number of Unix streams",
+      "label": "Unix streams",
+      "unit":null,
+      "optional": true
+    },
+    "total":{
+      "desc": "Total number of connections",
+      "label": "Total",
+      "unit":null,
+      "optional": true
+    },
+    "port":{
+      "desc": "Total number of connections by port",
+      "label": "Port $port",
+      "unit":null,
+      "optional": true
+    }
+  },
+
+  "tags": [ "port" ],
 }
