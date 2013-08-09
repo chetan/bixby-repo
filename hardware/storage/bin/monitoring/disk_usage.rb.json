@@ -1,20 +1,22 @@
 {
   "name" : "Disk Usage",
-  "label" : "$mount",
-  "key" : "fs.disk",
+
   "options" : {
     "mount" : {
       "type" : "enum",
       "name" : "Mount",
       "desc" : "Filesystem mount point to check usage for, defaults to /",
-      "default" : "/",
-      "primary" : true
+      "default" : "/"
     }
   },
+
+  "key" : "fs.disk",
   "metrics" : {
     "size"  : { "unit" : "GB", "desc" : "Disk Size" },
     "used"  : { "unit" : "GB", "desc" : "Disk Space Used" },
     "free"  : { "unit" : "GB", "desc" : "Disk Space Free" },
     "usage" : { "unit" : "%", "desc" : "Disk Space Usage" }
-  }
+  },
+
+  "tags" : [ "mount", "type" ],
 }

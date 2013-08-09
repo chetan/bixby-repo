@@ -1,7 +1,6 @@
 {
   "name" : "inode Usage",
-  "label" : "$device",
-  "key" : "fs.inode",
+
   "options" : {
     "device" : {
       "type" : "enum",
@@ -9,10 +8,14 @@
       "desc" : "Device to check usage for, defaults to all devices"
     }
   },
+
+  "key" : "fs.inode",
   "metrics" : {
     "total" : { "desc" : "Total inodes" },
     "used"  : { "desc" : "Used inodes" },
     "free"  : { "desc" : "Free inodes" },
     "usage" : { "unit" : "%", "desc" : "inode usage" }
-  }
+  },
+
+  "tags" : [ "device" ],
 }
