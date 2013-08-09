@@ -1,10 +1,14 @@
 {
-  "name":"Network Connections by State",
-  "key":"net.conns",
-  "metrics":{
-    "state":{
+  "name" : "Network Connections by State",
+
+  "key" : "net.conns",
+  "metrics": {
+    "state": {
       "desc": "Total number of connections by state",
+      "label": "$state",
       "unit": null
     }
-  }
+  },
+
+  "tags" : [ "state" ],
 }

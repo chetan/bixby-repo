@@ -1,16 +1,22 @@
 {
   "name":"Port Check",
-  "key":"net.port",
-  "metrics":{
-    "open":{
-      "desc": "Whether or not port is open",
-      "unit":null
-    }
-  },
+
   "options":{
     "port":{
       "name":"Port",
       "desc":"Host and/or port to monitor, e.g. google.com:80, 10.10.10.10:8080, or 22",
       "type":"text"
     }
-  }}
+  },
+
+  "key":"net.port",
+  "metrics":{
+    "open":{
+      "desc": "Whether or not port is open",
+      "label": "Port open?",
+      "unit":null
+    }
+  },
+
+  "tags": [ "port" ],
+}
