@@ -17,5 +17,5 @@
     "usage" : { "unit" : "%", "desc" : "inode usage" }
   },
 
-  "tags" : [ "device" ],
+  "tags" : [ "device" ]
 }

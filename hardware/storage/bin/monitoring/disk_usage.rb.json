@@ -18,5 +18,5 @@
     "usage" : { "unit" : "%", "desc" : "Disk Space Usage" }
   },
 
-  "tags" : [ "mount", "type" ],
+  "tags" : [ "mount", "type" ]
 }
