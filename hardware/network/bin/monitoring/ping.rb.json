@@ -1,5 +1,14 @@
 {
   "name":"Ping Test",
+
+  "options":{
+    "host":{
+      "name": "Host",
+      "desc": "Host or IP to ping",
+      "type": "text"
+    }
+  },
+
   "key":"net.ping",
   "metrics":{
     "status":{
@@ -7,12 +16,6 @@
       "unit": null
     }
   },
+
   "location": "any",
-  "options":{
-    "host":{
-      "name": "Host",
-      "desc": "Host or IP to ping",
-      "type": "text"
-    }
-  }
 }
