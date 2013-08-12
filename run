@@ -7,12 +7,9 @@
 DIR=$(dirname $(readlink -f $0))
 if [ -d $DIR/../common ]; then
   export RUBYLIB="$DIR/../common/lib:$DIR/../client/lib:$DIR/../agent/lib"
-else
-  export RUBYOPT="-rbixby-agent"
 fi
 
 export BIXBY_HOME=/opt/bixby
-export RUBYOPT="$RUBYOPT -rbixby-client/script"
+export RUBYOPT="$RUBYOPT -rbixby-agent -rbixby-client/script"
 
 ruby $*
-
