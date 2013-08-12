@@ -1,6 +1,14 @@
 {
-  "digest": "8e41fb81fa95a7869fbb605cf1d828031406a317beccbca2a9119b413172355b",
+  "digest": "ffbd2755724bed1f58e26d1634a9931851d126833b0ea376c2f79ee33e687bc8",
   "files": [
+    {
+      "file": "bin/get_agent_version.rb",
+      "digest": "cbf2bd36bbc3c1688193e67d500cfcc9e8bd81f0099a953c87823f1a5dcbd183"
+    },
+    {
+      "file": "bin/get_agent_version.rb.json",
+      "digest": "e91ded409742b796642321599786571a63656b1831b7b4bbedc644f7f736fcd4"
+    },
     {
       "file": "bin/list_facts.rb",
       "digest": "a9e652e3ed9d26e759590e45d395b9487cf068820c06a10e5e98e6e0cddc7031"
