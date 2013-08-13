@@ -1,9 +1,9 @@
 {
-  "digest": "ffbd2755724bed1f58e26d1634a9931851d126833b0ea376c2f79ee33e687bc8",
+  "digest": "d43c8a36370e7aca026624adf8bbe8701ed379c418da1a252fef856bdb7c3adc",
   "files": [
     {
       "file": "bin/get_agent_version.rb",
-      "digest": "cbf2bd36bbc3c1688193e67d500cfcc9e8bd81f0099a953c87823f1a5dcbd183"
+      "digest": "cef407cdfb8168f73a05277d286b94b4d0ce931ecdf66563edf85e85dd0bfa3a"
     },
     {
       "file": "bin/get_agent_version.rb.json",
