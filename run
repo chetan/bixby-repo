@@ -10,6 +10,6 @@ if [ -d $DIR/../common ]; then
 fi
 
 export BIXBY_HOME=/opt/bixby
-export RUBYOPT="$RUBYOPT -rbixby-agent -rbixby-client/script"
+export RUBYOPT="$RUBYOPT -rbixby-client/script"
 
 ruby $*
