@@ -1,6 +1,10 @@
 {
-  "digest": "71baa9f92db75cd0ee7526bf87d4689a8ab029cece4b026431d1c6df33c0c067",
+  "digest": "c1367c79ba8ea73d700cf9827346b97591ee4371a63eeb44425d1958a6c04cda",
   "files": [
+    {
+      "file": "bin/hello_world.sh",
+      "digest": "9c1cbe1680b7a766926220c9eff07b6f0cfca4ee1e870fe673342555bf51140a"
+    },
     {
       "file": "bin/monitoring/process_usage.rb",
       "digest": "f50d661ffd63b3fd741cef1ba04b16330a437eb43080c71a7163ad606760fc7c"
