@@ -1,0 +1,11 @@
+
+{
+  "name": "Upgrade Bixby Agent",
+
+  "options": {
+    "beta": {
+      "name" : "Beta",
+      "desc" : "Install the latest Agent beta"
+    }
+  }
+}
