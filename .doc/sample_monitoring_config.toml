@@ -1,0 +1,122 @@
+
+name = "Short name for this script"
+
+# Hash of options accepted by this script, via stdin
+# [OPTIONAL]
+[options]
+  [options.option_name]
+    name    = "Sample option"
+    desc    = "Description of option"
+
+
+    # Type of option
+    # This determines the type of entry field displayed in the UI
+    #
+    # Possible values: enum, text
+    # enum: if no values given, then the script will be queried for a list dynamically
+    # text: text entry
+    type    = "enum"
+
+    # List of possible values for enums
+    values  = [ "foo", "bar", "baz" ]
+
+    # Force a query even when "values" are given above
+    query   = true
+
+    # Default value, if any
+    # [OPTIONAL] default: null
+    default = "foo"
+
+    # Whether or not the value is required
+    # [OPTIONAL] default: false
+    required = false
+
+
+
+# MONITORING SCRIPTS ONLY
+# ------------------------------------------------------------------------------
+
+# Base key name which will be prepended to all reported metrics
+[monitoring]
+  key = "base.key"
+
+  # Location this script can be run from
+  #
+  # Possible values: local, remote, any
+  # When monitoring target host A,
+  #    local  = check must run on host A
+  #    remote = check must run from some other host, B
+  #    any    = check can run from either A or B (or any other host)
+  #
+  # [OPTIONAL] default: local
+  location = "any"
+
+  # List of tags added to metrics reported by this script
+  #
+  # This list is used for informational and testing purposes only.
+  tags = [ "type", "device" ]
+
+  # Rename metric keys reported by the script
+  #
+  # This is useful for working with scripts imported from some other system
+  # (e.g. Scout) when we do not want to alter the script itself.
+  #
+  # [OPTIONAL]
+  [monitoring.rename]
+    # metric keys named "foo" will be replaced with "bar"
+    # i.e., base.key.foo -> base.key.bar
+    foo = "bar"
+
+  # A hash of metrics reported by this script
+  [monitoring.metrics]
+
+    # Metric to report
+    # Will be sent as: base.key.metric_key
+    [monitoring.metrics.metric_key]
+      name = "Name of this value"
+      desc = "Description of this value"
+
+      # Label for this metric.
+      #
+      # [OPTIONAL] If present, will be used for labeling graphs whenever this
+      # metric is displayed.
+      #
+      # Variables can be used, prefixed with a $ sign, to refer to tags
+      # associated with the report. For example:
+      #
+      # tags = { "device" : "/foo/bar", "type" : "ext3" }
+      #
+      # the label below would be rendered as: "Metric for /foo/bar"
+      label = "Metric for $device"
+
+      # Unit of value
+      # Possible values: %, MB, GB, TB
+      #
+      # [OPTIONAL] default: null
+      unit = "%"
+
+      # Whether or not this value is optional
+      # This should be set when a value is dependent on some system state
+      # Primarily used for testing
+      #
+      # [OPTIONAL] default: false
+      optional = false
+
+      # Range of expected values
+      # Primarily used for testing
+      #
+      # Ranges can be specified as follows:
+      # 0..100         = 0 to 100, inclusive
+      # 0+             = a positive number, including zero
+      # >0             = greater than zero
+      # <0             = less than zero
+      # >=0            = greater than or equal to zero
+      # <=-5            = less than or equal to -5
+      range = "0..100"
+
+      # Platforms for which this value will be returned
+      # Primarily used for testing
+      #
+      # Possible values: linux, osx, windows
+      # [OPTIONAL] default: null (all platforms supported)
+      platforms = [ "linux" ]
