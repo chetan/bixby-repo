@@ -1,5 +1,5 @@
 {
-  "digest": "63ec7416ef36511671fa2a87f8b2131bd9abe08e476f23372c18d02db3532dca",
+  "digest": "cc35a2668bdd4ffe9d6060272c2a1a72de62da70f4f243217df65d796bf7f32e",
   "files": [
     {
       "file": "bin/create_digest.rb",
@@ -19,7 +19,7 @@
     },
     {
       "file": "bin/upgrade_agent.sh",
-      "digest": "8fd803d868bb5a7d880a607ec5aec2e90f101fb1e3cafaad83505a31f53ffa4c"
+      "digest": "d174bba65a5e659e1a9e74679c8708a84de9a089a8c32a885b0a94435e17ddb7"
     },
     {
       "file": "bin/upgrade_agent.sh.json",
