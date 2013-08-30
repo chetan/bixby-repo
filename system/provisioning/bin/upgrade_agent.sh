@@ -13,7 +13,7 @@ function is_registered {
   [[ -f /opt/bixby/etc/bixby.yml && -f /opt/bixby/etc/server.pub ]]
 }
 
-function do_restart {
+function restart_bixby {
   if is_registered; then
     sleep 3 # short nap, then bounce away
 
