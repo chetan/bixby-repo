@@ -6,9 +6,9 @@
 
 use_bundle "system/monitoring"
 
-class ProcessUsage < Scout::Plugin  
+class ProcessUsage < Scout::Plugin
   MEM_CONVERSION = 1024
-  
+
   OPTIONS=<<-EOS
   command_name:
     name: Command Name
@@ -27,7 +27,7 @@ class ProcessUsage < Scout::Plugin
     default: 1
     attributes: advanced
   EOS
-  
+
   def build_report
     if option(:command_name).nil? or option(:command_name) == ""
       return error("Please specify the name of the process you want to monitor.")
@@ -61,7 +61,7 @@ class ProcessUsage < Scout::Plugin
       highest_rss    = rss_values.max
       total_rss      = rss_values.inject(0){|s,value| s + value }
       restarts   = 0
-      
+
       cpu_values = process_lines.map { |com| Float(com.split[cpu_index]).abs }
       highest_cpu = cpu_values.max
       total_cpu  = cpu_values.inject(0){|s,value| s + value }
@@ -93,7 +93,7 @@ class ProcessUsage < Scout::Plugin
       end
     end
   rescue Exception => e
-    error("Error when executing: #{e.class}", e.message)
+    error("Error when executing: #{e.class}", e)
   end
 end
 

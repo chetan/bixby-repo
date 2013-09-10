@@ -44,6 +44,7 @@ module Scout
         super(args[:subject])
         super(args[:body])
       else
+        # assume list of error messages received
         args.each{ |msg| super(msg) }
       end
     end

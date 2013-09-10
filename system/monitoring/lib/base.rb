@@ -95,6 +95,11 @@ module Monitoring
     # @param msg [String] Error message
     # @param status [String] Status code (default: ERROR)
     def error(msg, status=nil)
+      if msg.kind_of? Exception then
+        msg = msg.message + "\n" + msg.backtrace.join("\n")
+      elsif not msg.kind_of? String then
+        msg = msg.to_s
+      end
       @errors << msg
       @status = status if not status.nil?
       @status = ERROR if @status.nil?
