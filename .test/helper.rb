@@ -9,11 +9,11 @@ rescue Bundler::BundlerError => e
 end
 
 require 'test_guard'
-require 'simplecov'
-SimpleCov.configure do
-  coverage_dir '.coverage'
+if ENV["COVERAGE"] then
+  TestGuard.load_simplecov() do
+    coverage_dir '.coverage'
+  end
 end
-TestGuard.load_simplecov() if ENV["COVERAGE"]
 
 require "minitest/parallel_each"
 require "test_guard/minitest_fork"

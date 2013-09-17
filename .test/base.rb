@@ -8,34 +8,59 @@ module Bixby
 
     def setup
       super
+
+      # Create a temp BIXBY_HOME environment
       @bixby_home = Dir.mktmpdir("bixby-")
       ENV["BIXBY_HOME"] = @bixby_home
       s = File.join(@bixby_home, "repo", "vendor")
       if not File.exists? s then
         FileUtils.mkdir_p File.join(@bixby_home, "repo")
         FileUtils.ln_sf ENV["BIXBY_REPO_PATH"], File.join(@bixby_home, "repo", "vendor")
+
+        # copy etc folder
+        template = File.expand_path(File.join(File.dirname(__FILE__), "support", "root_dir"))
+        `cp -a #{template}/* #{Bixby.root}/`
       end
+
+      @test_bundle_path = File.expand_path(File.join(File.dirname(__FILE__), "support", "test_bundle"))
     end
 
     def teardown
       super
-      FileUtils.rm_rf @bixby_home
+      FileUtils.rm_rf @bixby_home # Remove temp BIXBY_HOME env
     end
+
 
     private
 
+    # Alias to bundle accessor
     def bundle
       self.class.bundle
     end
 
+    # Retrieve the path to the given bin script
+    #
+    # @param [Array<String>] args
+    #
+    # @return [String] path to file
+    #
+    # @example
+    #   bin("foo.rb") # returns "/opt/bixby/repo/vendor/my/bundle/bin/foo.rb"
+    #
     def bin(*args)
       path_to(bundle, "bin", *args)
     end
 
+    # Retrieve the path to the given relative path within the bundle
+    #
+    # @param [Array<String>] args
+    #
+    # @return [String] path to file
     def path_to(*args)
       File.join(Bixby.repo_path, "vendor", *args)
     end
 
+    # Set the @bundle var
     def self.inherited(subclass)
       super
       # figure out where we are getting included and then use that to find

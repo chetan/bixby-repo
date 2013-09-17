@@ -1,0 +1,17 @@
+{
+  "digest": "c1af0e59a74367e83492a7501f6bdd7ed33de005c3f727a302c5ddfafa8c6f70",
+  "files": [
+    {
+      "file": "bin/cat",
+      "digest": "6d14ab63802f3ef51bdc16db1cfeb6df93167fe7a2aa09a6c737293d42c118b2"
+    },
+    {
+      "file": "bin/echo",
+      "digest": "5ca36fa0f9bd59e8169cc379215e6a481363df5b1e745f0442170fe6a56e1118"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

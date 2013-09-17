@@ -36,10 +36,61 @@ module Bixby
         debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
       end
 
-      files = Bixby::Repository.list_files(cmd)
-      Bixby::Repository.download_files(cmd, files)
 
+      download_bundle(cmd)
+    end
+
+    # Download the given bundle
+    #
+    # @param [CommandSpec] cmd
+    def download_bundle(cmd)
+      files = Bixby::Repository.list_files(cmd)
+      download_files(cmd, files)
       delete_files(cmd, files)
+    end
+
+    # Download the given list of files belonging to the given bundle
+    #
+    # @param [CommandSpec] cmd
+    # @param [Hash] files
+    def download_files(cmd, files)
+      return if files.nil? or files.empty?
+
+      local_path = cmd.bundle_dir
+      digest = cmd.load_digest
+      files.each do |f|
+
+        fetch = true
+        if not digest then
+          fetch = true
+        elsif df = digest["files"].find{ |h| h["file"] == f["file"] } then
+          # compare digest w/ stored one if we have it
+          fetch = (df["digest"] != f["digest"])
+        else
+          fetch = true
+        end
+
+        if not fetch then
+          debug { "skipping: #{f}" }
+          next
+        end
+
+        debug { "fetching: #{f}"}
+
+        filename = File.join(local_path, f['file'])
+        path = File.dirname(filename)
+        if not File.exist? path then
+          FileUtils.mkdir_p(path)
+        end
+
+        Bixby::Repository.fetch_file(cmd, f['file'], filename)
+        if f['file'] =~ /^bin/ then
+          # correct permissions for executables
+          FileUtils.chmod(0755, filename)
+        end
+      end # files.each
+
+      cmd.update_digest
     end
 
     # Delete files which no longer exist in the bundle
@@ -63,4 +114,4 @@ module Bixby
   end # Provision
 end # Bixby
 
-Bixby::Provision.new.run
+Bixby::Provision.new.run if $0 == __FILE__
