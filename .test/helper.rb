@@ -9,11 +9,11 @@ rescue Bundler::BundlerError => e
 end
 
 require 'test_guard'
-if ENV["COVERAGE"] then
-  TestGuard.load_simplecov() do
-    coverage_dir '.coverage'
-  end
-end
+require "simplecov"
+require "easycov"
+
+EasyCov.path = ".coverage"
+EasyCov.filters << EasyCov::IGNORE_GEMS << EasyCov::IGNORE_STDLIB
 
 require "minitest/parallel_each"
 require "test_guard/minitest_fork"
@@ -42,4 +42,5 @@ ENV["BIXBY_REPO_PATH"] = BIXBY_REPO_PATH
 ENV["RUBYLIB"] = "#{dir}/common/lib:#{dir}/client/lib:#{dir}/agent/lib"
 ENV["RUBYOPT"] = '-rbixby-client/script'
 
-MiniTest::Unit.autorun
+EasyCov.start
+MiniTest::Unit.new.run
