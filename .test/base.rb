@@ -1,6 +1,6 @@
 
 module Bixby
-  class TestCase < MiniTest::Unit::TestCase
+  class TestCase < Micron::TestCase
 
     class << self
       attr_accessor :bundle

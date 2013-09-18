@@ -3,8 +3,6 @@ require "helper"
 
 class TestCPU < Bixby::TestCase
 
-  parallelize_me!
-
   def test_get_load
 
     input = " 22:33pm  up 210 days  4:27,  1 user,  load average: 0.31, 0.32, 0.29\n"
