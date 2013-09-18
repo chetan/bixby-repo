@@ -3,6 +3,8 @@ require "helper"
 
 class TestDiskUsage < Bixby::TestCase
 
+  parallelize_me!
+
   def setup
     super
     @mounts = <<-EOF
