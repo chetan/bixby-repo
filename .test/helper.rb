@@ -11,12 +11,8 @@ end
 require 'test_guard'
 require "simplecov"
 require "easycov"
-
-EasyCov.path = ".coverage"
-EasyCov.filters << EasyCov::IGNORE_GEMS << EasyCov::IGNORE_STDLIB
-
-require "minitest/parallel_each"
-require "test_guard/minitest_fork"
+require "micron"
+require "micron/minitest"
 
 # Load any HTTP clients before webmock so they can be stubbed
 require 'curb'
@@ -42,5 +38,7 @@ ENV["BIXBY_REPO_PATH"] = BIXBY_REPO_PATH
 ENV["RUBYLIB"] = "#{dir}/common/lib:#{dir}/client/lib:#{dir}/agent/lib"
 ENV["RUBYOPT"] = '-rbixby-client/script'
 
+EasyCov.path = ".coverage"
+EasyCov.filters << EasyCov::IGNORE_GEMS << EasyCov::IGNORE_STDLIB
+EasyCov.install_exit_hook
 EasyCov.start
-MiniTest::Unit.new.run

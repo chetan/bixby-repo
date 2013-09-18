@@ -16,7 +16,8 @@ group :development, :test do
   gem "debugger",     :platforms => [ :mri_20, :mri_19 ]
   gem "debugger-pry", :require => "debugger/pry", :platforms => [ :mri_20, :mri_19 ]
 
-  gem "simplecov",    :platforms => [:mri_20, :mri_19, :rbx], :git => "https://github.com/chetan/simplecov.git", :branch => "inline_nocov"
+  gem "simplecov",    "=0.8.0.pre2", :platforms => [:mri_20, :mri_19, :rbx]
+  gem "simplecov-html", :github => "chetan/simplecov-html", :branch => "colorbox"
 
   gem "minitest",     "~> 4.7", :platforms => [:mri_20, :mri_19, :rbx]
   gem "webmock",      :require => false
@@ -25,6 +26,10 @@ group :development, :test do
 
   gem "turn",       :git => "https://github.com/chetan/turn.git", :branch => "forking"
   gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
+
+  gem "easycov", :github => "chetan/easycov"
+  gem "micron", :github => "chetan/micron"
+
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
