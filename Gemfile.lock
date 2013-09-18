@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chetan/easycov.git
-  revision: 0fce6e458f887e1fb50913c7af35c660fd80bc97
+  revision: 56f5938d98b30c626f42119bbc683fb0e809ad07
   specs:
     easycov (0.1.0)
       lockfile
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/chetan/micron.git
-  revision: 9761d47391fda864c215e89863818c7fae6d7168
+  revision: 38c0110e863541bcc0a3059584354b4de3194755
   specs:
     micron (0.1.0)
       easycov
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/chetan/test_guard.git
-  revision: 334ec44580e87e32c67e7cab29380a52acc503e3
+  revision: 233c03ae1cfc62417ee9145d568c9dbe2deef20e
   specs:
     test_guard (0.2.1)
       awesome_print
