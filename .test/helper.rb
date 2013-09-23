@@ -42,5 +42,4 @@ EasyCov.path = ".coverage"
 EasyCov.filters << EasyCov::IGNORE_GEMS << EasyCov::IGNORE_STDLIB
 EasyCov.filters << lambda { |f| f =~ %r{^#{EasyCov.root}/.test} }
 
-# EasyCov.install_exit_hook
 EasyCov.start

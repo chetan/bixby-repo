@@ -27,7 +27,6 @@ module Bixby
 
     def teardown
       super
-      # EasyCov.checkpoint # before cleanup, force coverage to be written
       FileUtils.rm_rf @bixby_home # Remove temp BIXBY_HOME env
     end
 
