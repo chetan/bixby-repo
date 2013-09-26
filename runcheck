@@ -70,7 +70,11 @@ if not File.exists? script then
 end
 
 opts = ARGV.join(" ")
-cmd = [ File.join(ROOT, "./opts"), ARGV, "|", File.join(ROOT, "./run"), script ]
+if opts == "--help" then
+  cmd = [ File.join(ROOT, "./run"), script, opts ]
+else
+  cmd = [ File.join(ROOT, "./opts"), ARGV, "|", File.join(ROOT, "./run"), script ]
+end
 
 `which json_reformat`
 cmd << "| json_reformat" if $? == 0
