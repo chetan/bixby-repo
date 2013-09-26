@@ -42,7 +42,7 @@ GEM
     ansi (1.4.3)
     api-auth (1.0.3)
     awesome_print (1.2.0)
-    bixby-client (0.2.1)
+    bixby-client (0.2.2)
       api-auth
       bixby-common
       curb
