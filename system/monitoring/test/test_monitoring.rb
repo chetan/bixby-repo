@@ -110,14 +110,14 @@ class TestMonitoring < Bixby::TestCase
   def do_test_metrics_with_opts(file, metrics, opts)
     shell = systemu(file + " --monitor", opts)
     debug_shell(shell)
-    assert shell.success?, " --monitor succeeds"
+    assert shell.success?, "#{File.basename(file)} --monitor succeeds"
 
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
     if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
       shell = systemu(file + " --monitor", opts)
       debug_shell(shell)
-      assert shell.success?, " --monitor succeeds again"
+      assert shell.success?, "#{File.basename(file)} --monitor succeeds again"
     end
 
     assert_empty shell.stderr
