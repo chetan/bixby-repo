@@ -12,4 +12,10 @@ fi
 export BIXBY_HOME=/opt/bixby
 export RUBYOPT="$RUBYOPT -rbixby-client/script"
 
-ruby $*
+if [ ! -f $1 ]; then
+  cmd=$(ruby -r./find_script -e "puts find_script('$1')")
+else
+  cmd=$1
+fi
+
+$cmd ${@:2}
