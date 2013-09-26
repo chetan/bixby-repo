@@ -8,9 +8,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require 'test_guard'
-require "simplecov"
-require "easycov"
 require "micron"
 require "micron/minitest"
 
