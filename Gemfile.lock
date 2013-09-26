@@ -1,20 +1,19 @@
 GIT
   remote: git://github.com/chetan/easycov.git
-  revision: 56f5938d98b30c626f42119bbc683fb0e809ad07
+  revision: 64c7aad17a89351978c6bba73b4c3905933794f7
   specs:
     easycov (0.1.0)
-      lockfile
       multi_json
       simplecov
 
 GIT
   remote: git://github.com/chetan/micron.git
-  revision: 38c0110e863541bcc0a3059584354b4de3194755
+  revision: e1a12a19e9d1f3f0e27bcec4cad4007e2a1c3d1a
   specs:
     micron (0.1.0)
+      colorize
       easycov
       hitimes
-      parallel
 
 GIT
   remote: git://github.com/chetan/simplecov-html.git
@@ -25,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/chetan/test_guard.git
-  revision: 233c03ae1cfc62417ee9145d568c9dbe2deef20e
+  revision: 72fade8f2fda1747ece442aee40be53d5cb293c9
   specs:
     test_guard (0.2.1)
       awesome_print
@@ -36,21 +35,13 @@ GIT
       single_test
       turn
 
-GIT
-  remote: https://github.com/chetan/turn.git
-  revision: 074469821eea9132fad6656329d1a8f821c464c7
-  branch: forking
-  specs:
-    turn (0.9.6)
-      ansi
-
 GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.3.5)
     ansi (1.4.3)
     api-auth (1.0.3)
-    awesome_print (1.1.0)
+    awesome_print (1.2.0)
     bixby-client (0.2.1)
       api-auth
       bixby-common
@@ -66,7 +57,7 @@ GEM
       logging
       multi_json
     coderay (1.0.9)
-    colorize (0.5.8)
+    colorize (0.6.0)
     columnize (0.3.6)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
@@ -113,7 +104,6 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.8.0)
     oj (2.1.4)
-    parallel (0.8.2)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -142,6 +132,8 @@ GEM
       rake
     slop (3.4.6)
     terminal-table (1.4.5)
+    turn (0.9.6)
+      ansi
     webmock (1.13.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -164,7 +156,6 @@ DEPENDENCIES
   minitest (~> 4.7)
   mixlib-cli
   mocha
-  parallel
   pry
   rb-fchange
   rb-fsevent
@@ -173,5 +164,4 @@ DEPENDENCIES
   simplecov-html!
   terminal-table
   test_guard!
-  turn!
   webmock

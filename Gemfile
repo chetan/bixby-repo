@@ -22,9 +22,6 @@ group :development, :test do
   gem "minitest",     "~> 4.7", :platforms => [:mri_20, :mri_19, :rbx]
   gem "webmock",      :require => false
   gem "mocha",        :require => false
-  gem "parallel",     :require => false
-
-  gem "turn",       :git => "https://github.com/chetan/turn.git", :branch => "forking"
 
   gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
   gem "easycov", :github => "chetan/easycov"
