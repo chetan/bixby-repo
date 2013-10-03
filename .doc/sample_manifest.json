@@ -1,5 +1,12 @@
 {
   "name": "Short name for this script",
+  "desc": "Longer description",
+
+  // User and group to run this script as. Can be 'root' or any other user/group
+  //
+  // [OPTIONAL] default: bixby
+  "user": "bixby",
+  "group": "bixby",
 
   // Hash of options accepted by this script, via stdin
   // [OPTIONAL]
@@ -7,6 +14,7 @@
     "option_name" : {
       "name"   : "Sample option",
       "desc"   : "Description of option (defaults to 'foo')",
+
 
       // Type of option
       // This determines the type of entry field displayed in the UI
@@ -30,7 +38,7 @@
       // [OPTIONAL] default: false
       "required": false
     }
-  }
+  },
 
 
   // MONITORING SCRIPTS ONLY
