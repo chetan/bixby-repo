@@ -82,12 +82,17 @@ module Bixby
       puts "---"
     end
 
-    def debug_shell(shell)
-      return if not debug?
+    # Run command and log output before returning
+    def systemu(*args)
+      cmd = Mixlib::ShellOut.new(*args)
+      cmd.run_command
+
+      # return if not debug?
       puts "stdout:"
-      dump shell.stdout
+      dump cmd.stdout
       puts "stderr:"
-      dump shell.stderr
+      dump cmd.stderr
+      cmd
     end
 
     # Set the @bundle var
