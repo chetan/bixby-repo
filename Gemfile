@@ -24,6 +24,7 @@ group :development, :test do
   gem "mocha",        :require => false
 
   gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
+  gem "coveralls", :require => false
   gem "easycov", :github => "chetan/easycov"
   gem "micron", :github => "chetan/micron"
 

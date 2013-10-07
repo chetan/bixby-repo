@@ -1,0 +1,13 @@
+language: ruby
+script: "bundle exec micron --fork"
+after_script:
+  - "rake coverage"
+  - "rake coveralls"
+
+rvm:
+  - 2.0.0
+  - 1.9.3
+
+branches:
+  only:
+    - master
