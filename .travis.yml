@@ -1,5 +1,5 @@
 language: ruby
-script: "bundle exec micron --fork"
+script: "bundle exec micron --fork $(find * -maxdepth 0 -type d | grep -v vendor)"
 after_script:
   - "rake coverage"
   - "rake coveralls"

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chetan/easycov.git
-  revision: a4093b140a0adfbaea1c9b55c42a5c7629317025
+  revision: 22b15445d23aaf58208693a02a6597f02577e412
   specs:
     easycov (0.3.1)
       multi_json
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/chetan/micron.git
-  revision: 4f969117cad5f64a079e589320ee09ffdd4c4408
+  revision: ba3ff1bef04eaff90546657998848f60fed6fcf7
   specs:
     micron (0.1.0)
       colorize
