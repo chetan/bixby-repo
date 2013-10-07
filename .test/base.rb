@@ -60,6 +60,36 @@ module Bixby
       File.join(Bixby.repo_path, "vendor", *args)
     end
 
+    def debug?
+      ENV["DEBUG"]
+    end
+
+    def dump(str)
+      begin
+        if str[0] == "{" then
+          h = MultiJson.load(str)
+          ap h
+          if h["errors"] then
+            h["errors"].each{ |e| puts e }
+          end
+          puts "---"
+          return
+        end
+      rescue Exception => ex
+      end
+
+      puts str
+      puts "---"
+    end
+
+    def debug_shell(shell)
+      return if not debug?
+      puts "stdout:"
+      dump shell.stdout
+      puts "stderr:"
+      dump shell.stderr
+    end
+
     # Set the @bundle var
     def self.inherited(subclass)
       super

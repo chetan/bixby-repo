@@ -48,7 +48,7 @@ class TestMonitoring < Bixby::TestCase
   def do_test_options(file, options)
     return if options.empty?
 
-    shell = systemu(full_path(file) + " --options")
+    shell = systemu(path_to(file) + " --options")
 
     puts shell.stdout if debug?
     puts shell.stderr if debug?
@@ -85,7 +85,7 @@ class TestMonitoring < Bixby::TestCase
   # test the monitoring command
   def do_test_metrics(file, metrics)
 
-    file = full_path(file)
+    file = path_to(file)
 
     opts = {}
 
@@ -109,14 +109,12 @@ class TestMonitoring < Bixby::TestCase
 
   def do_test_metrics_with_opts(file, metrics, opts)
     shell = systemu(file + " --monitor", opts)
-    debug_shell(shell)
     assert shell.success?, "#{File.basename(file)} --monitor succeeds"
 
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
     if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
       shell = systemu(file + " --monitor", opts)
-      debug_shell(shell)
       assert shell.success?, "#{File.basename(file)} --monitor succeeds again"
     end
 
@@ -207,40 +205,6 @@ class TestMonitoring < Bixby::TestCase
       assert range.include?(val)
     end
 
-  end
-
-  def full_path(file)
-    return File.join(Bixby.repo_path, "vendor", file)
-  end
-
-  def debug?
-    ENV["DEBUG"]
-  end
-
-  def dump(str)
-    begin
-      if str[0] == "{" then
-        h = MultiJson.load(str)
-        ap h
-        if h["errors"] then
-          h["errors"].each{ |e| puts e }
-        end
-        puts "---"
-        return
-      end
-    rescue Exception => ex
-    end
-
-    puts str
-    puts "---"
-  end
-
-  def debug_shell(shell)
-    return if not debug?
-    puts "stdout:"
-    dump shell.stdout
-    puts "stderr:"
-    dump shell.stderr
   end
 
 end
