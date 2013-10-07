@@ -10,9 +10,9 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
+require 'rake/tasklib'
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << '.test'
-  test.pattern = './**/test_*.rb'
+require "micron/rake"
+Micron::Rake.new do |task|
 end
+task :default => :test

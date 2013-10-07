@@ -8,6 +8,8 @@ gem 'bixby-client'
 
 group :development, :test do
 
+  gem "rake"
+
   # used by all_metrics.rb
   gem "terminal-table"
 
