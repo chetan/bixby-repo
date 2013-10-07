@@ -31,9 +31,8 @@ require "base"
 
 BIXBY_REPO_PATH = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
-dir = File.join(BIXBY_REPO_PATH, "..")
 ENV["BIXBY_REPO_PATH"] = BIXBY_REPO_PATH
-ENV["RUBYLIB"] = "#{dir}/common/lib:#{dir}/client/lib:#{dir}/agent/lib"
+ENV["RUBYLIB"] = $:.join(":")
 ENV["RUBYOPT"] = '-rbixby-client/script'
 
 EasyCov.path = ".coverage"
