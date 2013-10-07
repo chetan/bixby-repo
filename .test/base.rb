@@ -88,6 +88,7 @@ module Bixby
       cmd.run_command
 
       # return if not debug?
+      puts "status: #{cmd.exitstatus}"
       puts "stdout:"
       dump cmd.stdout
       puts "stderr:"
