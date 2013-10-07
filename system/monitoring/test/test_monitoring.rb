@@ -25,7 +25,7 @@ class TestMonitoring < Bixby::TestCase
 
   # test the given monitoring plugin/script
   def do_test_mon(file)
-    config = file + ".json"
+    config = File.expand_path(file + ".json")
     assert File.exist?(config), "has config file"
 
     config = MultiJson.load(File.read(config))
