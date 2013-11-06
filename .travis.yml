@@ -1,9 +1,14 @@
-language: ruby
+before_install:
+  - "curl -sL https://s3.bixby.io/wad > ~/wad"
+  - "chmod +x ~/wad"
+install:
+  - "~/wad"
 script: "bundle exec micron --fork $(find * -maxdepth 0 -type d | grep -v vendor)"
 after_script:
   - "rake coverage"
   - "rake coveralls"
 
+language: ruby
 rvm:
   - 2.0.0
   - 1.9.3
@@ -11,3 +16,9 @@ rvm:
 branches:
   only:
     - master
+
+env:
+  global:
+    - S3_REGION="us-east-1"
+    - S3_BUCKET_NAME="io.bixby.gemcache.wad.repo"
+    - secure: gxQHylKi0oXowGiNO6jyrXKngte8gp7BohlKTH22MAV+B9q2rZU+8wFpgUHiIvYa9W1E7HxkkvZwwNEeUiRNDTodHGM72cLrUEmrriLWCMT8KSCxFCCCHa3BmnXf9/gVNQ/aEwYwUHpEIWBfIsjpDT5+FmwireUux+VyHmaeqao=
