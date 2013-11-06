@@ -8,7 +8,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require "awesome_print"
 require "micron"
 require "micron/minitest"
 
