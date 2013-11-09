@@ -25,7 +25,13 @@ else
 end
 
 `which json_reformat`
-cmd << "| json_reformat" if $? == 0
+if $? == 0 then
+  cmd << "| json_reformat"
+else
+  `which json_pp`
+  cmd << "| json_pp" if $? == 0
+end
+
 
 cmd = cmd.flatten.join(" ")
 STDERR.puts cmd
