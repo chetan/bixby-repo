@@ -20,6 +20,8 @@ end
 opts = ARGV.join(" ")
 if opts == "--help" then
   cmd = [ File.join(ROOT, "./run"), script, opts ]
+elsif opts =~ /--opt(ion)?s?/ then
+  cmd = [ File.join(ROOT, "./run"), script, "--options" ]
 else
   cmd = [ File.join(ROOT, "./opts"), ARGV, "|", File.join(ROOT, "./run"), script ]
 end
