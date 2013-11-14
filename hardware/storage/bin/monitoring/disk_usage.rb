@@ -9,8 +9,18 @@ module Monitoring
 
     class DiskUsage < Monitoring::Base
 
+      # filesystems to ignore
+      SKIP_FS = ["tmpfs", "devfs", "devtmpfs", "autofs"]
+
+      # keys to skip when outputting usage
+      SKIP_KEYS = [:fs, :mount, :type]
+
+      # List available mounts, ignoring non-physical types
       def get_options
-        mounts = Hardware::Storage.list_mounts()
+        mounts = []
+        Hardware::Storage.disk_usage.values.each do |disk|
+          mounts << disk[:mount] if !SKIP_FS.include? disk[:type]
+        end
         return { :mount => mounts }
       end
 
@@ -23,18 +33,15 @@ module Monitoring
 
         df = Hardware::Storage.disk_usage(target)
 
-        skip = [:fs, :mount, :type]
-
         if target then
           # add metric for specific target
-          add_metric(df.reject { |k,v| skip.include? k }, {:mount => target, :type => df[:type]})
+          add_metric(df.reject { |k,v| SKIP_KEYS.include? k }, {:mount => target, :type => df[:type]})
 
         else
           # add metrics for all mounts except temporary ones
-          skipfs = ["tmpfs", "devfs", "devtmpfs", "autofs"]
           df.values.each do |d|
-            next if skipfs.include? d[:type]
-            add_metric(d.reject { |k,v| skip.include? k }, {:mount => d[:mount], :type => d[:type]})
+            next if SKIP_FS.include? d[:type]
+            add_metric(d.reject { |k,v| SKIP_KEYS.include? k }, {:mount => d[:mount], :type => d[:type]})
           end
         end
       end # monitor
@@ -45,3 +52,4 @@ end # Monitoring
 end # Bixby
 
 Bixby::Monitoring::Storage::DiskUsage.new.run if $0 == __FILE__
+

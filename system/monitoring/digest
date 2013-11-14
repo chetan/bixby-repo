@@ -1,6 +1,10 @@
 {
-  "digest": "2bccf38758e7c8b7b142b92e26ac48ec74beea11539142be0cd60bdeb338c959",
+  "digest": "3ee70dca4c64e61e1fb0ee1bf66a45512aeb9afafde89b61fd4de5e874ae6f08",
   "files": [
+    {
+      "file": "bin/install_mon_daemon_service.rb",
+      "digest": "353863342163a0a3144acfa2fcd448f2fa5e342fe9f985ffa5e56c8e151623c3"
+    },
     {
       "file": "bin/mon_daemon.rb",
       "digest": "9be15ac4e781f9df321a3be0a95e5ab85a0d8fc0880fc44b2f15ecc97f4c40ce"
@@ -16,6 +20,10 @@
     {
       "file": "bin/update_check_config.rb.json",
       "digest": "b2eb25b597bc9b5a060985d9761d158d5917e0aa2d8097a8b070d8e9b8613b27"
+    },
+    {
+      "file": "etc/bixby-monitoring.god",
+      "digest": "18203ed776da37c4ed15534724934636fce7d6ababdabc82a577b92121880a50"
     },
     {
       "file": "lib/base.rb",
