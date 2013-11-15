@@ -2,6 +2,9 @@
 module Hardware
   module Storage
 
+    # filesystems to ignore when returning filtered results
+    SKIP_FS = ["tmpfs", "devfs", "devtmpfs", "autofs"]
+
     class << self
 
       include Bixby::PlatformUtil
@@ -118,7 +121,7 @@ module Hardware
         end
       end
 
-      # Get inode usage for all devices
+      # Get inode usage
       #
       # Sample result:
       #
@@ -130,11 +133,18 @@ module Hardware
       #   }
       # }
       #
-      # @return [Hash] Hash of inode metrics, keyed by device
-      def inode_usage(device=nil)
+      # @param [String] mount       mount to get metrics for (optional, defaults to all non-temp disks)
+      #
+      # @return [Hash] Hash of inode metrics, keyed by mount
+      def inode_usage(mount=nil)
 
-        cmd = osx?() ? "/bin/df -i" : "df -i"
-        cmd = "#{cmd} #{device}" if device
+        if File.exist? "/bin/df" then
+          cmd = "/bin/df -i"
+        else
+          cmd = osx?() ? "/bin/df -i" : "df -i"
+        end
+
+        cmd = "#{cmd} #{mount}" if mount
         shell = systemu(cmd)
         if not shell.success? then
           # TODO raise err
@@ -180,10 +190,12 @@ module Hardware
           add_mount_types(ret)
         end
 
-        if device and ret then
+        if mount and ret then
+          # return single mount info
           return ret.values.first
         end
 
+        # return info for all mounts
         return ret
       end
 
@@ -204,16 +216,7 @@ module Hardware
         disk_usage.values.map { |f| f[:mount] }
       end
 
-      # Gets a list of all mounted devices on the system, as reported by 'df'
-      #
-      # Sample output:
-      # ["/dev/disk0s2","/dev/disk4","/dev/disk1s2","/dev/disk1s3","/dev/disk6s2"]
-      #
-      # @return [Array<String>] List of devices
-      def list_devices
-        disk_usage.values.map { |f| f[:fs] }
-      end
-    end
+    end # self
 
-  end
-end
+  end # Storage
+end # Hardware

@@ -9,17 +9,14 @@ module Monitoring
 
     class DiskUsage < Monitoring::Base
 
-      # filesystems to ignore
-      SKIP_FS = ["tmpfs", "devfs", "devtmpfs", "autofs"]
-
-      # keys to skip when outputting usage
+      # keys to skip when outputting disk usage
       SKIP_KEYS = [:fs, :mount, :type]
 
       # List available mounts, ignoring non-physical types
       def get_options
         mounts = []
         Hardware::Storage.disk_usage.values.each do |disk|
-          mounts << disk[:mount] if !SKIP_FS.include? disk[:type]
+          mounts << disk[:mount] if !Hardware::Storage::SKIP_FS.include? disk[:type]
         end
         return { :mount => mounts }
       end
@@ -40,7 +37,7 @@ module Monitoring
         else
           # add metrics for all mounts except temporary ones
           df.values.each do |d|
-            next if SKIP_FS.include? d[:type]
+            next if Hardware::Storage::SKIP_FS.include? d[:type]
             add_metric(d.reject { |k,v| SKIP_KEYS.include? k }, {:mount => d[:mount], :type => d[:type]})
           end
         end

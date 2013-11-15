@@ -1,9 +1,9 @@
 {
-  "digest": "e923c7b478239cf5eb9dbac3bdcaed9db9d78b044d3a7348ac71afd767c702ae",
+  "digest": "680cb78de35bffbe01568c7babe738f7ac0d5c0e7a3c8c430e46b3e5eb286891",
   "files": [
     {
       "file": "bin/monitoring/disk_usage.rb",
-      "digest": "65262484ee0ae4b3f84f0b977da4e1e46b85b592d510ce7b28bae31d55291ca8"
+      "digest": "f163161549bbb41efbeec9fbd143bb86714dc8a2d0123a182ecf2903ef947beb"
     },
     {
       "file": "bin/monitoring/disk_usage.rb.json",
@@ -11,15 +11,15 @@
     },
     {
       "file": "bin/monitoring/inode_usage.rb",
-      "digest": "ef2c6223b8a2ebe2556b626196884129f18e3b1c20e44786c6300fd8471ad7ca"
+      "digest": "3ae66d9461d8fba083d476d82df543ff0e76325bc6f485b264dbe32b79e71754"
     },
     {
       "file": "bin/monitoring/inode_usage.rb.json",
-      "digest": "2784f930ec96d11e8185a93d879fe9b1df53ef6bc5fbb18f5de1899be3044f0f"
+      "digest": "7a71a1ca334c3589155335d4c4351c79341f56530b44cedf412de9044c2b614b"
     },
     {
       "file": "lib/storage.rb",
-      "digest": "13395e195d1dfc4c6fc8900b44e41cb97a72b4bbac19230cc8d7fc79780091d6"
+      "digest": "3c38af30ef986d75079b0f0e329f6506aade2b998c14e23bf78c7d03f4df02de"
     },
     {
       "file": "manifest.json",

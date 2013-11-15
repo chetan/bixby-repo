@@ -10,12 +10,16 @@ module Monitoring
     class InodeUsage < Monitoring::Base
 
       def get_options
-        return { :device => Hardware::Storage.list_devices() }
+        mounts = []
+        Hardware::Storage.disk_usage.values.each do |disk|
+          mounts << disk[:mount] if !Hardware::Storage::SKIP_FS.include? disk[:type]
+        end
+        return { :mount => mounts }
       end
 
       def monitor
 
-        target = @options["device"]
+        target = @options["mount"]
         if target.nil? or target.empty? then
           target = nil
         end
@@ -26,14 +30,14 @@ module Monitoring
 
         if target then
           # add metric for specific target
-          add_metric(df.reject { |k,v| skip.include? k }, {:device => target})
+          add_metric(df.reject { |k,v| skip.include? k }, {:mount => target})
 
         else
           # add metrics for all mounts except temporary ones
           skipfs = ["tmpfs", "devfs", "devtmpfs", "autofs"]
-          df.each do |device, d|
+          df.each do |mount, d|
             next if skipfs.include? d[:type]
-            add_metric(d.reject { |k,v| skip.include? k }, {:device => device})
+            add_metric(d.reject { |k,v| skip.include? k }, {:mount => mount})
           end
         end
       end # monitor
