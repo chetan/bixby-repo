@@ -3,23 +3,18 @@ God.watch do |w|
   w.dir      = BIXBY_HOME
   w.name     = "bixby-monitoring"
   w.group    = "bixby"
+  w.uid      = "bixby"
+  w.gid      = "bixby"
   w.log      = "#{BIXBY_HOME}/var/god.#{w.name}.log"
-  w.pid_file = "#{BIXBY_HOME}/var/#{w.name}.pid"
+  w.pid_file = "#{BIXBY_HOME}/var/pids/#{w.name}.pid"
 
-  w.interval = 30.seconds
-
-  w.env      = {}
-
-  mon_script = "#{BIXBY_RUN} run repo/vendor/system/monitoring/bin/mon_daemon.rb"
+  mon_script = "#{BIXBY_CLIENT} run system/monitoring/bin/mon_daemon.rb"
   w.start    = "#{mon_script} start"
   w.stop     = "#{mon_script} stop"
 
-  w.start_grace = 10.seconds
+  w.interval      = 30.seconds
+  w.start_grace   = 10.seconds
   w.restart_grace = 10.seconds
-
-  # other scripts may drop privs
-  # w.uid = USER
-  # w.gid = GROUP
 
   w.behavior(:clean_pid_file)
 
