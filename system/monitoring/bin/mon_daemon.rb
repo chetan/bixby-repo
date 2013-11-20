@@ -45,7 +45,14 @@ module Monitoring
     def reload_config
       debug { "loading check config" }
       if File.exists? @config_file then
-        checks = MultiJson.load(File.read(@config_file))
+        begin
+          checks = MultiJson.load(File.read(@config_file))
+        rescue MultiJson::LoadError => ex
+          logger.error "Error reading config from #{@config_file}"
+          logger.error ex
+          $stderr.puts "Error reading config from #{@config_file}; exiting (pid #{$$})"
+          exit 1
+        end
         load_all_checks(checks)
       else
         @loaded_checks = []
