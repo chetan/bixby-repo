@@ -31,6 +31,9 @@ module Hardware
 
         if target then
           # add metric for specific target
+          if df and df.empty? then
+            return error("invalid mount: #{target}")
+          end
           add_metric(df.reject { |k,v| SKIP_KEYS.include? k }, {:mount => target, :type => df[:type]})
 
         else
