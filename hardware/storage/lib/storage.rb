@@ -5,6 +5,45 @@ module Hardware
     # filesystems to ignore when returning filtered results
     SKIP_FS = ["tmpfs", "devfs", "devtmpfs", "autofs"]
 
+    # keys to skip when outputting inode usage
+    SKIP_KEYS = [:fs, :mount, :type]
+
+    module Monitoring
+
+      # List available mounts, ignoring non-physical types
+      def get_options
+        mounts = %w{ALL}
+        Hardware::Storage.disk_usage.values.each do |disk|
+          mounts << disk[:mount] if !SKIP_FS.include? disk[:type]
+        end
+        return { :mount => mounts }
+      end
+
+      def monitor(target, mode)
+        target.strip! if not target.nil?
+        target = nil if target && (target.empty? or target.upcase == "ALL")
+
+        if mode == "df" then
+          df = Hardware::Storage.disk_usage(target)
+        elsif mode == "inode" then
+          df = Hardware::Storage.inode_usage(target)
+        end
+
+        if target then
+          # add metric for specific target
+          add_metric(df.reject { |k,v| SKIP_KEYS.include? k }, {:mount => target, :type => df[:type]})
+
+        else
+          # add metrics for all mounts except temporary ones
+          df.values.each do |d|
+            next if Hardware::Storage::SKIP_FS.include? d[:type]
+            add_metric(d.reject { |k,v| SKIP_KEYS.include? k }, {:mount => d[:mount], :type => d[:type]})
+          end
+        end
+      end
+
+    end
+
     class << self
 
       include Bixby::PlatformUtil
@@ -168,7 +207,8 @@ module Hardware
               :used  => $6.to_i,
               :free  => $7.to_i,
               :usage => $8.to_i,
-              :total => $6.to_i + $7.to_i
+              :total => $6.to_i + $7.to_i,
+              :mount => $9
             }
 
           elsif line =~ /^(\S+?)\s+(\S+?)\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
@@ -177,7 +217,8 @@ module Hardware
               :used  => $3.to_i,
               :free  => $4.to_i,
               :usage => $5.to_i,
-              :total => $2.to_i
+              :total => $2.to_i,
+              :mount => $7
             }
 
           elsif partial.nil? then
