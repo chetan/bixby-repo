@@ -100,9 +100,9 @@ module Monitoring
       elsif not msg.kind_of? String then
         msg = msg.to_s
       end
+      status ||= ERROR
       @errors << msg
       @status = status if not status.nil?
-      @status = ERROR if @status.nil?
     end
 
     # Store the given data for the next run
