@@ -12,10 +12,10 @@
 
   "key" : "fs.disk",
   "metrics" : {
-    "size"  : { "unit" : "GB", "desc" : "Disk Size" },
-    "used"  : { "unit" : "GB", "desc" : "Disk Space Used" },
-    "free"  : { "unit" : "GB", "desc" : "Disk Space Free" },
-    "usage" : { "unit" : "%", "desc" : "Disk Space Usage" }
+    "size"  : { "unit" : "GB", "desc" : "Disk Size", "range": "0+" },
+    "used"  : { "unit" : "GB", "desc" : "Disk Space Used", "range": "0+" },
+    "free"  : { "unit" : "GB", "desc" : "Disk Space Free", "range": "0+" },
+    "usage" : { "unit" : "%", "desc" : "Disk Space Usage", "range": "0..100" }
   },
 
   "tags" : [ "mount", "type" ]

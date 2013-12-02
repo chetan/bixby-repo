@@ -6,7 +6,8 @@
     "state": {
       "desc": "Total number of connections by state",
       "label": "$state",
-      "unit": null
+      "unit": null,
+      "range": "0+"
     }
   },
 

@@ -2,9 +2,9 @@
   "name" : "CPU Usage",
   "key" : "cpu.usage",
   "metrics" : {
-    "system"       : { "desc" : "System", "range": "0..100" },
-    "user"         : { "desc" : "User", "range": "0..100" },
-    "idle"         : { "desc" : "Idle", "range": "0..100" },
+    "system"       : { "desc" : "System", "range": "0..100", "unit": "%" },
+    "user"         : { "desc" : "User", "range": "0..100", "unit": "%" },
+    "idle"         : { "desc" : "Idle", "range": "0..100", "unit": "%" },
     "iowait"       : { "desc" : "IO Wait", "platforms": ["linux"], "range": "0..100" },
     "procs_running": { "desc" : "Procs Running", "platforms": ["linux"], "range": ">=0" },
     "procs_blocked": { "desc" : "Procs Blocked", "platforms": ["linux"], "range": "0+" },

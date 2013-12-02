@@ -13,7 +13,8 @@
   "metrics":{
     "status":{
       "desc": "Is host/ip reachable?",
-      "unit": null
+      "unit": null,
+      "range": "0..1"
     }
   },
 

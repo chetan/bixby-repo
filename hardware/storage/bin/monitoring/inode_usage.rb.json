@@ -11,10 +11,10 @@
 
   "key" : "fs.inode",
   "metrics" : {
-    "total" : { "desc" : "Total inodes" },
-    "used"  : { "desc" : "Used inodes" },
-    "free"  : { "desc" : "Free inodes" },
-    "usage" : { "unit" : "%", "desc" : "inode usage" }
+    "total" : { "desc" : "Total inodes", "range": "0+" },
+    "used"  : { "desc" : "Used inodes", "range": "0+" },
+    "free"  : { "desc" : "Free inodes", "range": "0+" },
+    "usage" : { "unit" : "%", "desc" : "inode usage", "range": "0..100" }
   },
 
   "tags" : [ "mount" ]

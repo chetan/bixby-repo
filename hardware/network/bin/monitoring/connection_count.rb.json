@@ -16,30 +16,35 @@
       "desc": "Number of TCP connections",
       "label": "TCP",
       "unit":null,
+      "range": "0+",
       "optional": true
     },
     "udp":{
       "desc": "Number of UDP connections",
       "label": "UDP",
       "unit":null,
+      "range": "0+",
       "optional": true
     },
     "unix":{
       "desc": "Number of Unix streams",
       "label": "Unix streams",
       "unit":null,
+      "range": "0+",
       "optional": true
     },
     "total":{
       "desc": "Total number of connections",
       "label": "Total",
       "unit":null,
+      "range": "0+",
       "optional": true
     },
     "port":{
       "desc": "Total number of connections by port",
       "label": "Port $port",
       "unit":null,
+      "range": "0+",
       "optional": true
     }
   },

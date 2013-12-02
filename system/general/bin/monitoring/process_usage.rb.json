@@ -4,27 +4,33 @@
   "metrics":{
     "memory":{
       "desc":"Memory Usage (Largest Process)",
-      "unit":"MB"
+      "unit":"MB",
+      "range": "0+"
     },
     "total_rss":{
       "desc":"Memory Usage (Total)",
-      "unit":"MB"
+      "unit":"MB",
+      "range": "0+"
     },
     "num_processes":{
       "desc":"Number of Processes",
-      "unit":""
+      "unit":"",
+      "range": "0+"
     },
     "restarts":{
       "desc":"Restarts",
-      "unit":""
+      "unit":"",
+      "range": "0+"
     },
     "cpu":{
       "desc":"CPU Usage (Largest Process)",
-      "unit":"%"
+      "unit":"%",
+      "range": "0..100"
     },
     "total_cpu":{
       "desc":"CPU Usage (Total)",
-      "unit":"%"
+      "unit":"%",
+      "range": "0+"
     }
   },
   "options":{

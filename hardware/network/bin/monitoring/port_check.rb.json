@@ -14,7 +14,8 @@
     "open":{
       "desc": "Whether or not port is open",
       "label": "Port open?",
-      "unit":null
+      "unit":null,
+      "range": "0..1"
     }
   },
 
