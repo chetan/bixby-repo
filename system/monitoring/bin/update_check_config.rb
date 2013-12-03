@@ -82,6 +82,5 @@ when 2
 
   # restart god service to get new config
   logger.debug "reloading bixby-god"
-  systemu("/etc/init.d/bixby reload")
-
+  systemu("sudo /etc/init.d/bixby reload")
 end
