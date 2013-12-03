@@ -101,7 +101,7 @@ module Bixby
       logger.debug { "cleaning up stale files" }
       bundle_files = files.map{ |pair| pair["file"] }
 
-      all_files = Dir.glob(File.join(cmd.bundle_dir, "**")).reject{ |f| File.directory? f }.map{ |f| f[cmd.bundle_dir.length+1, f.length] }
+      all_files = Dir.glob(File.join(cmd.bundle_dir, "**/**")).reject{ |f| File.directory? f }.map{ |f| f[cmd.bundle_dir.length+1, f.length] }
       all_files.each do |local_file|
         logger.debug { "found local file: #{local_file}" }
         if not bundle_files.include? local_file then
