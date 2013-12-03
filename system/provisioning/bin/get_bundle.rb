@@ -47,6 +47,8 @@ module Bixby
       files = Bixby::Repository.list_files(cmd)
       download_files(cmd, files)
       delete_files(cmd, files)
+
+      cmd.update_digest
     end
 
     # Download the given list of files belonging to the given bundle
@@ -89,8 +91,6 @@ module Bixby
           FileUtils.chmod(0755, filename)
         end
       end # files.each
-
-      cmd.update_digest
     end
 
     # Delete files which no longer exist in the bundle
