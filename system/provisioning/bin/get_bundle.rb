@@ -33,7 +33,12 @@ module Bixby
       rescue Exception => ex
         # expected if bundle/command doesn't exist or is out of date
         # (digest doesn't match)
-        logger.debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
+        if ex.kind_of? BundleNotFound or ex.kind_of? CommandNotFound then
+          logger.debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
+        else
+          logger.error { "bundle #{cmd.bundle} will be updated" }
+          logger.error(ex)
+        end
       end
 
 
