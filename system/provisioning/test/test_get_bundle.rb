@@ -45,10 +45,6 @@ class TestGetBundle < Bixby::TestCase
     cmd.digest = "5ca36fa0f9bd59e8169cc379215e6a481363df5b1e745f0442170fe6a56e1118"
     cmd_hash = MultiJson.load(cmd.to_json)
     provisioner.stubs(:get_json_input).returns(cmd_hash.dup, cmd_hash.dup)
-    puts
-    puts
-    puts "last run........."
-    p cmd.load_digest
     provisioner.run
   end
 
