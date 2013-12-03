@@ -12,7 +12,7 @@ class TestGetBundle < Bixby::TestCase
         :repo => "support",
         :bundle => "test_bundle",
         :command => "echo",
-        :digest => "c1af0e59a74367e83492a7501f6bdd7ed33de005c3f727a302c5ddfafa8c6f70" })
+        :digest => "5ca36fa0f9bd59e8169cc379215e6a481363df5b1e745f0442170fe6a56e1118" })
 
     cmd_hash = MultiJson.load(cmd.to_json)
     provisioner = Bixby::Provision.new
@@ -20,7 +20,7 @@ class TestGetBundle < Bixby::TestCase
 
     # setup our expectations on the run method
     ret_list = Bixby::JsonResponse.from_json('{"status":"success","message":null,"data":[{"file":"bin/echo","digest":"abcd"}],"code":null}')
-    Bixby.client.expects(:exec_api).times(2).returns(ret_list)
+    Bixby.client.expects(:exec_api).times(2).with{|req| puts req; true}.returns(ret_list)
     Bixby.client.expects(:exec_api_download).times(2).with{ |req, filename|
         dir = File.dirname(filename)
         assert File.exists? dir
@@ -42,9 +42,13 @@ class TestGetBundle < Bixby::TestCase
     provisioner.run
 
     # run again, no change (client expectations won't fire again)
-    cmd.digest = "c1af0e59a74367e83492a7501f6bdd7ed33de005c3f727a302c5ddfafa8c6f70"
+    cmd.digest = "5ca36fa0f9bd59e8169cc379215e6a481363df5b1e745f0442170fe6a56e1118"
     cmd_hash = MultiJson.load(cmd.to_json)
     provisioner.stubs(:get_json_input).returns(cmd_hash.dup, cmd_hash.dup)
+    puts
+    puts
+    puts "last run........."
+    p cmd.load_digest
     provisioner.run
   end
 
