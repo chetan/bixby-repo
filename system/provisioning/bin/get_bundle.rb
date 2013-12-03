@@ -27,13 +27,13 @@ module Bixby
       begin
         if cmd.validate(digest) == true then
           # digest matches, already up to date
-          debug { "bundle #{cmd.bundle} is already up to date" }
+          logger.debug { "bundle #{cmd.bundle} is already up to date" }
           return
         end
       rescue Exception => ex
         # expected if bundle/command doesn't exist or is out of date
         # (digest doesn't match)
-        debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
+        logger.debug { "bundle #{cmd.bundle} will be updated: #{ex.inspect}" }
       end
 
 
@@ -54,7 +54,7 @@ module Bixby
     # Download the given list of files belonging to the given bundle
     #
     # @param [CommandSpec] cmd
-    # @param [Hash] files
+    # @param [Array<Hash>] files
     def download_files(cmd, files)
       return if files.nil? or files.empty?
 
@@ -73,11 +73,11 @@ module Bixby
         end
 
         if not fetch then
-          debug { "skipping: #{f}" }
+          logger.debug { "skipping: #{f}" }
           next
         end
 
-        debug { "fetching: #{f}"}
+        logger.debug { "fetching: #{f}"}
 
         filename = File.join(local_path, f['file'])
         path = File.dirname(filename)
@@ -96,16 +96,18 @@ module Bixby
     # Delete files which no longer exist in the bundle
     #
     # @param [CommandSpec] cmd    CommandSpec representing the Bundle to which the files belong
-    # @param [Hash] files         List of files in bundle, as reported by Bixby::Repository#list_files
+    # @param [Array<Hash>] files         List of files in bundle, as reported by Bixby::Repository#list_files
     def delete_files(cmd, files)
+      logger.debug { "cleaning up stale files" }
       bundle_files = files.map{ |pair| pair["file"] }
 
       all_files = Dir.glob(File.join(cmd.bundle_dir, "**")).reject{ |f| File.directory? f }.map{ |f| f[cmd.bundle_dir.length+1, f.length] }
       all_files.each do |local_file|
+        logger.debug { "found local file: #{local_file}" }
         if not bundle_files.include? local_file then
           next if local_file == "digest"
           file = File.join(cmd.bundle_dir, local_file)
-          debug { "deleting: #{file}" }
+          logger.debug { "deleting: #{file}" }
           File.delete(file)
         end
       end
