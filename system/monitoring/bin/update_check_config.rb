@@ -34,7 +34,7 @@ def install_service
   end
 
   # copy god config
-  require "file_utils"
+  require "fileutils"
   local = File.join(File.expand_path("../../etc/bixby-monitoring.god", __FILE__))
   FileUtils.cp(local, god_file)
   File.chmod(0644, god_file)
