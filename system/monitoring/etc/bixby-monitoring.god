@@ -6,7 +6,7 @@ God.watch do |w|
   w.uid      = "bixby"
   w.gid      = "bixby"
   w.log      = "#{BIXBY_HOME}/var/god.#{w.name}.log"
-  w.pid_file = "#{BIXBY_HOME}/var/pids/#{w.name}.pid"
+  w.pid_file = "#{BIXBY_HOME}/var/bixby-monitoring-daemon.pid" # created by daemons gem
 
   mon_script = "#{BIXBY_CLIENT} run system/monitoring/bin/mon_daemon.rb"
   w.start    = "#{mon_script} start"
