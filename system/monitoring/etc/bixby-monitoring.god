@@ -1,7 +1,7 @@
 
 God.watch do |w|
   w.dir      = BIXBY_HOME
-  w.name     = "bixby-monitoring"
+  w.name     = "monitoring"
   w.group    = "bixby"
   w.uid      = "bixby"
   w.gid      = "bixby"
