@@ -184,7 +184,7 @@ module Monitoring
 
     def run
 
-      app_name = "mon_daemon.rb"
+      app_name = "bixby-monitoring-daemon"
       starter = Bixby::DaemonStarter.new(@var, app_name)
       return if not starter.start?
 
