@@ -1,4 +1,8 @@
 
 {
-  "name": "Update Check Configuration"
+  "name": "Update Check Configuration",
+  "desc": "Update the monitoring daemon config file and restart",
+
+  "user": "root",
+  "group": "root"
 }

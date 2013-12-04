@@ -1,5 +1,5 @@
 {
-  "digest": "54f8143c5842bd5b495f43ed392ae9fe5ee0b16916bd3fae046fa341f362d0d3",
+  "digest": "2143189728e8f94a64751cbc0be5473df73967807311ff60d6ceb0a7212a8323",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -11,11 +11,11 @@
     },
     {
       "file": "bin/update_check_config.rb",
-      "digest": "252e3d4044a568d459f573fd2540a9cfba920d2fbf9ddb2473ce48e35b58d856"
+      "digest": "a4f8619c1a81ea70f754ca5f77a04198d91f588fed30a57e62623929f600030a"
     },
     {
       "file": "bin/update_check_config.rb.json",
-      "digest": "b2eb25b597bc9b5a060985d9761d158d5917e0aa2d8097a8b070d8e9b8613b27"
+      "digest": "7f3660daf81fd18e8242fcf97651a5d006e281191cf3cde04ec48fa965c5874f"
     },
     {
       "file": "etc/bixby-monitoring.god",

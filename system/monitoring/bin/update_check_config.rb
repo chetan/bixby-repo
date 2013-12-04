@@ -66,18 +66,18 @@ case install_service()
 when 0
   logger.debug "restarting mon_daemon.rb"
   rpath = File.dirname(File.expand_path(__FILE__))
-  shell = systemu("#{rpath}/mon_daemon.rb restart")
+  shell = systemu("sudo #{rpath}/mon_daemon.rb restart")
   logger.debug { Bixby::CommandResponse.new(shell).to_s }
 
 when 1
   logger.debug "restarting bixby-monitoring-daemon"
-  systemu("/etc/init.d/bixby god restart monitoring")
+  systemu("sudo /etc/init.d/bixby god restart monitoring")
 
 when 2
   # stop old service
   logger.debug "killing old mon_daemon service"
   rpath = File.dirname(File.expand_path(__FILE__))
-  systemu("#{rpath}/mon_daemon.rb stop")
+  systemu("sudo #{rpath}/mon_daemon.rb stop")
   systemu("sudo pkill -9 -f mon_daemon.rb") # make sure old service is dead
 
   # restart god service to get new config
