@@ -19,6 +19,11 @@ module Bixby
         download_files(cmd, opts["files"])
         delete_files(cmd, opts["files"])
         cmd.update_digest
+
+        # log the updated digest
+        spec = Bixby::CommandSpec.new(:bundle => cmd.bundle, :repo => cmd.repo)
+        digest = spec.load_digest["digest"]
+        logger.debug { "updated digest for bundle #{spec.repo}:#{spec.bundle} = #{digest}" }
       end
 
     end
