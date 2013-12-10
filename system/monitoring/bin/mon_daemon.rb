@@ -19,23 +19,8 @@ module Monitoring
 
     def initialize()
       super
-
-      bixby_home = ENV["BIXBY_HOME"]
-
-      # make sure var/storage path exists
-      @var = File.join(bixby_home, "var")
-      d = File.join(@var, "monitoring", "data")
-      if not File.directory? d then
-        begin
-          FileUtils.mkdir_p(d)
-        rescue Exception => ex
-          $stderr.puts "unable to create dir #{d}"
-          $stderr.puts "  #{ex.message}"
-          exit 1
-        end
-      end
-
-      @config_file = File.join(bixby_home, "etc", "monitoring", "config.json")
+      @var = Bixby.path("var")
+      @config_file = Bixby.path("etc", "monitoring", "config.json")
       @loaded_checks = []
       @class_map = {}
       @reports = []
@@ -64,7 +49,7 @@ module Monitoring
     #
     # @param [Check] check
     #
-    # @return [Bixby::Monitoring::Base] check instance
+    # @return [Hash] hash of results
     def run_check(check)
 
       obj = check.clazz.new(check.options.dup)
@@ -74,7 +59,7 @@ module Monitoring
       obj.save_storage()
       check.storage = obj.storage
 
-      return obj
+      return obj.to_hash
 
     rescue Exception => ex
       error { "check failed: " + ex.to_s + "\n" + ex.backtrace.to_s }
@@ -198,6 +183,7 @@ module Monitoring
 
         starter.cleanup!
 
+        create_data_dir()
         Bixby::Log.setup_logger() # new thread/proc requires logging init again
 
         trap("HUP") do
@@ -237,6 +223,24 @@ module Monitoring
       starter.cleanup! if Daemons.controller.error?
 
     end # run
+
+
+    private
+
+    def create_data_dir
+      # make sure var/storage path exists
+      d = File.join(@var, "monitoring", "data")
+      if not File.directory? d then
+        begin
+          FileUtils.mkdir_p(d)
+        rescue Exception => ex
+          $stderr.puts "unable to create dir #{d}"
+          $stderr.puts "  #{ex.message}"
+          exit 1
+        end
+      end
+    end
+
 
   end # class MonDaemon
 
