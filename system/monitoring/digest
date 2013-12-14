@@ -1,9 +1,9 @@
 {
-  "digest": "d791062ad2331a9f337d006dfb5126458ab68cff9d1d639afaf40b33cb70d5f8",
+  "digest": "9933267943e98d78ede08a298ec2c0a7466e06a5931c503189f3a29f40e4a91f",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "80df767b7e3c3b5cbaed020afad6755a198aaadd4001c37dff893346bd133ae7"
+      "digest": "2f59066931c52fe196dd6d73c9d049a05383eca4d9ed7d6a97cec5ee05c94942"
     },
     {
       "file": "bin/mon_daemon.rb.json",

@@ -182,9 +182,8 @@ module Monitoring
       Daemons.run_proc(app_name, opts) do
 
         starter.cleanup!
-
         create_data_dir()
-        Bixby::Log.setup_logger() # new thread/proc requires logging init again
+        Logging.reopen
 
         trap("HUP") do
           # puts "caught HUP"
