@@ -8,12 +8,11 @@ require 'multi_json'
 use_bundle "system/general"
 use_bundle "system/monitoring"
 
+require "mon_daemon/check"
+require "mon_daemon/reporter"
+
 module Bixby
 module Monitoring
-
-  class Check
-    attr_accessor :clazz, :options, :interval, :retry, :timeout, :storage
-  end
 
   class MonDaemon < Bixby::Command
 
@@ -23,8 +22,7 @@ module Monitoring
       @config_file = Bixby.path("etc", "monitoring", "config.json")
       @loaded_checks = []
       @class_map = {}
-      @reports = []
-      @report_lock = Mutex.new
+      @reporter = Reporter.new
     end
 
     def reload_config
@@ -66,23 +64,7 @@ module Monitoring
 
     end
 
-    # Send reports to master
-    #
-    # @param [Array<Bixby::Monitoring::Base>] reports
-    def send_reports(reports)
-      return if not reports or reports.empty?
-
-      res = Bixby::Metrics.put_check_result(reports)
-      if not res.success? then
-        # TODO failover to disk buffer??
-        error { "error reporting to server:\n" + res.to_s }
-      end
-
-    rescue Exception => ex
-      error { "error reporting to server: " + ex.to_s + "\n" + ex.backtrace.to_s }
-
-    end
-
+    # Load all configured checks and their options
     def load_all_checks(checks)
 
       # array of classes already loaded
@@ -134,39 +116,8 @@ module Monitoring
       end # checks.each
     end # load_all_checks
 
-    def start_reporter_thread
 
-      # Thread for sending reports every 30 sec
-      Thread.new do
-
-        # by default we want to run this thread just after reports are
-        # actually available, so we sleep for 5 sec here
-        sleep 5
-
-        loop do
-          queue = nil
-
-          @report_lock.synchronize {
-            # swap reports array before submitting
-            if not @reports.empty? then
-              queue = @reports
-              @reports = []
-            end
-          }
-
-          if not (queue.nil? || queue.empty?) then
-            send_reports(queue)
-            debug { "sent #{queue.size} reports to server" }
-          end
-
-          sleep 30
-
-        end # loop
-      end # Thread
-
-    end
-
-
+    # Run the daemon
     def run
 
       app_name = "bixby-monitoring-daemon"
@@ -197,8 +148,7 @@ module Monitoring
           exit 1
         end
 
-        debug { "starting reporter thread" }
-        start_reporter_thread()
+        @reporter.start()
 
         debug { "startup complete; entering run loop" }
         # main run loop
@@ -209,8 +159,7 @@ module Monitoring
           Thread.new do
             @loaded_checks.each do |check|
               debug { "running check: #{check.clazz}" }
-              ret = run_check(check)
-              @report_lock.synchronize { @reports << ret }
+              @reporter << run_check(check)
             end
           end
 
