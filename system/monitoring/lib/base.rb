@@ -86,6 +86,16 @@ module Monitoring
     # @param [Hash] metrics  key/value pairs to report
     # @param [Hash] metadata  key/value pairs to report
     def add_metric(metrics, metadata={})
+
+      # convert booleans to integer values
+      metrics.each do |k,v|
+        if v == true then
+          metrics[k] = 1
+        elsif v == false then
+          metrics[k] = 0
+        end
+      end
+
       @metrics << { :metrics => metrics, :metadata => metadata }
     end
     alias_method :add_metrics, :add_metric
