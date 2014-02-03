@@ -26,7 +26,7 @@ module Monitoring
     end
 
     def reload_config
-      debug { "loading check config" }
+      logger.debug { "loading check config" }
       if File.exists? @config_file then
         begin
           checks = MultiJson.load(File.read(@config_file))
@@ -40,7 +40,7 @@ module Monitoring
       else
         @loaded_checks = []
       end
-      debug { "loaded #{@loaded_checks.size} check(s)" }
+      logger.debug { "loaded #{@loaded_checks.size} check(s)" }
     end
 
     # Run the specified Check
@@ -49,6 +49,7 @@ module Monitoring
     #
     # @return [Hash] hash of results
     def run_check(check)
+      logger.debug { "running check: #{check.clazz}" }
 
       obj = check.clazz.new(check.options.dup)
       obj.storage = check.storage
@@ -60,7 +61,7 @@ module Monitoring
       return obj.to_hash
 
     rescue Exception => ex
-      error { "check failed: " + ex.to_s + "\n" + ex.backtrace.to_s }
+      logger.error { "check failed: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
 
     end
 
@@ -77,8 +78,7 @@ module Monitoring
         # create command and validate
         command = CommandSpec.new(check["command"])
         if not command.command_exists? then
-          error { "command doesn't exist: \n" +
-                  command.to_s.gsub(/^/, "\t") }
+          logger.error { "command doesn't exist: \n" + command.to_s.gsub(/^/, "\t") }
           next
         end
 
@@ -110,7 +110,7 @@ module Monitoring
         c.timeout  = check["timeout"]
         c.storage  = c.clazz.new(c.options.dup).load_storage()
 
-        debug { "new check: #{c.clazz}" }
+        logger.debug { "new check: #{c.clazz}" }
         @loaded_checks << c
 
       end # checks.each
@@ -150,7 +150,7 @@ module Monitoring
 
         @reporter.start()
 
-        debug { "startup complete; entering run loop" }
+        logger.debug { "startup complete; entering run loop" }
         # main run loop
         loop do
 
@@ -158,8 +158,12 @@ module Monitoring
           # at the same time each minute
           Thread.new do
             @loaded_checks.each do |check|
-              debug { "running check: #{check.clazz}" }
-              @reporter << run_check(check)
+              begin
+                @reporter << run_check(check)
+              rescue Exception => ex
+                logger.error "Caught exception running check (#{check.clazz}): " +
+                  "#{ex.message}\n#{ex.backtrace.join('\n')}"
+              end
             end
           end
 
