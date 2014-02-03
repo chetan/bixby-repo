@@ -2,6 +2,9 @@
 module Bixby
   module Monitoring
 
+    # Reporter thread
+    #
+    # Sends collected reports back to server
     class Reporter
 
       include Bixby::Log
@@ -15,7 +18,7 @@ module Bixby
       #
       # @param [Hash] report
       def <<(report)
-        @report_lock.synchronize { @reports << ret }
+        @report_lock.synchronize { @reports << report }
       end
 
       # Send reports to master
@@ -31,7 +34,7 @@ module Bixby
         end
 
       rescue Exception => ex
-        logger.error { "error reporting to server: " + ex.to_s + "\n" + ex.backtrace.to_s }
+        logger.error { "error reporting to server: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
 
       end
 
