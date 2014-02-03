@@ -9,11 +9,13 @@ if ARGV.empty? then
 end
 
 ROOT = __dir__
+$: << __dir__
 
-require "./find_script"
-script = find_script(ARGV.shift)
+require "find_script"
+arg = ARGV.shift
+script = find_script(arg)
 if script.nil? then
-  STDERR.puts "couldn't find any scripts matching '#{script}'"
+  STDERR.puts "couldn't find any scripts matching '#{arg}'"
   exit 1
 end
 

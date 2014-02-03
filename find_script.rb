@@ -35,7 +35,7 @@ def find_script(script)
   return script if File.exists? script
 
   # try relative path
-  root = __dir__
+  root = Dir.pwd
   s = File.expand_path(File.join(root, script))
   return s if File.exists? s
 
