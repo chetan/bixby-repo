@@ -39,7 +39,7 @@ module Hardware
         else
           # add metrics for all mounts except temporary ones
           df.values.each do |d|
-            next if Hardware::Storage::SKIP_FS.include? d[:type]
+            next if SKIP_FS.include? d[:type] or (d[:flags] && d[:flags].include?("read-only"))
             add_metric(d.reject { |k,v| SKIP_KEYS.include? k }, {:mount => d[:mount], :type => d[:type]})
           end
         end
@@ -154,11 +154,18 @@ module Hardware
       def add_mount_types(hash)
         shell = systemu("mount")
         shell.stdout.split(/\n/).each do |line|
-          line =~ /^(.*?) on (.*?) \((.*?),/
+          line =~ /^(.*?) on (.*?) \((.*?)\)$/
           if hash.include? $2 then
-            hash[$2][:type] = $3
+            mount = $2
+            flags = $3.split(/, ?/)
+            hash[mount][:flags] = flags
+            hash[mount][:type] = flags.first
+
           elsif hash.include? $1 then
-            hash[$1][:type] = $3
+            mount = $1
+            flags = $3.split(/, ?/)
+            hash[mount][:flags] = flags
+            hash[mount][:type] = flags.first
           end
         end
       end
