@@ -5,7 +5,8 @@
     "mount" : {
       "type" : "enum",
       "name" : "Mount",
-      "desc" : "Mount to check usage for (defaults to all physical mounts)"
+      "desc" : "Mount to check usage for (defaults to all physical mounts)",
+      "default" : "ALL"
     }
   },
 
@@ -17,5 +18,5 @@
     "usage" : { "unit" : "%", "desc" : "inode usage", "range": "0..100" }
   },
 
-  "tags" : [ "mount" ]
+  "tags" : [ "mount", "type" ]
 }
