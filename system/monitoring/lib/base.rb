@@ -19,12 +19,8 @@ module Monitoring
     def initialize(options=nil)
       super()
 
-      @options = options || get_json_input()
       @config = load_config()
-
-      if @options.nil? or @options.empty? then
-        @options = @config.dup
-      end
+      @options = @config.merge(options || get_json_input())
 
       @storage = {}
       @key = @options["key"]
