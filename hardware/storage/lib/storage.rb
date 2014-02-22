@@ -6,7 +6,7 @@ module Hardware
     SKIP_FS = ["tmpfs", "devfs", "devtmpfs", "autofs"]
 
     # keys to skip when outputting inode usage
-    SKIP_KEYS = [:fs, :mount, :type]
+    SKIP_KEYS = [:fs, :mount, :type, :flags]
 
     module Monitoring
 
