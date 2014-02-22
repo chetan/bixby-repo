@@ -84,8 +84,15 @@ module Bixby
 
     # Run command and log output before returning
     def systemu(*args)
+      # Cleanup the ENV and execute
+      old_env = {}
+      %W{BUNDLE_BIN_PATH BUNDLE_GEMFILE}.each{ |r|
+        old_env[r] = ENV.delete(r) if ENV.include?(r) }
+
       cmd = Mixlib::ShellOut.new(*args)
       cmd.run_command
+
+      old_env.each{ |k,v| ENV[k] = v } # reset the ENV
 
       # return if not debug?
       puts "status: #{cmd.exitstatus}"
