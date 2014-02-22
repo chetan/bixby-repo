@@ -192,6 +192,7 @@ module Hardware
         else
           cmd = osx?() ? "/bin/df -i" : "df -i"
         end
+        cmd += "T" if linux?
 
         cmd = "#{cmd} #{mount}" if mount
         shell = systemu(cmd)
@@ -211,7 +212,7 @@ module Hardware
             partial = nil
           end
 
-          if line =~ /^(\S+?|map \S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
+          if osx? && line =~ /^(\S+?|map \S+?)\s+(\d+)G?\s+(\d+)G?\s+(\d+)G?\s+(\d+)%\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
             # new mac pattern (lion+)
             ret[$1] = {
               :used  => $6.to_i,
@@ -221,13 +222,14 @@ module Hardware
               :mount => $9
             }
 
-          elsif line =~ /^(\S+?)\s+(\S+?)\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
+          elsif line =~ /^(\S+?)\s+(\S+?)\s+(\S+?)\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/ then
             # linux (gnu) pattern
             ret[$1] = {
-              :used  => $3.to_i,
-              :free  => $4.to_i,
-              :usage => $5.to_i,
-              :total => $2.to_i,
+              :type  => $2,
+              :total => $3.to_i,
+              :used  => $4.to_i,
+              :free  => $5.to_i,
+              :usage => $6.to_i,
               :mount => $7
             }
 
