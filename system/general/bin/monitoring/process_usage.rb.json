@@ -38,7 +38,8 @@
       "name":"Command Name",
       "desc":"The name of the process you want to monitor.",
       "default":null,
-      "type":"text"
+      "type":"text",
+      "required": true,
     },
     "ps_command":{
       "name":"The Process Status (ps) Command",

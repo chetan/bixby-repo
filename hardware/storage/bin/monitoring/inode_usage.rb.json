@@ -6,7 +6,8 @@
       "type" : "enum",
       "name" : "Mount",
       "desc" : "Mount to check usage for (defaults to all physical mounts)",
-      "default" : "ALL"
+      "default" : "ALL",
+      "required" : true
     }
   },
 

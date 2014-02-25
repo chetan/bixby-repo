@@ -5,7 +5,8 @@
     "host":{
       "name": "Host",
       "desc": "Host or IP to ping",
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   },
 

@@ -6,7 +6,8 @@
       "type" : "enum",
       "name" : "Mount",
       "desc" : "Filesystem mount point to check usage for, defaults to ALL",
-      "default" : "ALL"
+      "default" : "ALL",
+      "required" : true
     }
   },
 
