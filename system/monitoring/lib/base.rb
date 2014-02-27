@@ -113,10 +113,15 @@ module Monitoring
 
     # Store the given data for the next run
     #
-    # @param [Hash] hash  data to store
-    def store(hash)
+    # @param [Hash] hash    data to store
+    def store(hash, val=nil)
       return if hash.nil?
-      @storage.merge!(hash)
+      if val.nil? then
+        @storage.merge!(hash)
+      else
+        # here for compat with Scout::Plugin
+        @storage[hash] = val
+      end
     end
     alias_method :remember, :store
     alias_method :keep, :store
