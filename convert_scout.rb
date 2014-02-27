@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby -wU
 
 require "yaml"
 require "multi_json"
@@ -49,6 +49,7 @@ file = files.shift
 code = <<-EOF
 #!/usr/bin/env ruby
 
+# Originally based on scout-plugins/#{File.basename(path)}
 # Copyright (c) 2008-2013 Scout Monitoring
 # Licensed under the MIT license
 # See: https://github.com/scoutapp/scout-plugins
