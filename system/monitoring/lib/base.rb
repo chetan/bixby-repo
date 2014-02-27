@@ -158,7 +158,9 @@ module Monitoring
 
     # Filename where data will be stored
     def storage_path
-      Bixby.path("var", "monitoring", "data", "#{@key}.dump")
+      # use check_id in filename, in case there are multiple instances of this check (i.e., with different options)
+      s = @check_id ? "#{@key}-#{@check_id}" : @key
+      Bixby.path("var", "monitoring", "data", "#{s}.dump")
     end
 
     # Save storage hash to disk.
