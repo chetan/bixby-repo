@@ -1,5 +1,5 @@
 {
-  "digest": "c82731f793e64bcc656b99047d4e6a49ee58765c9a611791fd3de102561266f8",
+  "digest": "0d21458250f645bc8cd7fe0b79ba64e5439ac1cae4a7d6c4c532d385566c9366",
   "files": [
     {
       "file": "bin/mon_daemon.rb",
@@ -23,7 +23,7 @@
     },
     {
       "file": "lib/base.rb",
-      "digest": "7940486f0156365f64d3e9b40b807044696ee574501fce1a5db166836f9fefcf"
+      "digest": "51e074a339aac5cfea21fc80daddf6da630ada1158784186603497f550aab5f9"
     },
     {
       "file": "lib/mon_daemon/check.rb",

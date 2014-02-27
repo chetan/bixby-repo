@@ -215,7 +215,7 @@ module Monitoring
       rescue Exception => ex
         @errors << ex.message
         @errors << ex.backtrace.join("\n")
-        @status = ERROR if @status.nil?
+        @status = ERROR
         puts MultiJson.dump(self.to_hash)
         save_storage()
         exit 1
