@@ -1,20 +1,24 @@
 {
-  "digest": "c154a4a0b43452bfd0f60eb2ca3552b94e7204e75a36bc0f30a2838a5770b133",
+  "digest": "f9b56c136210c29bf7787115c9282aacc48621e4a42a35d8c21214fee954df3a",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
-      "digest": "027398964d44fcb8ec769af95bf359a0e86415817120918d335be4097e273276"
+      "digest": "e3aafdcecf02880315efdfc8491e36fa233f075e4fcbbc3b2a1860ed84c0532a"
     },
     {
       "file": "bin/monitoring/connection_count.rb.json",
-      "digest": "8a6e1afda1a99ee27a95c0a03b3a4168d8baf6d72eee9c4c580d4f4236d8b93b"
+      "digest": "8be97f68d2c35666ba64cb72edfddf7629617c2bfcf14aced90a9637e3d3b8f3"
     },
     {
-      "file": "bin/monitoring/connection_count.rb.test",
-      "digest": "32136ade7989f731a2cf657fbfee77d970dc000cbbd6fd700a0044cdf5d58066"
+      "file": "bin/monitoring/connection_count_by_port.rb",
+      "digest": "ed16c2ed06834f0c1827fa4db931007c5229bde35d5590f419b02484df065467"
     },
     {
-      "file": "bin/monitoring/connection_count.rb.test2",
+      "file": "bin/monitoring/connection_count_by_port.rb.json",
+      "digest": "16e416a7806a672ff82947f0e38e4680d9b0f324a7c370a29e1ef1bd72c6493c"
+    },
+    {
+      "file": "bin/monitoring/connection_count_by_port.rb.test",
       "digest": "9633c6eab083af9a27080bbcdcb795e607bdbc9916d76079075391996d9d665d"
     },
     {
@@ -48,6 +52,14 @@
     {
       "file": "bin/monitoring/port_check.rb.test",
       "digest": "4b37aebe3bc7d16c7b481edf82a6651bdbb3585dcc54330ea04ae5b5a211bef4"
+    },
+    {
+      "file": "lib/hardware-network.rb",
+      "digest": "8d22da43ff063683db2cadf506490cb04cb5915acf6b5908c739cee982521fff"
+    },
+    {
+      "file": "lib/hardware/network.rb",
+      "digest": "374b86eef542bbe5c81325446861dc7997b99f7166f45727a8e10834677dbc9f"
     },
     {
       "file": "manifest.json",

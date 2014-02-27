@@ -1,0 +1,25 @@
+{
+  "name":"Network Connections by Port",
+
+  "options":{
+    "port":{
+      "name": "Port",
+      "desc":"Comma-delimited list of local ports to monitor",
+      "default":"80,443,25",
+      "type":"text",
+      "required": true
+    }
+  },
+
+  "key":"net.conns",
+  "metrics":{
+    "port":{
+      "desc": "Total number of connections by port",
+      "label": "Port $port",
+      "unit":null,
+      "range": "0+"
+    }
+  },
+
+  "tags": [ "port" ]
+}
