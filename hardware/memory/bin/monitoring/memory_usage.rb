@@ -8,6 +8,7 @@
 use_bundle "system/monitoring"
 
 class MemoryProfiler < Scout::Plugin
+
   # reports darwin units as MB
   DARWIN_UNITS = { "b" => 1/(1024*1024),
             "k" => 1/1024,
@@ -23,6 +24,9 @@ class MemoryProfiler < Scout::Plugin
       linux_memory
     end
   end
+
+
+  private
 
   def linux_memory
     mem_info = {}
@@ -131,7 +135,6 @@ class MemoryProfiler < Scout::Plugin
     report(report_data)
   end
 
-  # True if on solaris. Only checked on the first run (assumes OS does not change).
   def solaris?
     RUBY_PLATFORM =~ /solaris/
   end
