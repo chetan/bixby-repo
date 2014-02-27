@@ -1,0 +1,35 @@
+{
+  "name":"Memory Usage",
+  "key":"mem",
+
+  "metrics":{
+    "total":{
+      "desc":null,
+      "unit":"MB"
+    },
+    "used":{
+      "desc":null,
+      "unit":"MB"
+    },
+    "free":{
+      "desc":null,
+      "unit":"MB"
+    },
+    "usage":{
+      "desc":null,
+      "unit":"%"
+    },
+    "swap.total":{
+      "desc":null,
+      "unit":"MB"
+    },
+    "swap.used":{
+      "desc":null,
+      "unit":"MB"
+    },
+    "swap.usage":{
+      "desc":null,
+      "unit":"%"
+    }
+  }
+}

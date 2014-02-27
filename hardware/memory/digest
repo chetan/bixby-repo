@@ -1,0 +1,17 @@
+{
+  "digest": "19633ff0b2c474f2bdf614eefc05aafed8b6ebb89785befb3edc28c22668eb8d",
+  "files": [
+    {
+      "file": "bin/monitoring/memory_usage.rb",
+      "digest": "7d132eb3da31af3e404006c8f323f15391d130cbd5048516603a0272bae02ff9"
+    },
+    {
+      "file": "bin/monitoring/memory_usage.rb.json",
+      "digest": "b271d442c02d51fd0358600edb0d69b97f14ee8f0d80d50bae62d873b070df53"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "385c52a75e67448187870c4bba7703bd3ac592a8a05da8e8a0801877c7edf1cc"
+    }
+  ]
+}
