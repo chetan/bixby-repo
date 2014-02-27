@@ -1,0 +1,31 @@
+{
+  "name": "network throughput",
+  "key": "net",
+  "metrics": {
+    "eth0.tx": {
+      "desc": "eth0 outgoing bytes/sec",
+      "unit": "Bps"
+    },
+    "eth0.tx.packets": {
+      "desc": "eth0 outgoing packets/sec",
+      "unit": "pkts/s"
+    },
+    "eth0.rx": {
+      "desc": "eth0 incoming bytes/sec",
+      "unit": "Bps"
+    },
+    "eth0.rx.packets": {
+      "desc": "eth0 incoming packets/sec",
+      "unit": "pkts/s"
+    }
+  },
+
+  "options": {
+    "interfaces": {
+      "name": "Interfaces",
+      "desc": "Only interfaces that match the given regular expression will be monitored",
+      "default": "venet|eth|en",
+      "type": "text"
+    }
+  }
+}

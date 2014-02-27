@@ -1,5 +1,5 @@
 {
-  "digest": "f9b56c136210c29bf7787115c9282aacc48621e4a42a35d8c21214fee954df3a",
+  "digest": "7d35278b845891e71dc47c4a9e8c331500b044169a957ec3e580088d210d108e",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -28,6 +28,14 @@
     {
       "file": "bin/monitoring/connection_state.rb.json",
       "digest": "b135602729d0ca97c6576f1c35d495ee5aa0a09fb28a7dc916b3ee1443688d48"
+    },
+    {
+      "file": "bin/monitoring/network_throughput.rb",
+      "digest": "47738bd8c51d282d12feefad03f3dd14851033bf5090ab7bd23de14546143f07"
+    },
+    {
+      "file": "bin/monitoring/network_throughput.rb.json",
+      "digest": "477fe422077be5c54b85c2fe2d9006f4d7d768b968e3d854d55b77679a7bd4cb"
     },
     {
       "file": "bin/monitoring/ping.rb",
@@ -59,7 +67,7 @@
     },
     {
       "file": "lib/hardware/network.rb",
-      "digest": "374b86eef542bbe5c81325446861dc7997b99f7166f45727a8e10834677dbc9f"
+      "digest": "3822198b71ee88ccac5981ec1485f9ffdaad3668351d27fccb4390cce2070ac2"
     },
     {
       "file": "manifest.json",

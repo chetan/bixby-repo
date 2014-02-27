@@ -7,6 +7,8 @@
 module Hardware
   module Network
 
+    extend Bixby::PlatformUtil
+
 
     def self.netstat
       cmd = systemu("netstat -n")
@@ -66,6 +68,32 @@ module Hardware
       return port_hash
     end
 
+
+
+
+    private
+
+
+
+    def self.list_interfaces(interfaces)
+      if darwin? then
+        regex = Regexp.compile(interfaces || /en/)
+        list_interfaces_darwin(regex)
+      else
+        regex = Regexp.compile(interfaces || /venet|eth/)
+        list_interfaces_linux(regex)
+      end
+    end
+
+    def self.list_interfaces_linux(regex)
+      systemu("cat /proc/net/dev | grep : | awk '{print $1}'").stdout.split(/\n/).
+        map{|s| s.chop }.find_all{ |s| s =~ regex }.sort.uniq
+    end
+
+    def self.list_interfaces_darwin(regex)
+      systemu("netstat -bi | awk '{print $1}'").stdout.split(/\n/).
+        find_all{ |s| s =~ regex }.sort.uniq
+    end
 
   end
 end
