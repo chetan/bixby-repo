@@ -83,6 +83,8 @@ module Monitoring
     # @param [Hash] metadata  key/value pairs to report
     def add_metric(metrics, metadata={})
 
+      return if metrics.nil? or metrics.empty?
+
       # convert booleans to integer values
       metrics.each do |k,v|
         if v == true then
