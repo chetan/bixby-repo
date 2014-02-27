@@ -85,10 +85,10 @@ module Hardware
 
       def add_stats(ret, iface, in_packets, in_bytes, out_packets, out_bytes)
         # do stat calculations
-        ret.merge! local_counter("#{iface}.rx",          in_bytes,  :per => :second, :round => 2)
-        ret.merge! local_counter("#{iface}.rx.packets",  in_packets,         :per => :second, :round => 0)
-        ret.merge! local_counter("#{iface}.tx",         out_bytes, :per => :second, :round => 2)
-        ret.merge! local_counter("#{iface}.txt.packets", out_packets,        :per => :second, :round => 0)
+        ret.merge! local_counter("#{iface}.rx",          in_bytes,    :per => :second, :round => 0)
+        ret.merge! local_counter("#{iface}.rx.packets",  in_packets,  :per => :second, :round => 0)
+        ret.merge! local_counter("#{iface}.tx",          out_bytes,   :per => :second, :round => 0)
+        ret.merge! local_counter("#{iface}.tx.packets",  out_packets, :per => :second, :round => 0)
       end
 
       # Use memory to compute metric based on two intervals
