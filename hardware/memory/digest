@@ -1,5 +1,5 @@
 {
-  "digest": "fd3df7287e98813cbeb9032b454efaf358ba4e69efe0dfb3da185ac8a6494cfb",
+  "digest": "9dc9a4124bd6b29a799865d5826442839c355f77051b1044eac29f484be96395",
   "files": [
     {
       "file": "bin/monitoring/memory_usage.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/monitoring/memory_usage.rb.json",
-      "digest": "b271d442c02d51fd0358600edb0d69b97f14ee8f0d80d50bae62d873b070df53"
+      "digest": "3b428b6725d293295152af171845875bb022d97b73a9ba7af3422e24efb8b0c9"
     },
     {
       "file": "manifest.json",

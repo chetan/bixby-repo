@@ -1,5 +1,5 @@
 {
-  "digest": "7d35278b845891e71dc47c4a9e8c331500b044169a957ec3e580088d210d108e",
+  "digest": "b34f82d6991f723974d08075c392550205756f9f48aab40d551a9b0c95152696",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -31,11 +31,11 @@
     },
     {
       "file": "bin/monitoring/network_throughput.rb",
-      "digest": "47738bd8c51d282d12feefad03f3dd14851033bf5090ab7bd23de14546143f07"
+      "digest": "a64f81d0c9a828ae8f8dd1d005065e31005347bd1365014d567dd93de09bff58"
     },
     {
       "file": "bin/monitoring/network_throughput.rb.json",
-      "digest": "477fe422077be5c54b85c2fe2d9006f4d7d768b968e3d854d55b77679a7bd4cb"
+      "digest": "09b2fc53bf47bf69863e09d203407ba331a41394bc23f94c066c84bde2e10c5f"
     },
     {
       "file": "bin/monitoring/ping.rb",

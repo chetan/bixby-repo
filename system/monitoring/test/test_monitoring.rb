@@ -168,11 +168,12 @@ class TestMonitoring < Bixby::TestCase
   end # do_test_metrics_with_opts
 
   def assert_metric_present(metrics, key, range, optional)
-    vals = metrics.find_all{ |r| r["metrics"].include? key }
+    vals = metrics.find_all{ |r| fetch_metric_val(key, r["metrics"]) }
     return if vals.empty? and optional
 
     refute_empty vals, "should report metric '#{key}'"
-    val = vals.first["metrics"][key]
+    val = fetch_metric_val(key, vals.first["metrics"])
+
     assert val
     assert_kind_of Numeric, val
 
@@ -205,6 +206,18 @@ class TestMonitoring < Bixby::TestCase
       assert range.include?(val)
     end
 
+  end
+
+  # Retrieve a metric value from the given hash
+  # Supports wildcard metrics of the form "*.tx" which will match "en0.tx"
+  def fetch_metric_val(key, metrics)
+    if key.include?("*") then
+      t = key.gsub(/^\*\./, '')
+      k = metrics.keys.find{ |k| k =~ /^.*?\.#{t}$/ }
+      return (k ? metrics[k] : nil)
+    else
+      metrics[key]
+    end
   end
 
 end
