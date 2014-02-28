@@ -114,6 +114,7 @@ class TestMonitoring < Bixby::TestCase
     storage = Dir.glob(Bixby.path("var", "monitoring", "data", "**")).first
     if storage and File.exist? storage and File.size(storage) > 4 then
       # run command twice in case storage/recall is required for generating metrics
+      sleep 1 # some tests require a second delay for calculations
       shell = systemu(file + " --monitor", opts)
       assert shell.success?, "#{File.basename(file)} --monitor succeeds again"
     end
