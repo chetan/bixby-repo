@@ -16,6 +16,7 @@ rvm:
 branches:
   only:
     - master
+    - develop
 
 env:
   global:
