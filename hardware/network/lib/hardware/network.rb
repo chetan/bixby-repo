@@ -77,10 +77,10 @@ module Hardware
 
     def self.list_interfaces(interfaces)
       if darwin? then
-        regex = Regexp.compile(interfaces || /en/)
+        regex = Regexp.compile(interfaces || /^(en|lo)/)
         list_interfaces_darwin(regex)
       else
-        regex = Regexp.compile(interfaces || /venet|eth/)
+        regex = Regexp.compile(interfaces || /^(venet|eth|lo)/)
         list_interfaces_linux(regex)
       end
     end
