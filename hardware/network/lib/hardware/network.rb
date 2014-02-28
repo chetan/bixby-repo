@@ -87,7 +87,7 @@ module Hardware
 
     def self.list_interfaces_linux(regex)
       systemu("cat /proc/net/dev | grep : | awk '{print $1}'").stdout.split(/\n/).
-        map{|s| s.chop }.find_all{ |s| s =~ regex }.sort.uniq
+        map{|s| s.split(/:/).first }.find_all{ |s| s =~ regex }.sort.uniq
     end
 
     def self.list_interfaces_darwin(regex)
