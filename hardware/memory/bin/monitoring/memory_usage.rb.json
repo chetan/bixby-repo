@@ -21,15 +21,18 @@
     },
     "swap.total":{
       "desc":null,
-      "unit":"MB"
+      "unit":"MB",
+      "platforms" : [ "linux" ]
     },
     "swap.used":{
       "desc":null,
-      "unit":"MB"
+      "unit":"MB",
+      "platforms" : [ "linux" ]
     },
     "swap.usage":{
       "desc":null,
-      "unit":"%"
+      "unit":"%",
+      "platforms" : [ "linux" ]
     }
   }
 }
