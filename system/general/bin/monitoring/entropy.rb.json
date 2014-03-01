@@ -1,0 +1,12 @@
+{
+  "name":"Available Entropy",
+  "key":"sys.entropy",
+
+  "metrics":{
+    "count":{
+      "desc":"Available Entropy",
+      "range": "0+",
+      "platforms": ["linux"]
+    }
+  }
+}
