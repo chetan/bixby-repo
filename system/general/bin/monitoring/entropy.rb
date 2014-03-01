@@ -6,7 +6,7 @@ class EntropyAvail < Bixby::Monitoring::Base
 
   def monitor
     if linux? then
-      add_metric(:size => File.read("/proc/sys/kernel/random/entropy_avail").strip.to_i)
+      add_metric(:count => File.read("/proc/sys/kernel/random/entropy_avail").strip.to_i)
     elsif darwin? then
       # TODO darwin is not supported
     end
