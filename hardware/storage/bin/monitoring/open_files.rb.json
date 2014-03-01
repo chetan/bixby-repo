@@ -1,0 +1,10 @@
+{
+  "name" : "Open File Count",
+
+  "key" : "fs.files",
+  "metrics" : {
+    "count" : { "desc" : "Open file count", "range": "0+" },
+    "max"   : { "desc" : "Maximum allowed open files", "range": "0+" }
+  }
+
+}
