@@ -59,7 +59,8 @@ module Hardware
 
 
     class Stats
-      attr_accessor :user, :system, :idle, :iowait, :interrupts, :procs_running, :procs_blocked, :time
+      attr_accessor :user, :system, :idle, :iowait, :interrupts, :procs_running, :procs_blocked,
+                    :steal, :time
 
       def self.fetch
         cpu_stats = Stats.new
@@ -85,7 +86,8 @@ module Hardware
         data = input.split(/\n/).collect { |line| line.split }
 
         if cpu = data.detect { |line| line[0] == 'cpu' }
-          self.user, nice, self.system, self.idle, self.iowait, hardirq, softirq = *cpu[1..-1].collect { |c| c.to_i }
+          self.user, nice, self.system, self.idle, self.iowait,
+            hardirq, softirq, self.steal = *cpu[1..-1].collect { |c| c.to_i }
 
           self.user   += nice
           self.system += hardirq + softirq
@@ -125,6 +127,10 @@ module Hardware
         diff_iowait = iowait - other.iowait
 
         div   = diff_user + diff_system + diff_idle + diff_iowait
+        if steal && other.steal && steal > 0
+          diff_steal = steal - other.steal
+          div += diff_steal
+        end
         divo2 = div / 2
 
         results = {
@@ -135,6 +141,10 @@ module Hardware
           :procs_running => self.procs_running,
           :procs_blocked => self.procs_blocked
         }
+
+        if diff_steal && steal > 0
+          results[:steal] = (100.0 * diff_steal + divo2) / div
+        end
 
         if self.time && other.time
           diff_in_seconds = self.time.to_f - other.time.to_f
@@ -154,7 +164,7 @@ module Hardware
           {
             :user => user, :system => system, :idle => idle, :iowait => iowait,
             :interrupts => interrupts, :procs_running => procs_running,
-            :procs_blocked => procs_blocked
+            :procs_blocked => procs_blocked, :steal => steal
           }
         end
       end

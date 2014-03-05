@@ -8,6 +8,7 @@
     "iowait"       : { "desc" : "IO Wait", "platforms": ["linux"], "range": "0..100" },
     "procs_running": { "desc" : "Procs Running", "platforms": ["linux"], "range": ">=0" },
     "procs_blocked": { "desc" : "Procs Blocked", "platforms": ["linux"], "range": "0+" },
-    "interrupts"   : { "desc" : "Interrupts", "platforms": ["linux"], "range": "0+" }
+    "interrupts"   : { "desc" : "Interrupts", "platforms": ["linux"], "range": "0+" },
+    "steal"        : { "desc" : "Steal", "platforms": ["linux"], "range": "0+", "unit": "%" }
   }
 }
