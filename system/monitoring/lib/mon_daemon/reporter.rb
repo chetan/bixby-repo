@@ -30,11 +30,11 @@ module Bixby
         res = Bixby::Metrics.put_check_result(reports)
         if not res.success? then
           # TODO failover to disk buffer??
-          logger.error { "error reporting to server:\n" + res.to_s }
+          logger.error { "error reporting to server at #{Bixby.manager_uri}:\n" + res.to_s }
         end
 
       rescue Exception => ex
-        logger.error { "error reporting to server: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
+        logger.error { "error reporting to server at #{Bixby.manager_uri}: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
 
       end
 
