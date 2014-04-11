@@ -1,9 +1,17 @@
 {
-  "digest": "8fd59914876b06ab4f3593d4f178ceb1bd6cf123948dbee9d0d773f3e505b094",
+  "digest": "566517b46815f6b023e5aa72b868b4e9a72442cd3705d1f002862249695efa63",
   "files": [
     {
       "file": "bin/hello_world.sh",
       "digest": "9c1cbe1680b7a766926220c9eff07b6f0cfca4ee1e870fe673342555bf51140a"
+    },
+    {
+      "file": "bin/monitoring/entropy.rb",
+      "digest": "e8d20290990636d1286fba385e85644490f9df35e7a7a54e81403b3c4d001163"
+    },
+    {
+      "file": "bin/monitoring/entropy.rb.json",
+      "digest": "cc87c92a498c551c4bc03b533cc849cdb0c000e1bbf8139aed5a26762eb5b303"
     },
     {
       "file": "bin/monitoring/process_usage.rb",
