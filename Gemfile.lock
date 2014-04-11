@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/chetan/api_auth.git
+  revision: 2ced7ba3afcc4d81e8a24e3d89f569b38b1e10a0
+  branch: bixby
+  specs:
+    api-auth (1.0.3)
+
+GIT
   remote: git://github.com/chetan/easycov.git
   revision: 0fd0c852ae174c8de7c4d5c904c59b6cd1869d66
   specs:
@@ -34,7 +41,6 @@ GEM
   specs:
     addressable (2.3.5)
     ansi (1.4.3)
-    api-auth (1.1.0)
     awesome_print (1.2.0)
     bixby-client (0.4.1)
       api-auth
@@ -45,7 +51,7 @@ GEM
       mixlib-shellout
       multi_json
       oj
-    bixby-common (0.4.10)
+    bixby-common (0.4.12)
       api-auth
       faye-websocket
       httpi
@@ -107,12 +113,12 @@ GEM
     method_source (0.8.2)
     mime-types (2.1)
     mixlib-cli (1.4.0)
-    mixlib-shellout (1.3.0)
+    mixlib-shellout (1.4.0)
     mocha (1.0.0)
       metaclass (~> 0.0.1)
-    multi_json (1.8.4)
+    multi_json (1.9.2)
     nio4r (1.0.0)
-    oj (2.5.5)
+    oj (2.7.2)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -154,6 +160,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  api-auth!
   bixby-client
   bixby-common
   bundler

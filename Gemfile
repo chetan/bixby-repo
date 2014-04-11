@@ -6,6 +6,8 @@ gem 'bixby-client'
 # gem 'bixby-common', :path => "../common"
 # gem 'bixby-client', :path => "../client"
 
+gem 'api-auth', :github => "chetan/api_auth", :branch => "bixby"
+
 group :development do
   # used by all_metrics.rb
   gem "terminal-table"
