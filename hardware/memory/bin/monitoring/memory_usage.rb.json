@@ -4,33 +4,33 @@
 
   "metrics":{
     "total":{
-      "desc":null,
+      "desc": "Total",
       "unit":"MB"
     },
     "used":{
-      "desc":null,
+      "desc": "Used",
       "unit":"MB"
     },
     "free":{
-      "desc":null,
+      "desc": "Free",
       "unit":"MB"
     },
     "usage":{
-      "desc":null,
+      "desc": "Usage",
       "unit":"%"
     },
     "swap.total":{
-      "desc":null,
+      "desc": "Swap: Total",
       "unit":"MB",
       "platforms" : [ "linux" ]
     },
     "swap.used":{
-      "desc":null,
+      "desc": "Swap: Used",
       "unit":"MB",
       "platforms" : [ "linux" ]
     },
     "swap.usage":{
-      "desc":null,
+      "desc": "Swap: Usage",
       "unit":"%",
       "platforms" : [ "linux" ]
     }
