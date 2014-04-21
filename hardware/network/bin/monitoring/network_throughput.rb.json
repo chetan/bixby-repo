@@ -2,23 +2,25 @@
   "name": "network throughput",
   "key": "net",
   "metrics": {
-    "*.tx": {
-      "desc": "eth0 outgoing bytes/sec",
+    "tx.bytes": {
+      "desc": "outgoing bytes/sec",
       "unit": "Bps"
     },
-    "*.tx.packets": {
-      "desc": "eth0 outgoing packets/sec",
+    "tx.packets": {
+      "desc": "outgoing packets/sec",
       "unit": "pkts/s"
     },
-    "*.rx": {
-      "desc": "eth0 incoming bytes/sec",
+    "rx.bytes": {
+      "desc": "incoming bytes/sec",
       "unit": "Bps"
     },
-    "*.rx.packets": {
-      "desc": "eth0 incoming packets/sec",
+    "rx.packets": {
+      "desc": "incoming packets/sec",
       "unit": "pkts/s"
     }
   },
+
+  "tags" : [ "interface" ],
 
   "options": {
     "interfaces": {

@@ -27,7 +27,10 @@ module Hardware
             )
         end
 
-        add_metric throughput(interfaces)
+        ret = throughput(interfaces)
+        ret.each do |interface, metrics|
+          add_metric metrics, {:interface => interface}
+        end
       end
 
 
@@ -89,18 +92,22 @@ module Hardware
 
       def add_stats(ret, iface, in_packets, in_bytes, out_packets, out_bytes)
         # do stat calculations
-        ret.merge! local_counter("#{iface}.rx",          in_bytes,    :per => :second, :round => 0)
-        ret.merge! local_counter("#{iface}.rx.packets",  in_packets,  :per => :second, :round => 0)
-        ret.merge! local_counter("#{iface}.tx",          out_bytes,   :per => :second, :round => 0)
-        ret.merge! local_counter("#{iface}.tx.packets",  out_packets, :per => :second, :round => 0)
+        r = {}
+        r.merge! local_counter(iface, "rx.bytes",    in_bytes,    :per => :second, :round => 0)
+        r.merge! local_counter(iface, "rx.packets",  in_packets,  :per => :second, :round => 0)
+        r.merge! local_counter(iface, "tx.bytes",    out_bytes,   :per => :second, :round => 0)
+        r.merge! local_counter(iface, "tx.packets",  out_packets, :per => :second, :round => 0)
+        ret[iface] = r
       end
 
       # Use memory to compute metric based on two intervals
-      def local_counter(name, value, options = {})
+      def local_counter(iface, name, value, options = {})
 
         ret = nil
         @current_time ||= Time.now
-        if data = memory(name) then
+
+        key = "#{iface}.#{name}"
+        if data = memory(key) then
 
           last_time, last_value = data[:time], data[:value]
           elapsed_seconds       = @current_time - last_time
@@ -130,7 +137,7 @@ module Hardware
 
         end
 
-        remember(name => { :time => @current_time, :value => value })
+        remember(key => { :time => @current_time, :value => value })
         return ret || {}
       end
 
