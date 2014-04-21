@@ -67,7 +67,7 @@
       // tags = { "device" : "/foo/bar", "type" : "ext3" }
       //
       // the label below would be rendered as: "Metric for /foo/bar"
-      "label": "Metric for $device"
+      "label": "Metric for $device",
 
       // Unit of value
       // Possible values: %, MB, GB, TB
