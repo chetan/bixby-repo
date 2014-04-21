@@ -94,7 +94,7 @@ class MemoryProfiler < Scout::Plugin
       case label
       when 'used'
         report_data["used"] = (amount.to_f * DARWIN_UNITS[unit.downcase]).round
-      when 'free'
+      when 'free', 'unused'
         report_data["free"] = (amount.to_f * DARWIN_UNITS[unit.downcase]).round
       end
     end
