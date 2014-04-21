@@ -69,6 +69,10 @@ module Hardware
 
         interfaces.each do |iface|
 
+          # just ignore interfaces like this for now:
+          # en3*  1500  <Link#5>    32:00:16:0f:17:c0        0     0          0        0     0          0     0
+          next if iface =~ /\*$/
+
           # Name   Mtu     Network     Address              Ipkts     Ierrs Ibytes        Opkts     Oerrs Obytes       Coll
           # "en0", "1500", "<Link#4>", "00:1f:5b:3d:6b:08", "7235347", "0", "6759061727", "4887571", "0", "712511194", "0"
           stats = systemu("netstat -biI #{iface}").stdout.split(/\n/).reject{ |s| s =~ /^Name/ }.first.
