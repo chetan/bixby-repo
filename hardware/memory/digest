@@ -1,9 +1,9 @@
 {
-  "digest": "5a44f5fc47a8fd731fce7bdc66dcd6e47f17a639fcebc5a13eeffcea867b6428",
+  "digest": "76de9adb58a365aab75ec660998eb3e5a871746fbac109ff7beed6275f5c40a9",
   "files": [
     {
       "file": "bin/monitoring/memory_usage.rb",
-      "digest": "6279bcac04ed904ee80e776778bafb8672c69d8e4870ceb4b115ffba1de8bf3e"
+      "digest": "eabfcc2bf40564542d934842ae19e4101a91afcbc447479fb24ee1d3e471644c"
     },
     {
       "file": "bin/monitoring/memory_usage.rb.json",

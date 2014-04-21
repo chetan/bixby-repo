@@ -1,5 +1,5 @@
 {
-  "digest": "566517b46815f6b023e5aa72b868b4e9a72442cd3705d1f002862249695efa63",
+  "digest": "7866196556918b8fec95bf54c25b38493b717a6d756f72924c1ac5659ecb37e2",
   "files": [
     {
       "file": "bin/hello_world.sh",
@@ -19,7 +19,7 @@
     },
     {
       "file": "bin/monitoring/process_usage.rb.json",
-      "digest": "5929a5a51995cb65e461ae9f4e0a1900b8e7d6d3fbf1674ed15bc38ea419d618"
+      "digest": "d208afdb8a9e0003d2ed6e4ece95f8607945e83f31fa97782836a954fa734bb9"
     },
     {
       "file": "bin/monitoring/process_usage.rb.test",
