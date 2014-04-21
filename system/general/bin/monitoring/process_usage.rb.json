@@ -1,6 +1,6 @@
 {
-  "name":"Process Memory Usage",
-  "key":"sys.proc.memory",
+  "name":"Process Usage",
+  "key":"sys.proc",
   "metrics":{
     "memory":{
       "desc":"Memory Usage (Largest Process)",
@@ -59,7 +59,5 @@
       "default":"1",
       "type":"text"
     }
-  },
-  "rename":{
-    "memory":"usage"
-  }}
+  }
+}
