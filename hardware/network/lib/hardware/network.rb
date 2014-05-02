@@ -7,8 +7,11 @@
 module Hardware
   module Network
 
-    extend Bixby::PlatformUtil
-
+    if Bixby.const_defined? :PlatformUtil then
+      extend Bixby::PlatformUtil
+    else
+      extend Bixby::ScriptUtil
+    end
 
     def self.netstat
       cmd = systemu("netstat -n")

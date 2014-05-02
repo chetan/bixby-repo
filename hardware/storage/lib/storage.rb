@@ -49,7 +49,11 @@ module Hardware
 
     class << self
 
-      include Bixby::PlatformUtil
+      if Bixby.const_defined? :PlatformUtil then
+        include Bixby::PlatformUtil
+      else
+        include Bixby::ScriptUtil
+      end
 
       # Returns the 'df' utilities output as a hash, all sizes are in GB
       #
