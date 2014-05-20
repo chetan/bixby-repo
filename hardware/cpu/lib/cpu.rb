@@ -5,7 +5,11 @@ module Hardware
 
     class << self
 
-      include Bixby::PlatformUtil
+      if Bixby.const_defined? :PlatformUtil then
+        include Bixby::PlatformUtil
+      else
+        include Bixby::ScriptUtil
+      end
 
       # Get load averages as reported by 'uptime'
       #

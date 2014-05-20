@@ -1,5 +1,5 @@
 {
-  "digest": "dc048a2786c003a551922527755c75b8f115f6e7bd802553ac252db54891bebb",
+  "digest": "2a63b97d429241eb2624a99f0d297c457ea744b1560991e2e4a91be7d97ab21d",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -67,7 +67,7 @@
     },
     {
       "file": "lib/hardware/network.rb",
-      "digest": "f857c6fe0e51927378993594a01ec5db652caad74a2a6d1078c2180d476c7d92"
+      "digest": "6ef3d42767802209e49134d2043626a0d2d5bc92cffbeba66202c168930d834b"
     },
     {
       "file": "manifest.json",

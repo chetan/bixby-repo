@@ -1,5 +1,5 @@
 {
-  "digest": "6596402e63d50b63d871d3c032bf543c4e38c4e0e5b0ecb345dff01f3c95df47",
+  "digest": "e9ab2c6e043be285dcab11fd83b215bd2b45d620793aee9ff9836f4aa3a8a136",
   "files": [
     {
       "file": "bin/monitoring/disk_usage.rb",
@@ -27,7 +27,7 @@
     },
     {
       "file": "lib/storage.rb",
-      "digest": "057c8fc3aafdb12bf8167d8f5bb1846c8b66b705231a8f0c70181215ac8e6f44"
+      "digest": "736b417fffc22e3856a65c238e11025df5383fff340a597a2a8a66abb3e1f927"
     },
     {
       "file": "manifest.json",
