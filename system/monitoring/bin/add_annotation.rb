@@ -13,6 +13,7 @@ end
 
 tags = ARGV.shift
 detail = read_stdin() || ARGV.shift
+detail = detail.strip if detail
 
 req = Bixby::JsonRequest.new("metrics:add_annotation", [ name, tags, nil, detail ])
 ret = Bixby.client.exec_api(req)
