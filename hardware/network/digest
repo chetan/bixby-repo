@@ -1,5 +1,5 @@
 {
-  "digest": "2a63b97d429241eb2624a99f0d297c457ea744b1560991e2e4a91be7d97ab21d",
+  "digest": "214540130f44fcdf65cfb0ce1858c88f085f7970d8259128f5ee1bc0a00a5102",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -71,7 +71,7 @@
     },
     {
       "file": "manifest.json",
-      "digest": "91d89dfce62b94e6098fef16ede3f408e975a91b3928efed12719cb1a2482420"
+      "digest": "845611741aaf5f35d543ff40221e30492b75d22ff4edbb4ffb02a87253c88bfc"
     }
   ]
 }

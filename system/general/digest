@@ -1,5 +1,5 @@
 {
-  "digest": "7866196556918b8fec95bf54c25b38493b717a6d756f72924c1ac5659ecb37e2",
+  "digest": "cfb023d47fa57ebaa5899ef20028e8c4e210300925e2cafd516f57241559cdc0",
   "files": [
     {
       "file": "bin/hello_world.sh",
@@ -31,7 +31,7 @@
     },
     {
       "file": "manifest.json",
-      "digest": "666eaa29d089ace4f761a6785c87d6fbc4e50736b74da2d1a2d9ffc9e9fe3aae"
+      "digest": "7b24819d1030d10ac713bc27b2e483a7364d94d6fa46f1fdad27ecc22e75c449"
     }
   ]
 }
