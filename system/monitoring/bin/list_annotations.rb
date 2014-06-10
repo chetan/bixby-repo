@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-HTTPI.log = false # temp workaround
+# temp workaround
+require "httpi"
+HTTPI.log = false
 
 module Bixby
   module Model
