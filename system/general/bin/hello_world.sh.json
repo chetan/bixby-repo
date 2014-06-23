@@ -1,0 +1,14 @@
+{
+  "name": "Hello World!",
+  "desc": "Simple test script, optionally echos back the given name",
+
+  "options": {
+    "$@" : {
+      "name"   : "Name to greet",
+      "desc"   : "An optional name to greet (default: world)",
+      "type"   : "text",
+      "default": "world",
+      "required": false
+    }
+  }
+}

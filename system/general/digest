@@ -1,9 +1,13 @@
 {
-  "digest": "cfb023d47fa57ebaa5899ef20028e8c4e210300925e2cafd516f57241559cdc0",
+  "digest": "94cd3d782ab342b84de8187949bb202b65395aa5a01f3cca4054b984b2f5915d",
   "files": [
     {
       "file": "bin/hello_world.sh",
-      "digest": "9c1cbe1680b7a766926220c9eff07b6f0cfca4ee1e870fe673342555bf51140a"
+      "digest": "064f69e5ade9233da9f2cc7ca76cd1e220ed5d92c36bd16b33fef55085adf0f4"
+    },
+    {
+      "file": "bin/hello_world.sh.json",
+      "digest": "49dd4fb52510ebbd8efa0156add0ec6880ce138b583399f693da5016262e6416"
     },
     {
       "file": "bin/monitoring/entropy.rb",
