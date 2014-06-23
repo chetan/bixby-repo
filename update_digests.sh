@@ -1,4 +1,10 @@
+#!/bin/bash
+
+# helper script for updating bundle digests
+# considers every directory which contains 'manifest.json' to be a unique bundle
 
 cd $(dirname $(readlink -f $0))
-find . -mindepth 2 -maxdepth 2 -type d  | egrep -v ^\\./\\. | xargs -n 1 ./system/provisioning/bin/create_digest.rb
-
+for f in `find . -type f -name 'manifest.json' | egrep -v '^\./\.'`; do
+  d=$(dirname $f);
+  ./system/provisioning/bin/create_digest.rb $d
+done
