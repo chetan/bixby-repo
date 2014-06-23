@@ -2,3 +2,4 @@
 .coverage
 .micron
 .bundle
+.DS_Store
