@@ -30,12 +30,12 @@ Dir.glob(File.join(path, "**/*.json"), File::FNM_CASEFOLD).each do |f|
   begin
     MultiJson.load(File.read(f))
   rescue MultiJson::ParseError => ex
-    warn "ERROR: invalid json file #{f}: #{ex.message}"
+    puts "ERROR: invalid json file #{f}: #{ex.message}"
     errors = true
   end
 end
 if errors then
-  warn "aborting digest update due to errors"
+  puts "aborting digest update due to errors"
   exit 1
 end
 

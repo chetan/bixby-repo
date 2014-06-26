@@ -1,9 +1,9 @@
 {
-  "digest": "21570c8b19bb869de98b429c774f27e56a1b2608fab9e4d9be331afc56c04a7c",
+  "digest": "2c92a003630005f8d10b8299d0bba01585cebf2edb52d7a3fbefcae68591cec9",
   "files": [
     {
       "file": "bin/create_digest.rb",
-      "digest": "2b7d9a125d59726ab87e3094d31eda21fdc4d2ad461861f71cfd090794983453"
+      "digest": "f21e6cf78d04b9cdfa4f6eca2028662bb3dc66108b7713e24de2f4d32a2e34f3"
     },
     {
       "file": "bin/create_digest.rb.json",
