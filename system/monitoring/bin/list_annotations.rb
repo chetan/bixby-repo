@@ -8,10 +8,13 @@ module Bixby
   module Model
     class Annotation < Base
 
-      def self.list(name=nil)
-        url = "/annotations"
+      def self.list(name=nil, detail=nil)
+        url = "/annotations?"
         if name and !name.empty? then
-          url += "?name=#{name}"
+          url += "&name=#{name}"
+        end
+        if detail and !detail.empty? then
+          url += "&detail=" + ERB::Util.url_encode(detail)
         end
         get(url)
       end
@@ -20,7 +23,7 @@ module Bixby
   end
 end
 
-annotations = Bixby::Model::Annotation.list(ARGV.shift)
+annotations = Bixby::Model::Annotation.list(ARGV.shift, ARGV.shift)
 json = annotations.map do |a|
   {
     :name       => a.name,
