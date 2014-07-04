@@ -1,5 +1,5 @@
 {
-  "digest": "541c302f288f7cf52be994fcb15c46231a2cab5caca80ed451419f186ddceb64",
+  "digest": "ec8bded256a3a38b615ab9df11d2fc415e63b26ccd2ef187f1295528a0b62a2e",
   "files": [
     {
       "file": "bin/add_annotation.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/list_annotations.rb",
-      "digest": "7de6df080c643b4b1bc5509c200755233b43654e7435bb1db53549a6f86335d2"
+      "digest": "39172c8e229d36dad88c484d0dda7ea8e02ce76c79d83edce9cfa65261dafa5d"
     },
     {
       "file": "bin/mon_daemon.rb",
