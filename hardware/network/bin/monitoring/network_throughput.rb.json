@@ -1,5 +1,5 @@
 {
-  "name": "network throughput",
+  "name": "Network Throughput",
   "key": "net",
   "metrics": {
     "tx.bytes": {
