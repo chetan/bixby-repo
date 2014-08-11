@@ -1,0 +1,24 @@
+{
+  "name" : "nginx Status",
+
+  "options" : {
+    "url" : {
+      "type" : "text",
+      "name" : "Status URL",
+      "desc" : "URL of nginx stub status report",
+      "default" : "http://127.0.0.1/nginx_status",
+      "required" : false
+    }
+  },
+
+  "key" : "web.nginx.stats",
+  "metrics" : {
+    "active_conns":   { "desc" : "Number of currently active connections", "range": "0+" },
+    "accepted_conns": { "desc" : "Number of accepted connections (rate)", "range": "0+" },
+    "handled_conns":  { "desc" : "Number of handled connections (rate)", "range": "0+" },
+    "requests":       { "desc" : "Number of handled requests (rate)", "range": "0+" },
+    "reading":        { "desc" : "Number of connections in READ state", "range": "0+" },
+    "writing":        { "desc" : "Number of connections in WRITE state", "range": "0+" },
+    "waiting":        { "desc" : "Number of connections not in READ/WRITE state", "range": "0+" }
+  }
+}

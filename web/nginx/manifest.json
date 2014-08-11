@@ -1,0 +1,5 @@
+{
+  "name": "nginx",
+  "version": "0.1.0",
+  "description": "scripts for monitoring nginx"
+}

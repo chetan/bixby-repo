@@ -1,0 +1,33 @@
+{
+  "digest": "e09a7f109443bcbc79c37d0814b5b06de75e760cda4ba2557095ca5369e4630b",
+  "files": [
+    {
+      "file": "bin/monitoring/nginx_status.rb",
+      "digest": "3865b5a68ca78a823990ec90c8742fd6bdfedc444c3f23521070ceeaa09cb18c"
+    },
+    {
+      "file": "bin/monitoring/nginx_status.rb.json",
+      "digest": "89779aff51b01940037dd5f64ade631f772701fe5d52b4a7d9b98bd988fef3dd"
+    },
+    {
+      "file": "bin/monitoring/nginx_status.rb.test",
+      "digest": "8c6b655b6774d2d11bb86e7971d9545474753b51dcfa661fbb7cbc8bb4f1a972"
+    },
+    {
+      "file": "lib/bixby/web/nginx.rb",
+      "digest": "00bf28ec14e2d1378f9dc1ac000eff2b41fa8dcb14bf4e8939f10ef4b6097674"
+    },
+    {
+      "file": "lib/bixby/web/nginx/status.rb",
+      "digest": "6d3ab8e7f2ffb068f5fbc1433ceb30f33b61c2bdc3d2fb66061d878af609a1d4"
+    },
+    {
+      "file": "lib/nginx.rb",
+      "digest": "2c8fccd8302ae6c4625f15b3a78d8e6f399c787eee0f6556592c3085388562f8"
+    },
+    {
+      "file": "manifest.json",
+      "digest": "f1249e2eb48d4623e629ed987e3d55ba508b4b7e022708545bce6a425dbeea16"
+    }
+  ]
+}
