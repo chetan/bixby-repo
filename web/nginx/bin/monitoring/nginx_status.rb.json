@@ -20,5 +20,7 @@
     "reading":        { "desc" : "Number of connections in READ state", "range": "0+" },
     "writing":        { "desc" : "Number of connections in WRITE state", "range": "0+" },
     "waiting":        { "desc" : "Number of connections not in READ/WRITE state", "range": "0+" }
-  }
+  },
+
+  "test" : false
 }

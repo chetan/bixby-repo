@@ -102,6 +102,10 @@ class TestMonitoring < Bixby::TestCase
         opts[:input] = MultiJson.dump(input)
       end
 
+      if input["test"] == false || input["test"] == "no" then
+        return
+      end
+
       do_test_metrics_with_opts(file, metrics, opts)
     end
 
