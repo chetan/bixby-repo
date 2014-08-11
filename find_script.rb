@@ -45,7 +45,7 @@ def find_script(script)
     File.directory? f or
       f =~ /\.(json|test.*)|\/digest$/ or
       File.dirname(f) == root or
-      File.dirname(f) =~ /\/(test|lib)$/
+      File.dirname(f) =~ %r{/(test|lib)/?}
   }
   script = files.find_all{ |f| f.include? script }.sort { |a,b|
     script.ld(File.basename(a)) <=> script.ld(File.basename(b))
