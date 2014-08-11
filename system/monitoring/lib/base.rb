@@ -20,10 +20,10 @@ module Monitoring
       super()
 
       @config = load_config()
-      @options = @config.merge(options || get_json_input())
+      @options = load_options(options)
 
       @storage = {}
-      @key = @options["key"]
+      @key = @config["key"]
       @check_id = @options ? @options["check_id"] : nil
       reset()
       configure()
@@ -229,6 +229,23 @@ module Monitoring
         return MultiJson.load(File.read(file))
       end
       return {}
+    end
+
+    # Load options from passed in hash or JSON on STDIN. Merges in defaults when applicable
+    #
+    # @param [Hash] options
+    #
+    # @return [Hash] passed options combined with defaults
+    def load_options(options)
+      options ||= get_json_input()
+      options ||= {}
+      if @config && @config["options"] then
+        defaults = {}
+        @config["options"].each{ |k,v| defaults[k] = v["default"] if v.include? "default" }
+        return defaults.merge(options)
+      end
+
+      return options
     end
 
   end # Base
