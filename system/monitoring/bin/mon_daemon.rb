@@ -51,7 +51,7 @@ module Monitoring
     def run_check(check)
       logger.debug { "running check: #{check.clazz}" }
 
-      obj = check.clazz.new(check.options.dup, check.config.dup)
+      obj = check.create()
       obj.storage = check.storage
 
       obj.monitor()
@@ -109,7 +109,7 @@ module Monitoring
         c.interval = check["interval"]
         c.retry    = check["retry"]
         c.timeout  = check["timeout"]
-        c.storage  = c.clazz.new(c.options.dup, c.config.dup).load_storage()
+        c.storage  = c.create().load_storage()
 
         logger.debug { "new check: #{c.clazz}" }
         @loaded_checks << c
