@@ -102,7 +102,7 @@ class TestMonitoring < Bixby::TestCase
         opts[:input] = MultiJson.dump(input)
       end
 
-      if input["test"] == false || input["test"] == "no" then
+      if input && (input["test"] == false || input["test"] == "no") then
         return
       end
 
