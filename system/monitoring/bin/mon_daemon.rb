@@ -49,7 +49,7 @@ module Monitoring
     #
     # @return [Hash] hash of results
     def run_check(check)
-      logger.debug { "running check: #{check.key} (#{check.clazz})" }
+      logger.debug { "running check: #{check}" }
 
       obj = check.create()
       obj.storage = check.storage
@@ -98,6 +98,8 @@ module Monitoring
 
         # instantiate the Check
         c = Check.new
+        c.bundle = command.bundle
+        c.file   = File.basename(command.command)
 
         # merge command options with ones passed in from manager (check_id)
         config = command.load_config() || {}
@@ -114,7 +116,7 @@ module Monitoring
         c.storage = obj.load_storage()
         c.key     = obj.to_hash[:key]
 
-        logger.debug { "new check: #{c.key} (#{c.clazz})" }
+        logger.debug { "new check: #{c}" }
         @loaded_checks << c
 
       end # checks.each
