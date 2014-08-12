@@ -39,4 +39,7 @@ group :test do
   gem "mixlib-cli"
   gem "facter"
   gem "daemons"
+
+  # annoying httpi warning
+  gem "rubyntlm"
 end
