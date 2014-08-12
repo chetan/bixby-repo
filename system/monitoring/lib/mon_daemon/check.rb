@@ -2,7 +2,7 @@ module Bixby
   module Monitoring
 
     class Check
-      attr_accessor :clazz, :options, :config, :interval, :retry, :timeout, :storage
+      attr_accessor :clazz, :key, :options, :config, :interval, :retry, :timeout, :storage
 
       # Create a new instance of the Check described by this object
       def create
