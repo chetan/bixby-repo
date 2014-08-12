@@ -1,5 +1,5 @@
 {
-  "digest": "e09a7f109443bcbc79c37d0814b5b06de75e760cda4ba2557095ca5369e4630b",
+  "digest": "e53430aa79f46b906693d42775151d4d96345e082658e8cc9bd555f08b425dbc",
   "files": [
     {
       "file": "bin/monitoring/nginx_status.rb",
@@ -7,7 +7,7 @@
     },
     {
       "file": "bin/monitoring/nginx_status.rb.json",
-      "digest": "89779aff51b01940037dd5f64ade631f772701fe5d52b4a7d9b98bd988fef3dd"
+      "digest": "0c13ae262321d96b00d33ce65f38aa731a6f5b5562e9cfb6e3a575958be60ba5"
     },
     {
       "file": "bin/monitoring/nginx_status.rb.test",
