@@ -16,10 +16,10 @@ module Monitoring
     # Create new instance
     #
     # @param [Hash] options      Hash of command metadata
-    def initialize(options=nil)
+    def initialize(options=nil, config=nil)
       super()
 
-      @config = load_config()
+      @config = config || load_config
       @options = load_options(options)
 
       @storage = {}

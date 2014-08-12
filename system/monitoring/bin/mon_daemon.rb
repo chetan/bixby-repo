@@ -51,7 +51,7 @@ module Monitoring
     def run_check(check)
       logger.debug { "running check: #{check.clazz}" }
 
-      obj = check.clazz.new(check.options.dup)
+      obj = check.clazz.new(check.options.dup, check.config.dup)
       obj.storage = check.storage
 
       obj.monitor()
@@ -100,15 +100,16 @@ module Monitoring
         c = Check.new
 
         # merge command options with ones passed in from manager (check_id)
-        opts = command.load_config() || {}
-        opts.merge!(MultiJson.load(command.stdin))
+        config = command.load_config() || {}
+        opts = MultiJson.load(command.stdin)
 
         c.clazz    = @class_map[key]
         c.options  = opts
+        c.config   = config
         c.interval = check["interval"]
         c.retry    = check["retry"]
         c.timeout  = check["timeout"]
-        c.storage  = c.clazz.new(c.options.dup).load_storage()
+        c.storage  = c.clazz.new(c.options.dup, c.config.dup).load_storage()
 
         logger.debug { "new check: #{c.clazz}" }
         @loaded_checks << c
