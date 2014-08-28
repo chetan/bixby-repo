@@ -3,19 +3,19 @@
   "key": "net",
   "metrics": {
     "tx.bytes": {
-      "desc": "outgoing bytes/sec",
+      "desc": "Outgoing bytes/sec",
       "unit": "Bps"
     },
     "tx.packets": {
-      "desc": "outgoing packets/sec",
+      "desc": "Outgoing packets/sec",
       "unit": "pkts/s"
     },
     "rx.bytes": {
-      "desc": "incoming bytes/sec",
+      "desc": "Incoming bytes/sec",
       "unit": "Bps"
     },
     "rx.packets": {
-      "desc": "incoming packets/sec",
+      "desc": "Incoming packets/sec",
       "unit": "pkts/s"
     }
   },
