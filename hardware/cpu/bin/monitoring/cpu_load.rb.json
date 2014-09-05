@@ -1,10 +1,12 @@
 {
   "name" : "CPU Load Average",
   "key" : "cpu.loadavg",
+  "help" : "The system load is a measure of the amount of computational work that a computer system performs. The **load average** represents the average system load over a period of time.",
+  "help_url": "https://en.wikipedia.org/wiki/Load_%28computing%29",
   "options" : {},
   "metrics" : {
-    "1m"  : { "desc" : "Last minute", "range": "0+" },
-    "5m"  : { "desc" : "Last 5 minutes", "range": "0+" },
-    "15m" : { "desc" : "Last 15 minutes", "range": "0+" }
+    "1m"  : { "name" : "Last minute", "range": "0+" },
+    "5m"  : { "name" : "Last 5 minutes", "range": "0+" },
+    "15m" : { "name" : "Last 15 minutes", "range": "0+" }
   }
 }
