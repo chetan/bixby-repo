@@ -1,7 +1,7 @@
 {
   "name" : "CPU Load Average",
   "key" : "cpu.loadavg",
-  "help" : "The system load is a measure of the amount of computational work that a computer system performs. The **load average** represents the average system load over a period of time.",
+  "help" : "\"The system load is a measure of the amount of computational work that a computer system performs. The **load average** represents the average system load over a period of time.\"\n\nIn general, a load of 1.0 on a single CPU system represents 100% usage, as does 4.0 on a system with 4 CPUs.",
   "help_url": "https://en.wikipedia.org/wiki/Load_%28computing%29",
   "options" : {},
   "metrics" : {
