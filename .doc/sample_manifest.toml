@@ -2,6 +2,9 @@
 name = "Short name for this script"
 desc = "Longer description"
 
+help     = "Longer help text to show where appropriate (e.g., in a popover bubble or dialog)"
+help_url = "URL to more information (wikipedia, etc)"
+
 # User and group to run this script as. Can be 'root' or any other user/group
 #
 # [OPTIONAL] default: bixby
