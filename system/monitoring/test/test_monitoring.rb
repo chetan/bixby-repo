@@ -149,7 +149,7 @@ class TestMonitoring < Bixby::TestCase
         key = @config["rename"][key]
       end
 
-      assert_includes mdesc, "desc", "metric has a description"
+      assert (mdesc.include?("desc") || mdesc.include?("name")), "metric has a name or description"
 
       # make sure the metric appears in the result
       optional = mdesc["optional"] || false
