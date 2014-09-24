@@ -140,6 +140,13 @@ module Monitoring
 
         starter.cleanup!
         create_data_dir()
+
+        if opts[:ontop] then
+          # debug mode
+          Logging::Logger.root.add_appenders("stdout")
+          Logging::Logger.root.level = :debug
+        end
+
         Logging.reopen
 
         trap("HUP") do
