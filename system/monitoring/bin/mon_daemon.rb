@@ -145,6 +145,11 @@ module Monitoring
           # debug mode
           Logging::Logger.root.add_appenders("stdout")
           Logging::Logger.root.level = :debug
+          Kernel.trap("INT") do
+            puts
+            logger.warn  "caught INT (^C) signal; exiting"
+            exit
+          end
         end
 
         Logging.reopen
