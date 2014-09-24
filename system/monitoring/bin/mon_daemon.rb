@@ -154,11 +154,13 @@ module Monitoring
 
         Logging.reopen
 
-        trap("HUP") do
-          # puts "caught HUP"
-          reload_config()
-          return
-        end
+        # trap("HUP") do
+        #   # puts "caught HUP"
+        #   reload_config()
+        #   return
+        # end
+
+        logger.info "Starting Bixby Monitoring Daemon..."
 
         reload_config()
         if @loaded_checks.empty? then
@@ -168,31 +170,34 @@ module Monitoring
 
         @reporter.start()
 
-        logger.debug { "startup complete; entering run loop" }
-        # main run loop
-        loop do
+        logger.info { "Startup complete, loaded #{@loaded_checks.size} checks; entering run loop" }
+        start_run_loop()
 
-          # launch in separate thread so we always collect data
-          # at the same time each minute
-          Thread.new do
-            @loaded_checks.each do |check|
-              begin
-                @reporter << run_check(check)
-              rescue Exception => ex
-                logger.error "Caught exception running check (#{check.clazz}): " +
-                  "#{ex.message}\n#{ex.backtrace.join('\n')}"
-              end
-            end
-          end
-
-          sleep 60
-
-        end # loop
-
-      end # Daemons
+      end # Daemons.run_proc
       starter.cleanup! if Daemons.controller.error?
 
     end # run
+
+    def start_run_loop
+      loop do
+
+        # launch in separate thread so we always collect data
+        # at the same time each minute
+        Thread.new do
+          @loaded_checks.each do |check|
+            begin
+              @reporter << run_check(check)
+            rescue Exception => ex
+              logger.error "Caught exception running check (#{check.clazz}): " +
+                "#{ex.message}\n#{ex.backtrace.join('\n')}"
+            end
+          end
+        end
+
+        sleep 60
+
+      end # loop
+    end
 
 
     private

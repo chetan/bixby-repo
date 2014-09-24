@@ -43,7 +43,7 @@ module Bixby
         reporter = self
         Thread.new do
           begin
-            run_loop()
+            start_run_loop()
           rescue Exception => ex
             logger.error "Reporter thread run loop exited: #{ex.message}", ex
           end
@@ -52,7 +52,7 @@ module Bixby
       end
 
 
-      def run_loop
+      def start_run_loop
         # by default we want to run this thread just after reports are
         # actually available, so we sleep for 5 sec here at the start
         sleep 5
@@ -70,7 +70,7 @@ module Bixby
 
           if not (queue.nil? || queue.empty?) then
             send_reports(queue)
-            logger.debug { "sent #{queue.size} reports to server" }
+            logger.info { "Sent #{queue.size} reports to server" }
           end
 
           sleep 30
