@@ -1,5 +1,5 @@
 {
-  "digest": "3adf6a6fecc7c335919b414f2ce86f89ce71c67640a00b5528290e01cdfce19b",
+  "digest": "5d69ef505cfce4df7d2868ece05b2db6f147f5dec3313359e0ddc72fc3fe1271",
   "files": [
     {
       "file": "bin/add_annotation.rb",
@@ -11,7 +11,7 @@
     },
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "fa5b53cf198de99433c216d4e1d703f4659fdefe6442f31f1b1e232fea930a92"
+      "digest": "46a279cc396a1baa592a92663f9dfa9499c6e3300b6b677cc86def77166f2ad5"
     },
     {
       "file": "bin/mon_daemon.rb.json",
@@ -39,7 +39,7 @@
     },
     {
       "file": "lib/mon_daemon/reporter.rb",
-      "digest": "4d66bb616b961f817b96e568cf7df41736b0af9a672603b34c19f979f9e900b5"
+      "digest": "587712c21c3026688efadcd2c9dd057939c523b78873ca8515138dd53833bcfb"
     },
     {
       "file": "lib/scout_shim.rb",
