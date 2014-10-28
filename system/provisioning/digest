@@ -1,5 +1,5 @@
 {
-  "digest": "91ec40f37bf6a9468ec2c2444e0f076ffbea1ecae1ca0fe6eba97616503249f2",
+  "digest": "769085fcb74db48841f77d9549ece3bf675a04e737502a1079c2e85deb417367",
   "files": [
     {
       "file": "bin/create_digest.rb",
@@ -24,6 +24,10 @@
     {
       "file": "bin/get_bundles.rb.json",
       "digest": "81c0bc292ecf0f22f9e717dde9ca763ea05a784dfc904a70fb08ffe2cd92d5a8"
+    },
+    {
+      "file": "bin/new_bundle.rb",
+      "digest": "a59f6447dc4c203f555d2a471d25bc63f7018b0fe2e890f2fa175d4f02ba0aac"
     },
     {
       "file": "bin/upgrade_agent.sh",
