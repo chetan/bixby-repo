@@ -18,6 +18,7 @@ module Bixby
       #
       # @param [Hash] report
       def <<(report)
+        return if !report.kind_of?(Hash)
         @report_lock.synchronize { @reports << report }
       end
 

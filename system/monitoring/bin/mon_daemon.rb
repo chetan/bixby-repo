@@ -55,13 +55,19 @@ module Monitoring
       obj.storage = check.storage
 
       obj.monitor()
-      obj.save_storage()
-      check.storage = obj.storage
-
-      return obj.to_hash
 
     rescue Exception => ex
-      logger.error { "check failed: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
+      obj.error(ex)
+      logger.error { "Check #{check.class} failed\n#{ex.message}\n" + ex.backtrace.join("\n") }
+
+    ensure
+      begin
+        obj.save_storage()
+        check.storage = obj.storage
+      rescue Exception => ex
+        log.warn { "Error while saving storage for #{check.class}:\n#{ex.message}\n" + ex.backtrace.join("\n") }
+      end
+      return obj.to_hash
 
     end
 
