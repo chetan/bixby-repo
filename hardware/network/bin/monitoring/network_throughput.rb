@@ -78,8 +78,9 @@ module Hardware
 
           # Name   Mtu     Network     Address              Ipkts     Ierrs Ibytes        Opkts     Oerrs Obytes       Coll
           # "en0", "1500", "<Link#4>", "00:1f:5b:3d:6b:08", "7235347", "0", "6759061727", "4887571", "0", "712511194", "0"
-          stats = systemu("netstat -biI #{iface}").stdout.split(/\n/).reject{ |s| s =~ /^Name/ }.first.
-            squeeze(" ").split(/ /)
+          line = systemu("netstat -biI #{iface}").stdout.split(/\n/).reject{ |s| s =~ /^Name/ }.first
+          next if line.nil? or line.empty?
+          stats = line.squeeze(" ").split(/ /)
 
           # pull out stats we want
           in_packets, in_bytes, out_packets, out_bytes = stats.values_at(4, 6, 7, 9).map { |i| i.to_i }

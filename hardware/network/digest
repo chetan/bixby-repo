@@ -1,5 +1,5 @@
 {
-  "digest": "9b6755afbbdebd570462eba419cf9f4a4eec60683c64b3dcb2099796f6e3c2d9",
+  "digest": "3e7407e7e4b3247d28f985913a87fb7e68a7cc277019f695f3dd5057b0fd43b4",
   "files": [
     {
       "file": "bin/monitoring/connection_count.rb",
@@ -31,7 +31,7 @@
     },
     {
       "file": "bin/monitoring/network_throughput.rb",
-      "digest": "6b14b1148d0a51bea13bf018d9158091b0fefe8a7c5f4febe62f1403812fde65"
+      "digest": "301e1d9e6a5e9a6533671fed6a32309c9d67632cddfd53a39a5bc106e03d5532"
     },
     {
       "file": "bin/monitoring/network_throughput.rb.json",
