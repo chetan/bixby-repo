@@ -176,6 +176,7 @@ module Monitoring
         end
 
         @reporter.start()
+        at_exit { @reporter.shutdown }
 
         logger.info { "Startup complete, loaded #{@loaded_checks.size} checks; entering run loop" }
         start_run_loop()

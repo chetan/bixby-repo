@@ -15,6 +15,7 @@ module Bixby
         @reports = []
         @report_lock = Mutex.new
         @disk_buffer = DiskBuffer.new(self)
+        @stopped = false
       end
 
       # Queue a report to be sent to the server
@@ -61,6 +62,7 @@ module Bixby
         sleep 5
 
         loop do
+          return if @stopped
           queue = nil
 
           @report_lock.synchronize {
@@ -89,6 +91,25 @@ module Bixby
           sleep 30
 
         end # loop
+      end
+
+      # Stop the reporter thread
+      def shutdown
+        @stopped = true
+        begin
+          queue = nil
+          @report_lock.synchronize {
+            queue = @reports
+            @reports = []
+          }
+          # flush any pending reports to disk
+          if queue and not queue.empty? then
+            logger.warn "Shutting down; flushing pending reports to disk"
+            @disk_buffer << queue
+          end
+        rescue Exception => ex
+          logger.error(ex)
+        end
       end
 
     end
