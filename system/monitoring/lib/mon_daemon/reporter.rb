@@ -9,9 +9,12 @@ module Bixby
 
       include Bixby::Log
 
+      attr_reader :report_lock
+
       def initialize
         @reports = []
         @report_lock = Mutex.new
+        @disk_buffer = DiskBuffer.new(self)
       end
 
       # Queue a report to be sent to the server
@@ -24,18 +27,17 @@ module Bixby
 
       # Send reports to master
       #
-      # @param [Array<Bixby::Monitoring::Base>] reports
+      # @param [Array<Hash>] reports
+      #
+      # @return [JsonResponse]
       def send_reports(reports)
         return if not reports or reports.empty?
 
-        res = Bixby::Metrics.put_check_result(reports)
-        if not res.success? then
-          # TODO failover to disk buffer??
-          logger.error { "error reporting to server at #{Bixby.manager_uri}:\n" + res.to_s }
-        end
+        return Bixby::Metrics.put_check_result(reports)
 
       rescue Exception => ex
         logger.error { "error reporting to server at #{Bixby.manager_uri}: " + ex.to_s + "\n" + ex.backtrace.join("\n") }
+        return nil
 
       end
 
@@ -70,17 +72,24 @@ module Bixby
           }
 
           if not (queue.nil? || queue.empty?) then
-            send_reports(queue)
-            logger.info { "Sent #{queue.size} reports to server" }
+            res = send_reports(queue)
+            if res and res.success? then
+              logger.info { "Sent #{queue.size} reports to server" }
+              if !@disk_buffer.empty? then
+                @disk_buffer.flush
+              end
+
+            else
+              logger.error { "Error reporting to server at #{Bixby.manager_uri}:\n" + res.to_s }
+              @disk_buffer << queue
+
+            end
           end
 
           sleep 30
 
         end # loop
       end
-
-
-
 
     end
   end

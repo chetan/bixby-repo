@@ -9,6 +9,7 @@ use_bundle "system/general"
 use_bundle "system/monitoring"
 
 require "mon_daemon/check"
+require "mon_daemon/disk_buffer"
 require "mon_daemon/reporter"
 
 module Bixby

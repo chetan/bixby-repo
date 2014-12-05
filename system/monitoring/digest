@@ -1,5 +1,5 @@
 {
-  "digest": "d3e0fd8114bb0d302374d2c192175101d98d00eae0df8b7cf45a465703cbb807",
+  "digest": "f4cf7e5684d681f7bf90e147b18ae92f1adfbd78b40409564a5cd05e992b6749",
   "files": [
     {
       "file": "bin/add_annotation.rb",
@@ -11,7 +11,7 @@
     },
     {
       "file": "bin/mon_daemon.rb",
-      "digest": "8477b9a8def2701d165e01c8730f1e3c5377d8fc1720dff64c3961172022c167"
+      "digest": "218f63bdd575a75e466cde8063029f36bae683cb69c9f1204a00201fe39a1323"
     },
     {
       "file": "bin/mon_daemon.rb.json",
@@ -38,8 +38,12 @@
       "digest": "97789012b1fe76286a650bc2d33218e46560a927f80f9ae173a2b69eadbed39b"
     },
     {
+      "file": "lib/mon_daemon/disk_buffer.rb",
+      "digest": "65ddb9ba9e86237f0d784bb43f53a796b3bf082dc33ef3eb3f039bc0fcccc3da"
+    },
+    {
       "file": "lib/mon_daemon/reporter.rb",
-      "digest": "6aec4f7a2d7b86cf1014f58ff1a4c0a9e880f7276db281841baf0a18b8489d27"
+      "digest": "ef9d103806ec57d2e5221c4eacdeab82abf9171b31eb8519ae96d755881c629c"
     },
     {
       "file": "lib/scout_shim.rb",
