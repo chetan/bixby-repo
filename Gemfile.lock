@@ -37,9 +37,8 @@ GEM
     ansi (1.5.0)
     awesome_print (1.6.1)
     bixby-auth (0.1.1)
-    bixby-client (0.5.2)
+    bixby-client (0.5.3)
       bixby-common
-      curb
       fuzzy_file_finder
       httpi
       mixlib-shellout
@@ -56,7 +55,6 @@ GEM
       timers (~> 4.0.0)
     coderay (1.1.0)
     colorize (0.7.7)
-    columnize (0.9.0)
     coveralls (0.8.1)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
@@ -65,17 +63,7 @@ GEM
       thor (~> 0.19.1)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
-    curb (0.8.8)
     daemons (1.2.2)
-    debugger (1.6.8)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.5)
-    debugger-linecache (1.2.0)
-    debugger-pry (0.1.1)
-      debugger (~> 1)
-      pry (>= 0.9.9)
-    debugger-ruby_core_source (1.3.8)
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
