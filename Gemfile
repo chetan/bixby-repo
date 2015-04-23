@@ -6,7 +6,6 @@ gem 'bixby-client'
 # gem 'bixby-common', :path => "../common"
 # gem 'bixby-client', :path => "../client"
 
-gem 'api-auth', :github => "chetan/api_auth", :branch => "bixby"
 gem 'mixlib-shellout', '~> 1.3.0'
 
 group :development do
@@ -19,7 +18,7 @@ group :development do
   gem "debugger",     :platforms => [ :mri_20, :mri_19 ]
   gem "debugger-pry", :require => "debugger/pry", :platforms => [ :mri_20, :mri_19 ]
 
-  gem "test_guard", :git => "https://github.com/chetan/test_guard.git"
+  gem "test_guard", :github => "chetan/test_guard"
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
