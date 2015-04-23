@@ -12,7 +12,6 @@ require "micron"
 require "micron/minitest"
 
 # Load any HTTP clients before webmock so they can be stubbed
-require 'curb'
 require 'webmock'
 include WebMock::API
 require 'mocha/setup'
